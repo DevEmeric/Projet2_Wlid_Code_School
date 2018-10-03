@@ -30,6 +30,14 @@ class Spell extends Component {
       </div>
     );
   }
+  componentDidMount() {
+    this.myInterval = setInterval(() => {
+        this.setState(prevState => ({
+            leftSpell: prevState.leftSpell + 10
+        }))
+    }, 7)
+}
+  
 }
 
 export default Spell;
