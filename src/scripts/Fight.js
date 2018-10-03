@@ -39,7 +39,7 @@ class Fight extends Component {
                 life:100,
                 width:250,
                 height:200,
-                attack:"control",         // Attaque: Ctrl 
+                attack:";",         // Attaque: Ctrl 
                 defense:"!",       // Défense: !
                 rotate:":",        // Rotate: :
                 goUp:"ArrowUp",            // Up: Flèche du haut
