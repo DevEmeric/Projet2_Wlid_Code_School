@@ -23,20 +23,20 @@ class Fighter extends Component {
 
   handleKeyPress(event) {
     //  console.log("Appui touche");
-    if (event.which === this.props.fighter.attack) {
+    if (event.key === this.props.fighter.attack) {
       this.castSpell()
     }
     // configuration des touches de deplacements
-    if(event.which === this.props.fighter.goUp) {
+    if(event.key === this.props.fighter.goUp) {
       this.move(-20,0)
     }
-    if(event.which === this.props.fighter.goDown) {
+    if(event.key === this.props.fighter.goDown) {
       this.move(20,0)
     }
-    if(event.which === this.props.fighter.goLeft) {
+    if(event.key === this.props.fighter.goLeft) {
         this.move(0,-20)
     }
-    if(event.which === this.props.fighter.goRight) {
+    if(event.key === this.props.fighter.goRight) {
         this.move(0,20)
     }
   }
