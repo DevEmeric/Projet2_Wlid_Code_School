@@ -19,13 +19,13 @@ class Fight extends Component {
                 life:100,
                 width:250,
                 height:200,
-                attack:87,      // Attaque: w
-                defense:81,    // Défense: q
-                rotate:65,     // Rotate: a
-                goUp:18,         // Up: e
-                goDown:68,      // Down: d
-                goLeft:83,        // Left: s
-                goRight:70,       // Right: f
+                attack:"w",      // Attaque: w
+                defense:"q",    // Défense: q
+                rotate:"a",     // Rotate: a
+                goUp:"e",         // Up: e
+                goDown:"d",      // Down: d
+                goLeft:"s",        // Left: s
+                goRight:"f",       // Right: f
                 house:"slytherin",
                 allCharacteristics:this.fighterAndSpellCallback,
             },
@@ -39,13 +39,13 @@ class Fight extends Component {
                 life:100,
                 width:250,
                 height:200,
-                attack:17,         // Attaque: Ctrl 
-                defense:223,       // Défense: !
-                rotate:191,        // Rotate: :
-                goUp:38,            // Up: Flèche du haut
-                goDown:40,         // Down: Flèche du bas
-                goLeft:37,           // Left: Flèche de gauche
-                goRight:35,          // Right: Flèche de droite
+                attack:"control",         // Attaque: Ctrl 
+                defense:"!",       // Défense: !
+                rotate:":",        // Rotate: :
+                goUp:"ArrowUp",            // Up: Flèche du haut
+                goDown:"ArrowDown",         // Down: Flèche du bas
+                goLeft:"ArrowLeft",           // Left: Flèche de gauche
+                goRight:"ArrowRight",          // Right: Flèche de droite
                 house:"ravenclaw",
                 allCharacteristics:this.fighterAndSpellCallback
             }
