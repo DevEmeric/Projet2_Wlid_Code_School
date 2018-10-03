@@ -20,11 +20,33 @@ class Fighter extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
     
+
   handleKeyPress(event) {
     //  console.log("Appui touche");
-    if (event.which === this.props.fighter.attack) {
+    if (event.key === this.props.fighter.attack) {
       this.castSpell()
     }
+    // configuration des touches de deplacements
+    if(event.key === this.props.fighter.goUp) {
+      this.move(-20,0)
+    }
+    if(event.key === this.props.fighter.goDown) {
+      this.move(20,0)
+    }
+    if(event.key === this.props.fighter.goLeft) {
+        this.move(0,-20)
+    }
+    if(event.key === this.props.fighter.goRight) {
+        this.move(0,20)
+    }
+  }
+
+  // fonction increment position personnages
+  move(x, y) {
+    this.setState({
+      top: this.state.top + x,
+      left: this.state.left + y
+  });
   }
   
   // Lancement de sort
@@ -58,6 +80,8 @@ class Fighter extends Component {
     };
 
     let fighterId="fighter"+this.props.fighter.house
+
+
 
     return (
       <div>
