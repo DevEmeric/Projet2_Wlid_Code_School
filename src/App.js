@@ -3,7 +3,7 @@ import './App.css';
 //import Spell from './scripts/Spell';
 import Fight from './scripts/Fight';
 //import Char from'./scripts/Char';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, NavLink, BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
 

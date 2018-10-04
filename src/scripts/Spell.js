@@ -6,38 +6,27 @@ class Spell extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      leftSpell: 250,
-      topSpell: 75,
-      heightSpell: 20,
-      widthSpell: 20,
-      //ref:this.props.spellRef+"spell",
+      /*left: this.props.spell.left,
+      top: this.props.spell.top,
+      height: this.props.spell.height,
+      width: this.props.spell.width,*/
     }
   }
-
+  
   render() {
     let spellStyle={
       position: "absolute",
-      top: this.state.topSpell+"px",
-      left: this.state.leftSpell+"px",
-      width: this.state.widthSpell+"px",
-      height: this.state.heightSpell+"px",
+      top: this.props.spell.top+"px",
+      left: this.props.spell.left+"px",
+      width: this.props.spell.width+"px",
+      height: this.props.spell.height+"px",
     }
-
-    let spellId="spell"+this.props.house
     
     return (
-      <div className="spell" id={spellId} style={spellStyle}>
+      <div className="spell" id={this.props.spell.id} style={spellStyle}>
       </div>
     );
   }
-  componentDidMount() {
-    this.myInterval = setInterval(() => {
-        this.setState(prevState => ({
-            leftSpell: prevState.leftSpell + 10
-        }))
-    }, 7)
-}
-  
 }
 
 export default Spell;
