@@ -1,82 +1,42 @@
 import React, { Component } from 'react';
 import './Fighter.css';
-import Spell from './Spell';
-//import ReactDOM from 'react-dom';
-
 
 class Fighter extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      keyPressed: false,
+      spellCasted: false,
       rotation:this.props.fighter.rotation,
       facesRight: this.props.fighter.facesRight,
       top:this.props.fighter.top,
       left:this.props.fighter.left,
       width:this.props.fighter.width,
       height:this.props.fighter.height,
+      speed: 5,
     }
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
-    
-
-  handleKeyPress(event) {
-    //  console.log("Appui touche");
-    if (event.key === this.props.fighter.attack) {
-      this.castSpell()
-    }
-    // configuration des touches de deplacements
-    if(event.key === this.props.fighter.goUp) {
-      this.move(-20,0)
-    }
-    if(event.key === this.props.fighter.goDown) {
-      this.move(20,0)
-    }
-    if(event.key === this.props.fighter.goLeft) {
-        this.move(0,-20)
-    }
-    if(event.key === this.props.fighter.goRight) {
-        this.move(0,20)
-    }
-    if(event.key === this.props.fighter.rotate) {
-      this.rotate()
-  }
-  }
-
-  // fonction increment position personnages
-  move(x, y) {
-    this.setState({
-      top: this.state.top + x,
-      left: this.state.left + y
-  });
-  }
-
-  // fonction increment position personnages
-  rotate() {
-    this.setState({
-      rotation: this.state.rotation - 180,
-      facesRight: !this.state.facesRight
-  });
   }
   
-  // Lancement de sort
-  castSpell() {
+  handleKeyPress=(event) => {
+    switch(event.which){
+      case this.props.fighter.attack : this.props.fighter.castSpell(this.props.fighter.id, this.props.fighter.facesRight); break;
+      //case this.props.fighter.defense : this.props.fighter.defend(this.props.fighter.id); break;
+      case this.props.fighter.rotate : this.props.fighter.rotateFighter(this.props.fighter.id); break;
+      case this.props.fighter.moveUp : this.props.fighter.move(this.props.fighter.id, -this.state.speed, 0); break;
+      case this.props.fighter.moveDown : this.props.fighter.move(this.props.fighter.id, this.state.speed, 0); break;
+      case this.props.fighter.moveLeft : this.props.fighter.move(this.props.fighter.id, 0 , -this.state.speed); break;
+      case this.props.fighter.moveRight : this.props.fighter.move(this.props.fighter.id, 0, this.state.speed); break;
+    }
+
     this.setState({
-      keyPressed: true,
+      spellCasted:this.props.fighter.spellCasted,
+      top:this.props.fighter.top,
+      left:this.props.fighter.left,
+      rotation:this.props.fighter.rotation
     })
-    setTimeout(()=>{
-      this.setState({
-        keyPressed: false,
-      })
-    },2000)
   }
-
-
+  
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyPress, false);
-  }
-  componentDidUpdate() {
     document.addEventListener("keydown", this.handleKeyPress, false);
   }
 
@@ -92,23 +52,9 @@ class Fighter extends Component {
 
     let fighterId="fighter"+this.props.fighter.house
 
-
-
     return (
       <div>
         <div className="fighter" style={fighterStyle} id={fighterId}>
-          <div>{
-            this.state.keyPressed ?
-              <Spell 
-                house={this.props.fighter.house}
-                direction={this.state.facesRight}
-                //size={this.refs.fighter.getClientRects()}
-                spellCharacteristics={this.spellCharacteristicsCallback}
-                spellRef={this.props.fighter.id}
-              />
-              :
-              <div></div>
-          }</div>
         </div>
       </div>
     );
