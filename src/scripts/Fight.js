@@ -2,14 +2,48 @@ import React, { Component } from 'react';
 import Fighter from './Fighter';
 import Spell from './Spell';
 import Header from './Header';
+import './Fight.css';
 //import ReactDOM from 'react-dom';
 
+
+const ProgressBar = ({ progress }) => (
+    <div className="progressbar">
+        <div className="progress" style={{ width: `${progress}%` }}>
+        </div>
+    </div>
+)
+
+const ProgressBar1 = ({ progress1 }) => (
+    <div className="progressbar1">
+        <div className="progress1" style={{ width: `${progress1}%` }}>
+        </div>
+    </div>
+)
 
 class Fight extends Component {
 
     constructor() {
         super()
         this.state = {
+
+            //Avatar 1
+            progress: 100,
+
+            leftavatar: 5,
+            topavatar: 5,
+            heightavatar: 130,
+            widthavatar: 130,
+            borderradius: 50,
+
+            //Avatar 2
+            progress1: 100,
+
+            righttavatar1: 5,
+            topavatar1: 5,
+            heightavatar1: 130,
+            widthavatar1: 130,
+            borderradius1: 50,
+
             fighter1: {
                 id: "fighter1",
                 spellCasted: false,
@@ -100,14 +134,14 @@ class Fight extends Component {
                 direction: x / Math.abs(x)
             }
         })
-        setInterval(()=>{
+        setInterval(() => {
             this.setState({
                 [spellID]: {
                     ...this.state[spellID],
-                    left: this.state[spellID].left + 10*this.state[spellID].direction,
+                    left: this.state[spellID].left + 10 * this.state[spellID].direction,
                 }
             })
-        },10)
+        }, 10)
     }
 
     move = (fighterID, x, y) => {
@@ -134,8 +168,7 @@ class Fight extends Component {
         if (object1.top < object2.top + object2.width &&
             object1.top + object1.width > object2.top &&
             object1.left < object2.left + object2.height &&
-            object1.height + object1.left > object2.left) 
-        {
+            object1.height + object1.left > object2.left) {
             return true
         }
         else {
@@ -143,21 +176,56 @@ class Fight extends Component {
         };
     };
 
-    componentDidMount=()=>{
+    componentDidMount = () => {
         setInterval(() => {
+            const currentState = this.state.progress;
+            const currentState1 = this.state.progress1;
             if (this.hasCollision(this.state.spellfighter1, this.state.fighter2)) {
                 window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
+                return this.setState({ progress: currentState - 10 })
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
                 window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
+                return this.setState({progress1: currentState1 - 10 })
+
+
+
             }
         }, 10)
     }
 
     render() {
+        let avatarStyle = {
+            position: "absolute",
+            top: this.state.topavatar + "px",
+            left: this.state.leftavatar + "px",
+            width: this.state.widthavatar + "px",
+            height: this.state.heightavatar + "px",
+            borderRadius: this.state.borderradius + "%",
+        }
+        let avatarId = "avatar" + this.props.house
+
+        let avatarStyle1 = {
+            position: "absolute",
+            top: this.state.topavatar1 + "px",
+            right: this.state.righttavatar1 + "px",
+            width: this.state.widthavatar1 + "px",
+            height: this.state.heightavatar1 + "px",
+            borderRadius: this.state.borderradius1 + "%",
+        }
+        let avatarId1 = "avatar" + this.props.house
+
         return (
             <div>
-                <div>
+
+                <div class="full">
+                    <div className="avatar" id={avatarId} style={avatarStyle}></div>
+                    <ProgressBar
+                        progress={this.state.progress} />
+
+                    <div className="avatar1" id={avatarId1} style={avatarStyle1}></div>
+                    <ProgressBar1
+                        progress1={this.state.progress1} />
                     <Header
                     />
                 </div>
