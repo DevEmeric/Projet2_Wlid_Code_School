@@ -39,6 +39,9 @@ class Fighter extends Component {
     if(event.key === this.props.fighter.goRight) {
         this.move(0,20)
     }
+    if(event.key === this.props.fighter.rotate) {
+      this.rotate()
+  }
   }
 
   // fonction increment position personnages
@@ -46,6 +49,14 @@ class Fighter extends Component {
     this.setState({
       top: this.state.top + x,
       left: this.state.left + y
+  });
+  }
+
+  // fonction increment position personnages
+  rotate() {
+    this.setState({
+      rotation: this.state.rotation - 180,
+      facesRight: !this.state.facesRight
   });
   }
   
