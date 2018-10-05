@@ -89,7 +89,7 @@ class Fight extends Component {
                 moveDown: 40,               // Down: Flèche du bas
                 moveLeft: 37,               // Left: Flèche de gauche
                 moveRight: 39,              // Right: Flèche de droite
-                house: "ravenclaw",
+                house: "gryffindor",
                 allCharacteristics: this.fighterAndSpellCallback,
                 castSpell: this.castSpell,
                 move: this.move,
@@ -108,7 +108,7 @@ class Fight extends Component {
                 top: 0,
                 height: 20,
                 width: 20,
-                id: "spellravenclaw",
+                id: "spellgryffindor",
                 direction: -1,
             }
         }
@@ -187,13 +187,34 @@ class Fight extends Component {
             const currentState = this.state.progress;
             const currentState1 = this.state.progress1;
             if (this.hasCollision(this.state.spellfighter1, this.state.fighter2)) {
-                
-                window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
-                return this.setState({ progress: currentState - 10})
+                //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
+                this.setState({ 
+                    progress1: currentState1 - 10,
+                    fighter1: {
+                        ...this.state.fighter1,
+                        spellCasted: false,
+                    },
+                    spellfighter1: {
+                        ...this.state.spellfighter1,
+                        top: 0,
+                        left: 0,
+                    }
+                })
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
-                window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
-                return this.setState({ progress1: currentState1 - 10 })
+                //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
+                this.setState({ 
+                    progress: currentState - 10,
+                    fighter2: {
+                        ...this.state.fighter2,
+                        spellCasted: false,
+                    },
+                    spellfighter2: {
+                        ...this.state.spellfighter2,
+                        top: 0,
+                        left: 0,
+                    }
+                })
             }
         }, 10)
     }
