@@ -82,9 +82,9 @@ class Fight extends Component {
                 life: 100,
                 width: 250,
                 height: 200,
-                attack: 17,                 // Attaque: Ctrl 
-                defense: 223,               // Défense: !
-                rotate: 191,                // Rotate: :
+                attack: 223,                 // Attaque: Ctrl 
+                defense: 77,               // Défense: !
+                rotate: 80,                // Rotate: :
                 moveUp: 38,                 // Up: Flèche du haut
                 moveDown: 40,               // Down: Flèche du bas
                 moveLeft: 37,               // Left: Flèche de gauche
