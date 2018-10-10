@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Fighter from './Fighter';
 import Spell from './Spell';
 import Header from './Header';
+import Instructions from './Instructions'
 import './Fight.css';
 //import ReactDOM from 'react-dom';
 
@@ -27,6 +28,10 @@ class Fight extends Component {
     constructor() {
         super()
         this.state = {
+            
+            //Instructions Screen
+            displayInstr: false,
+            keyInstr: 66,
 
             //Avatar 1
             progress: 100,
@@ -112,6 +117,7 @@ class Fight extends Component {
                 direction: -1,
             }
         }
+        this.handleKeyPress=this.handleKeyPress.bind(this)
     }
 
     castSpell = (fighterID, facesRight) => {
@@ -182,6 +188,17 @@ class Fight extends Component {
         };
     };
 
+    //Instructions Screen>>>>>>>>>>>>>>>>>>
+    handleKeyPress(event) {
+        if( event.key === " ") {
+            this.Instr()
+        }
+    }
+    Instr = () => {
+        this.setState({ displayInstr: !this.state.displayInstr})
+    }
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
     componentDidMount = () => {
         setInterval(() => {
             const currentState = this.state.progress;
@@ -217,7 +234,9 @@ class Fight extends Component {
                 })
             }
         }, 10)
+        document.addEventListener("keydown", this.handleKeyPress)
     }
+
 
     render() {
 
@@ -241,6 +260,15 @@ class Fight extends Component {
         }
         let avatarId1 = "avatar" + this.props.house
 
+        let instrStyle = {
+            position: "relative",
+            top: -20 + "px",
+            width: 150 + "px",
+            margin: "auto",
+            border: 5 + "px" + " " + "solid" + " " + "black",
+            lineHeight: 2 + "px",
+            opacity: 0.5
+        }
 
         return (
             <div>
@@ -281,6 +309,13 @@ class Fight extends Component {
                         :
                         <div></div>
                 }</div>
+                <div><div className="spaceInstr" style={instrStyle}><p>INSTRUCTIONS</p><p>Press SPACEBAR</p></div>{
+                    this.state.displayInstr ?
+                        <Instructions />
+                        :
+                        <div></div>
+                }
+                </div>
             </div>
         );
     }

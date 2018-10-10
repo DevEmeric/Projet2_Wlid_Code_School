@@ -5,6 +5,7 @@ import Fight from './scripts/Fight';
 //import Char from'./scripts/Char';
 import { Route, Switch, NavLink, BrowserRouter } from 'react-router-dom';
 
+
 class App extends Component {
 
   /*
@@ -24,6 +25,7 @@ class App extends Component {
             <Route path="/fight" component={Fight} />
           </Switch>
         </BrowserRouter>
+       
       </div>
     );
   }

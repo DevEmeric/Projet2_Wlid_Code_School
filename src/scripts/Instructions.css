@@ -1,0 +1,9 @@
+.keyboardLayout {
+    width: 1200px;
+    height: 800px;
+    border: 10px solid black;
+    border-radius: 20px 20px;
+    background-color: rgba(82, 82, 82, 0.9);
+    margin: auto;
+    position: relative;
+}
