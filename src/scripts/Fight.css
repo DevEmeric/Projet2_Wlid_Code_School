@@ -2,7 +2,7 @@
 
 .progressbar .progress {
  
-    background-color: rgb(241, 9, 164);
+    background-color: rgb(233, 165, 64);
     border-radius: 4px;
     transition: width 400ms ease-in-out;
     height: 100%; 
@@ -10,7 +10,7 @@
   
   .progressbar1 .progress1 {
     
-    background-color: rgb(241, 9, 164);
+    background-color: rgb(233, 165, 64);
     border-radius: 4px;
     transition: width 400ms ease-in-out;
     height: 100%;
@@ -56,12 +56,12 @@
   
   
   .avatar{
-    background-color: green;
+    background-color: rgb(233, 165, 64);
     border: solid 8px lightgrey;
   }
   
   .avatar1{
-    background-color: red;
+    background-color: rgb(233, 165, 64);;
     border: solid 8px lightgrey;
   }
   

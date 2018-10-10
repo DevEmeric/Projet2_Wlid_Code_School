@@ -169,6 +169,7 @@ class Fight extends Component {
             [fighterID]: {
                 ...this.state[fighterID],
                 rotation: this.state[fighterID].rotation - 180,
+                facesRight: !this.state[fighterID].facesRight,
             }
         })
     }
