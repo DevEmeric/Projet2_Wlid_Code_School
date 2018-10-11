@@ -371,7 +371,10 @@ class Fight extends Component {
                 }</div>
                 <div>{
                     this.state.modalVictory ?
-                    <VictoryMessage />
+                    <VictoryMessage 
+                        getCurrentFighters={this.getCurrentFighters}
+                        turn={this.state.turn}
+                    />
                     :
                     <div></div>
                 }</div>
@@ -382,15 +385,3 @@ class Fight extends Component {
 }
 
 export default Fight;
-
-/*
-<VictoryMessage
-    getCurrentFighters={this.getCurrentFighters}
-    turn={this.state.turn}
-/>
-
-
-Dans VictoryMessage, onClick sur button : 
-    turn++
-    getCurrentFighter(turn)
-*/
