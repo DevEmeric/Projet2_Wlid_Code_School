@@ -3,6 +3,7 @@ import Fighter from './Fighter';
 import Spell from './Spell';
 import Header from './Header';
 import './Fight.css';
+import VictoryMessage from "./VictoryMessage"
 //import ReactDOM from 'react-dom';
 
 
@@ -26,10 +27,6 @@ class Fight extends Component {
         super()
 
         this.state = {
-
-            
-
-
             turn: 1,
 
             //Avatar 1
@@ -43,8 +40,9 @@ class Fight extends Component {
 
 
 
-            score2: 0,
+            
             //Avatar 2
+            score2: 0,
             progress1: 100,
             righttavatar1: 5,
             topavatar1: 5,
@@ -117,8 +115,10 @@ class Fight extends Component {
                 height: 20,
                 width: 20,
                 direction: -1,
-                id: "",
-            }
+                id:"",
+            },
+            modalVictory: false,
+
         }
         ///////////////////////////////////////////////////////////////////
 
@@ -127,7 +127,7 @@ class Fight extends Component {
     }
 
     ////////////////////////////////////////////////////////
- 
+
     /////////////////////////////////////////////////////
 
 
@@ -250,7 +250,7 @@ class Fight extends Component {
 
     componentDidMount = () => {
         ///////////////////////////////////////////////////////////////
-       
+
         ///////////////////////////////////////////////////////////////
 
 
@@ -259,7 +259,7 @@ class Fight extends Component {
             let currentState = this.state.progress;
             let currentState1 = this.state.progress1;
 
-   
+
 
             if (currentState1 === 0) {
                 this.setState({
@@ -293,11 +293,21 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
+                if (this.state.progress1 === 0 || this.state.progress === 0) {
+                    //alert("un joueur est mort") 
+                    console.log(this.state.modalVictory)
+                    this.setState({
+                        modalVictory: !this.state.modalVictory
+                    })
+
+
+                }
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
                     progress: currentState - 10,
+
                     fighter2: {
                         ...this.state.fighter2,
                         spellCasted: false,
@@ -308,35 +318,55 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
+                if (this.state.progress1 === 0 || this.state.progress === 0) {
+                    //alert("un joueur est mort") 
+                    console.log(this.state.modalVictory)
+                    this.setState({
+                        modalVictory: !this.state.modalVictory
+                    })
+
+
+                }
             }
+
         }, 10)
 
     }
 
 
     /////////////////////////////////////////////////////////////////////////////////////
-    
+
 
     ////////////////////////////////////////////////////////////////////////////////////
 
 
 
-    render() {
 
+
+
+
+
+
+    render() {
         const whole1 = this.state.winner1 ? 'Player 1 Win !!!' : '';
         const whole2 = this.state.winner2 ? 'Player 2 Win !!!' : '';
         let score1 = this.state.score1 ? 'Score Player1 = ' + this.state.score1 : 'Score Player1: ' + this.state.score1;
         let score2 = this.state.score2 ? 'Score Player2 = ' + this.state.score2 : 'Score Player2: ' + this.state.score2;
 
-        console.log("Fighter 1 : ")
-        console.log(this.state.fighter1)
-        console.log("Spell Fighter 1 : ")
-        console.log(this.state.spellfighter1)
-        console.log("Fighter 2 : ")
-        console.log(this.state.fighter2)
-        console.log("Spell Fighter 2 : ")
-        console.log(this.state.spellfighter2)
 
+
+
+        console.log(this.state.progress1)
+        /*  console.log("Fighter 1 : ")
+          console.log(this.state.fighter1)
+          console.log("Spell Fighter 1 : ")
+          console.log(this.state.spellfighter1)
+          console.log("Fighter 2 : ")
+          console.log(this.state.fighter2)
+          console.log("Spell Fighter 2 : ")
+          console.log(this.state.spellfighter2)
+  
+          */
         let avatarStyle = {
             position: "absolute",
             top: this.state.topavatar + "px",
@@ -380,7 +410,7 @@ class Fight extends Component {
                 </div>
 
 
-                
+
 
                 <h3 className={score1}>{score1}</h3>
                 <h3 className={score2}>{score2}</h3>
@@ -410,6 +440,15 @@ class Fight extends Component {
                         :
                         <div></div>
                 }</div>
+                <div>{
+                    this.state.modalVictory ?
+                        <VictoryMessage
+                            getCurrentFighters={this.getCurrentFighters}
+                            turn={this.state.turn}
+                        />
+                        :
+                        <div></div>
+                }</div>
 
                 <h1 style={{ color: 'red' }} className={whole1}>{whole1}</h1>
                 <h1 style={{ color: 'green' }} className={whole2}>{whole2}</h1>
@@ -422,15 +461,3 @@ class Fight extends Component {
 }
 
 export default Fight;
-
-/*
-<VictoryMessage
-    getCurrentFighters={this.getCurrentFighters}
-    turn={this.state.turn}
-/>
-
-
-Dans VictoryMessage, onClick sur button : 
-    turn++
-    getCurrentFighter(turn)
-*/
