@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Fighter from './Fighter';
 import Spell from './Spell';
 import Header from './Header';
+import Instructions from './Instructions'
 import './Fight.css';
 import VictoryMessage from "./VictoryMessage"
 //import ReactDOM from 'react-dom';
@@ -28,7 +29,11 @@ class Fight extends Component {
 
         this.state = {
             
+            //Instructions Screen
+            displayInstr: false,
+            keyInstr: 66,
             turn: 1,
+
 
             //Avatar 1
             progress: 100,
@@ -118,6 +123,7 @@ class Fight extends Component {
             modalVictory: false,
 
         }
+        this.handleKeyPress=this.handleKeyPress.bind(this)
     }
 
     castSpell = (fighterID, facesRight) => {
@@ -189,6 +195,18 @@ class Fight extends Component {
         };
     };
 
+
+    //Instructions Screen>>>>>>>>>>>>>>>>>>
+    handleKeyPress(event) {
+        if( event.key === " ") {
+            this.Instr()
+        }
+    }
+    Instr = () => {
+        this.setState({ displayInstr: !this.state.displayInstr})
+    }
+
+
     // Fighters selection depending on turn and number of players
     getCurrentFighters = (turn) => {
         if (turn===undefined) turn=1;
@@ -236,6 +254,7 @@ class Fight extends Component {
             }
         })
     }
+
 
     componentDidMount = () => {
         this.getCurrentFighters();
@@ -293,9 +312,10 @@ class Fight extends Component {
             }
            
         }, 10)
+        document.addEventListener("keydown", this.handleKeyPress)
     }
 
-           
+
 
     render() {
         console.log(this.state.progress1)
@@ -329,6 +349,15 @@ class Fight extends Component {
         }
         let avatarId1 = "avatar" + this.props.house
 
+        let instrStyle = {
+            position: "relative",
+            top: -20 + "px",
+            width: 150 + "px",
+            margin: "auto",
+            border: 5 + "px" + " " + "solid" + " " + "black",
+            lineHeight: 2 + "px",
+            opacity: 0.5
+        }
 
         return (
             <div>
@@ -369,6 +398,15 @@ class Fight extends Component {
                         :
                         <div></div>
                 }</div>
+
+                <div><div className="spaceInstr" style={instrStyle}><p>INSTRUCTIONS</p><p>Press SPACEBAR</p></div>{
+                    this.state.displayInstr ?
+                        <Instructions />
+                        :
+                        <div></div>
+                }
+                </div>
+
                 <div>{
                     this.state.modalVictory ?
                     <VictoryMessage 

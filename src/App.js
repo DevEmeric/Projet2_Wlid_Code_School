@@ -3,6 +3,7 @@ import './App.css';
 import Fight from './scripts/Fight';
 import { Route, Switch, NavLink, BrowserRouter } from 'react-router-dom';
 
+
 class App extends Component {
 
   constructor() {
@@ -36,6 +37,7 @@ class App extends Component {
             />
           </Switch>
         </BrowserRouter>
+       
       </div>
     );
   }
