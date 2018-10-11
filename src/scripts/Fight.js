@@ -22,29 +22,41 @@ const ProgressBar1 = ({ progress1 }) => (
 
 class Fight extends Component {
 
+
+
     constructor() {
         super()
         this.state = {
 
+            winner1: false,
+            score1: 0,
+            winner2: false,
+            score2: 0,
+
+
+
             //Avatar 1
             progress: 100,
-
             leftavatar: 5,
             topavatar: 5,
             heightavatar: 130,
             widthavatar: 130,
             borderradius: 50,
 
+
+
             //Avatar 2
             progress1: 100,
-
             righttavatar1: 5,
             topavatar1: 5,
             heightavatar1: 130,
             widthavatar1: 130,
             borderradius1: 50,
 
+
+
             fighter1: {
+                
                 id: "fighter1",
                 spellCasted: false,
                 rotation: 0,
@@ -67,6 +79,7 @@ class Fight extends Component {
                 rotateFighter: this.rotate
             },
             fighter2: {
+                
                 id: "fighter2",
                 spellCasted: false,
                 rotation: 180,
@@ -82,8 +95,8 @@ class Fight extends Component {
                 moveUp: 38,                 // Up: Flèche du haut
                 moveDown: 40,               // Down: Flèche du bas
                 moveLeft: 37,               // Left: Flèche de gauche
-                moveRight: 35,              // Right: Flèche de droite
-                house: "ravenclaw",
+                moveRight: 39,              // Right: Flèche de droite
+                house: "gryffindor",
                 allCharacteristics: this.fighterAndSpellCallback,
                 castSpell: this.castSpell,
                 move: this.move,
@@ -102,7 +115,7 @@ class Fight extends Component {
                 top: 0,
                 height: 20,
                 width: 20,
-                id: "spellravenclaw",
+                id: "spellgryffindor",
                 direction: -1,
             }
         }
@@ -177,24 +190,77 @@ class Fight extends Component {
     };
 
     componentDidMount = () => {
+
+
+        let pointFighter1 = this.state.progress;
+        let pointFighter2 = this.state.progress1;
+
+
         setInterval(() => {
-            const currentState = this.state.progress;
-            const currentState1 = this.state.progress1;
+            let currentState = this.state.progress;
+            let currentState1 = this.state.progress1;
+
+            if (currentState1 === 0) {
+                this.setState({
+                    winner1: !this.state.winner1,
+                    score1: this.state.score1 + 1
+
+                });
+            }
+            if (currentState === 0) {
+                this.setState({
+                    winner2: !this.state.winner2,
+                    score2: this.state.score2 + 1
+                });
+            }
+
             if (this.hasCollision(this.state.spellfighter1, this.state.fighter2)) {
-                window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
-                return this.setState({ progress: currentState - 10 })
+                //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
+                this.setState({
+                    progress1: currentState1 - 10,
+                    fighter1: {
+                        ...this.state.fighter1,
+                        spellCasted: false,
+                    },
+                    spellfighter1: {
+                        ...this.state.spellfighter1,
+                        top: 0,
+                        left: 0,
+                    }
+                })
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
-                window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
-                return this.setState({progress1: currentState1 - 10 })
-
-
-
+                //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
+                this.setState({
+                    progress: currentState - 10,
+                    fighter2: {
+                        ...this.state.fighter2,
+                        spellCasted: false,
+                    },
+                    spellfighter2: {
+                        ...this.state.spellfighter2,
+                        top: 0,
+                        left: 0,
+                    }
+                })
             }
         }, 10)
+
+
+        
+
     }
 
+
+
     render() {
+
+        const whole1 = this.state.winner1 ? 'Player 1 Win !!!' : '';
+        const whole2 = this.state.winner2 ? 'Player 2 Win !!!' : '';
+        let score1 = this.state.score1
+        let score2 = this.state.score2
+
+
         let avatarStyle = {
             position: "absolute",
             top: this.state.topavatar + "px",
@@ -215,19 +281,24 @@ class Fight extends Component {
         }
         let avatarId1 = "avatar" + this.props.house
 
+
+
+
         return (
             <div>
-
                 <div class="full">
+                    <Header
+                    />
                     <div className="avatar" id={avatarId} style={avatarStyle}></div>
+
                     <ProgressBar
                         progress={this.state.progress} />
+
+
 
                     <div className="avatar1" id={avatarId1} style={avatarStyle1}></div>
                     <ProgressBar1
                         progress1={this.state.progress1} />
-                    <Header
-                    />
                 </div>
                 <div>
                     <Fighter                // Player#1
@@ -255,7 +326,14 @@ class Fight extends Component {
                         :
                         <div></div>
                 }</div>
+
+                <h1 className={whole1}>{whole1}</h1>
+                <h1 className={whole2}>{whole2}</h1>
+                <h2 className={score1}>{score1}</h2>
+                <h2 className={score2}>{score2}</h2>
+
             </div>
+
         );
     }
 }
