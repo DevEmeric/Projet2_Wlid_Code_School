@@ -22,18 +22,12 @@ const ProgressBar1 = ({ progress1 }) => (
 
 class Fight extends Component {
 
-
-
     constructor() {
         super()
+
         this.state = {
 
-            winner1: false,
-            score1: 0,
-            winner2: false,
-            score2: 0,
-
-
+            turn: 1,
 
             //Avatar 1
             progress: 100,
@@ -53,7 +47,7 @@ class Fight extends Component {
             widthavatar1: 130,
             borderradius1: 50,
 
-
+            //turn:this.props.turn,
 
             fighter1: {
                 
@@ -73,7 +67,9 @@ class Fight extends Component {
                 moveDown: 68,      // Down: d
                 moveLeft: 83,        // Left: s
                 moveRight: 70,       // Right: f
-                house: "slytherin",
+                house:"",
+                //house: this.props.fightersHouse[0],
+                //house:this.getCurrentFighters()[0],
                 castSpell: this.castSpell,
                 move: this.move,
                 rotateFighter: this.rotate
@@ -89,14 +85,14 @@ class Fight extends Component {
                 life: 100,
                 width: 250,
                 height: 200,
-                attack: 17,                 // Attaque: Ctrl 
-                defense: 223,               // Défense: !
-                rotate: 191,                // Rotate: :
+                attack: 223,                 // Attaque: ! 
+                defense: 77,               // Défense: m
+                rotate: 80,                // Rotate: p
                 moveUp: 38,                 // Up: Flèche du haut
                 moveDown: 40,               // Down: Flèche du bas
                 moveLeft: 37,               // Left: Flèche de gauche
                 moveRight: 39,              // Right: Flèche de droite
-                house: "gryffindor",
+                house:"",
                 allCharacteristics: this.fighterAndSpellCallback,
                 castSpell: this.castSpell,
                 move: this.move,
@@ -107,16 +103,16 @@ class Fight extends Component {
                 top: 0,
                 height: 20,
                 width: 20,
-                id: "spellslytherin",
                 direction: 10,
+                id:"",
             },
             spellfighter2: {
                 left: 0,
                 top: 0,
                 height: 20,
                 width: 20,
-                id: "spellgryffindor",
                 direction: -1,
+                id:"",
             }
         }
     }
@@ -173,6 +169,7 @@ class Fight extends Component {
             [fighterID]: {
                 ...this.state[fighterID],
                 rotation: this.state[fighterID].rotation - 180,
+                facesRight: !this.state[fighterID].facesRight,
             }
         })
     }
@@ -189,13 +186,56 @@ class Fight extends Component {
         };
     };
 
+    // Fighters selection depending on turn and number of players
+    getCurrentFighters = (turn) => {
+        if (turn===undefined) turn=1;
+        let i = 0;
+        let j = 1;
+        switch (this.props.fightersHouse.length) {
+            case 3:
+                switch (turn) {
+                    case 1: { i = 0; j = 1 }; break;
+                    case 2: { i = 1; j = 2 }; break;
+                    case 3: { i = 0; j = 2 }; break;
+                };
+                break;
+            case 4:
+                switch (turn) {
+                    case 1: { i = 0; j = 1 }; break;
+                    case 2: { i = 2; j = 3 }; break;
+                    case 3: { i = 0; j = 2 }; break;
+                    case 4: { i = 1; j = 3 }; break;
+                    case 5: { i = 0; j = 3 }; break;
+                    case 6: { i = 1; j = 2 }; break;
+                };
+                break;
+            default: { i = 0; j = 1 }; break;
+        }
+        console.log("Fighters selected : ")
+        console.log([this.props.fightersHouse[i], this.props.fightersHouse[j]])
+
+        this.setState({
+            fighter1: {
+                ...this.state.fighter1,
+                house: this.props.fightersHouse[i],
+            },
+            fighter2: {
+                ...this.state.fighter2,
+                house: this.props.fightersHouse[j],
+            },
+            spellfighter1: {
+                ...this.state.spellfighter1,
+                id: "spell"+this.props.fightersHouse[i],
+            },
+            spellfighter2: {
+                ...this.state.spellfighter2,
+                id: "spell"+this.props.fightersHouse[j],
+            }
+        })
+    }
+
     componentDidMount = () => {
-
-
-        let pointFighter1 = this.state.progress;
-        let pointFighter2 = this.state.progress1;
-
-
+        this.getCurrentFighters();
         setInterval(() => {
             let currentState = this.state.progress;
             let currentState1 = this.state.progress1;
@@ -255,11 +295,14 @@ class Fight extends Component {
 
     render() {
 
-        const whole1 = this.state.winner1 ? 'Player 1 Win !!!' : '';
-        const whole2 = this.state.winner2 ? 'Player 2 Win !!!' : '';
-        let score1 = this.state.score1
-        let score2 = this.state.score2
-
+        console.log("Fighter 1 : ")
+        console.log(this.state.fighter1)
+        console.log("Spell Fighter 1 : ")
+        console.log(this.state.spellfighter1)
+        console.log("Fighter 2 : ")
+        console.log(this.state.fighter2)
+        console.log("Spell Fighter 2 : ")
+        console.log(this.state.spellfighter2)
 
         let avatarStyle = {
             position: "absolute",
@@ -286,7 +329,7 @@ class Fight extends Component {
 
         return (
             <div>
-                <div class="full">
+                <div className="full">
                     <Header
                     />
                     <div className="avatar" id={avatarId} style={avatarStyle}></div>
@@ -327,11 +370,6 @@ class Fight extends Component {
                         <div></div>
                 }</div>
 
-                <h1 className={whole1}>{whole1}</h1>
-                <h1 className={whole2}>{whole2}</h1>
-                <h2 className={score1}>{score1}</h2>
-                <h2 className={score2}>{score2}</h2>
-
             </div>
 
         );
@@ -339,3 +377,15 @@ class Fight extends Component {
 }
 
 export default Fight;
+
+/*
+<VictoryMessage
+    getCurrentFighters={this.getCurrentFighters}
+    turn={this.state.turn}
+/>
+
+
+Dans VictoryMessage, onClick sur button : 
+    turn++
+    getCurrentFighter(turn)
+*/
