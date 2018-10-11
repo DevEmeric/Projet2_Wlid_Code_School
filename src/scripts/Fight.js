@@ -27,9 +27,13 @@ class Fight extends Component {
 
         this.state = {
 
+            
+
+
             turn: 1,
 
             //Avatar 1
+            score1: 0,
             progress: 100,
             leftavatar: 5,
             topavatar: 5,
@@ -39,6 +43,7 @@ class Fight extends Component {
 
 
 
+            score2: 0,
             //Avatar 2
             progress1: 100,
             righttavatar1: 5,
@@ -50,7 +55,7 @@ class Fight extends Component {
             //turn:this.props.turn,
 
             fighter1: {
-                
+
                 id: "fighter1",
                 spellCasted: false,
                 rotation: 0,
@@ -67,7 +72,7 @@ class Fight extends Component {
                 moveDown: 68,      // Down: d
                 moveLeft: 83,        // Left: s
                 moveRight: 70,       // Right: f
-                house:"",
+                house: "",
                 //house: this.props.fightersHouse[0],
                 //house:this.getCurrentFighters()[0],
                 castSpell: this.castSpell,
@@ -75,7 +80,7 @@ class Fight extends Component {
                 rotateFighter: this.rotate
             },
             fighter2: {
-                
+
                 id: "fighter2",
                 spellCasted: false,
                 rotation: 180,
@@ -92,7 +97,7 @@ class Fight extends Component {
                 moveDown: 40,               // Down: Flèche du bas
                 moveLeft: 37,               // Left: Flèche de gauche
                 moveRight: 39,              // Right: Flèche de droite
-                house:"",
+                house: "",
                 allCharacteristics: this.fighterAndSpellCallback,
                 castSpell: this.castSpell,
                 move: this.move,
@@ -104,7 +109,7 @@ class Fight extends Component {
                 height: 20,
                 width: 20,
                 direction: 10,
-                id:"",
+                id: "",
             },
             spellfighter2: {
                 left: 0,
@@ -112,10 +117,19 @@ class Fight extends Component {
                 height: 20,
                 width: 20,
                 direction: -1,
-                id:"",
+                id: "",
             }
         }
+        ///////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////
+
     }
+
+    ////////////////////////////////////////////////////////
+ 
+    /////////////////////////////////////////////////////
+
 
     castSpell = (fighterID, facesRight) => {
         let spellID = "spell" + fighterID
@@ -188,7 +202,7 @@ class Fight extends Component {
 
     // Fighters selection depending on turn and number of players
     getCurrentFighters = (turn) => {
-        if (turn===undefined) turn=1;
+        if (turn === undefined) turn = 1;
         let i = 0;
         let j = 1;
         switch (this.props.fightersHouse.length) {
@@ -225,32 +239,43 @@ class Fight extends Component {
             },
             spellfighter1: {
                 ...this.state.spellfighter1,
-                id: "spell"+this.props.fightersHouse[i],
+                id: "spell" + this.props.fightersHouse[i],
             },
             spellfighter2: {
                 ...this.state.spellfighter2,
-                id: "spell"+this.props.fightersHouse[j],
+                id: "spell" + this.props.fightersHouse[j],
             }
         })
     }
 
     componentDidMount = () => {
+        ///////////////////////////////////////////////////////////////
+       
+        ///////////////////////////////////////////////////////////////
+
+
         this.getCurrentFighters();
         setInterval(() => {
             let currentState = this.state.progress;
             let currentState1 = this.state.progress1;
 
+   
+
             if (currentState1 === 0) {
                 this.setState({
-                    winner1: !this.state.winner1,
-                    score1: this.state.score1 + 1
+                    winner2: this.state.winner2 = false,
+                    winner1: this.state.winner1 = true,
+                    score1: this.state.score1 + 1,
+                    progress1: currentState1 + 100,
 
                 });
             }
             if (currentState === 0) {
                 this.setState({
-                    winner2: !this.state.winner2,
-                    score2: this.state.score2 + 1
+                    winner1: this.state.winner1 = false,
+                    winner2: this.state.winner2 = true,
+                    score2: this.state.score2 + 1,
+                    progress: currentState + 100,
                 });
             }
 
@@ -286,14 +311,22 @@ class Fight extends Component {
             }
         }, 10)
 
-
-        
-
     }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////
+    
+
+    ////////////////////////////////////////////////////////////////////////////////////
 
 
 
     render() {
+
+        const whole1 = this.state.winner1 ? 'Player 1 Win !!!' : '';
+        const whole2 = this.state.winner2 ? 'Player 2 Win !!!' : '';
+        let score1 = this.state.score1 ? 'Score Player1 = ' + this.state.score1 : 'Score Player1: ' + this.state.score1;
+        let score2 = this.state.score2 ? 'Score Player2 = ' + this.state.score2 : 'Score Player2: ' + this.state.score2;
 
         console.log("Fighter 1 : ")
         console.log(this.state.fighter1)
@@ -332,6 +365,7 @@ class Fight extends Component {
                 <div className="full">
                     <Header
                     />
+
                     <div className="avatar" id={avatarId} style={avatarStyle}></div>
 
                     <ProgressBar
@@ -342,7 +376,14 @@ class Fight extends Component {
                     <div className="avatar1" id={avatarId1} style={avatarStyle1}></div>
                     <ProgressBar1
                         progress1={this.state.progress1} />
+
                 </div>
+
+
+                
+
+                <h3 className={score1}>{score1}</h3>
+                <h3 className={score2}>{score2}</h3>
                 <div>
                     <Fighter                // Player#1
                         fighter={this.state.fighter1}
@@ -369,6 +410,10 @@ class Fight extends Component {
                         :
                         <div></div>
                 }</div>
+
+                <h1 style={{ color: 'red' }} className={whole1}>{whole1}</h1>
+                <h1 style={{ color: 'green' }} className={whole2}>{whole2}</h1>
+
 
             </div>
 
