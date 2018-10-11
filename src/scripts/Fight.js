@@ -3,6 +3,7 @@ import Fighter from './Fighter';
 import Spell from './Spell';
 import Header from './Header';
 import './Fight.css';
+import VictoryMessage from "./VictoryMessage"
 //import ReactDOM from 'react-dom';
 
 
@@ -26,7 +27,7 @@ class Fight extends Component {
         super()
 
         this.state = {
-
+            
             turn: 1,
 
             //Avatar 1
@@ -113,7 +114,9 @@ class Fight extends Component {
                 width: 20,
                 direction: -1,
                 id:"",
-            }
+            },
+            modalVictory: false,
+
         }
     }
 
@@ -253,11 +256,21 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
+                if (this.state.progress1 === 0 || this.state.progress === 0){
+                    //alert("un joueur est mort") 
+                    console.log(this.state.modalVictory)
+                    this.setState({
+                        modalVictory:  !this.state.modalVictory
+                    })
+                    
+    
+                }
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
                     progress: currentState - 10,
+
                     fighter2: {
                         ...this.state.fighter2,
                         spellCasted: false,
@@ -268,13 +281,25 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
+                if (this.state.progress1 === 0 || this.state.progress === 0){
+                    //alert("un joueur est mort") 
+                    console.log(this.state.modalVictory)
+                    this.setState({
+                        modalVictory:  !this.state.modalVictory
+                    })
+                    
+    
+                }
             }
+           
         }, 10)
     }
 
-    render() {
+           
 
-        console.log("Fighter 1 : ")
+    render() {
+        console.log(this.state.progress1)
+      /*  console.log("Fighter 1 : ")
         console.log(this.state.fighter1)
         console.log("Spell Fighter 1 : ")
         console.log(this.state.spellfighter1)
@@ -283,6 +308,7 @@ class Fight extends Component {
         console.log("Spell Fighter 2 : ")
         console.log(this.state.spellfighter2)
 
+        */
         let avatarStyle = {
             position: "absolute",
             top: this.state.topavatar + "px",
@@ -342,6 +368,12 @@ class Fight extends Component {
                         />
                         :
                         <div></div>
+                }</div>
+                <div>{
+                    this.state.modalVictory ?
+                    <VictoryMessage />
+                    :
+                    <div></div>
                 }</div>
 
             </div>
