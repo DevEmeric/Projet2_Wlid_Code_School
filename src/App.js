@@ -36,7 +36,6 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <Switch>
-            <Route path="/HouseSelection" component={HouseSelection} />
             <Route
               path="/fight"
               render={() => (
@@ -44,9 +43,17 @@ class App extends Component {
                   fightersHouse={this.state.fightersHouse}
                 />)}
             />
+          
+            <Route
+              path="/houses"
+              render={() => (
+                <HouseSelection
+                finalSelection={this.finalSelection}
+                />)}
+            />
           </Switch>
         </BrowserRouter>
-        <HouseSelection finalSelection={this.finalSelection} />
+        
       </div>
     );
   }

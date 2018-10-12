@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Hogwarts from "../image/Hogwarts.png";
-import "./Houses.css"
+import "./Houses.css";
+import {Link} from "react-router-dom";
 
 
 class HouseSelection extends Component {
@@ -69,9 +70,9 @@ class HouseSelection extends Component {
 
   playerConfirmation() {
     if (this.state.playerAmount !== 0 && this.state.playerSelection.length === this.state.playerAmount)
-      return <button
+      return <Link to="/fight"><button
         onClick={() => this.props.finalSelection(this.state.playerSelection)}
-        className="start-button">START COMBAT</button>
+        className="start-button">START COMBAT</button></Link>
   }
 
   playerNumber = () => {
