@@ -1,0 +1,103 @@
+@font-face { 
+    font-family: 'HARRYP';
+    src: url('/home/mathieudearmey/Projet2/lyon-0918-js-potter-fighter/font/HARRYP__.TTF');
+    }
+
+h1 {
+    white-space: nowrap;
+}    
+
+.page-title {
+    font-family: "HARRYP";
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)); 
+}
+
+.player-selection {
+    text-align: center;
+    left: 42%;
+}
+
+.player-amount {
+    background-color: rgb(212, 190, 149)6, 159, 52);
+    border: none;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+}
+
+.main-shield {
+    height: 120px;
+    padding-top: 40px;
+  }
+  
+.shield-button {
+    background: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.Slytherin {
+    background-image: url("../image/Slytherin.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    
+}
+
+.Gryffindor {
+    background-image: url("../image/Gryffindor.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    
+}
+
+.Ravenclaw {
+    background-image: url("../image/Ravenclaw.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    
+}
+
+.Hufflepuff {
+    background-image: url("../image/Hufflepuff.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    
+}
+
+.body {
+    background-image: url("../image/slytherinRoom.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+    height: 800px;
+    background-color: black;
+    color: white;
+}
+
+.confirm-button {
+    width: 200px;
+    height: 80px;
+    font-size: 1.2em;
+    border-radius: 20px;
+    border: none;
+    color: black;
+    position: absolute;
+    top: 600px;
+    left: 42.5%;
+    line-height: 1.5em;
+    z-index: 1;
+}
+
+.start-button {
+    width: 200px;
+    height: 80px;
+    background-color: rgb(51, 202, 51);
+    font-size: 1.2em;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    position: absolute;
+    top: 600px;
+    left: 42.5%;
+    line-height: 1.5em;
+    z-index: 2;
+}

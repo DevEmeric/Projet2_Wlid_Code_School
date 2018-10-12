@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
 import Fight from './scripts/Fight';
+import HouseSelection from './scripts/HouseSelection';
+//import Char from'./scripts/Char';
 import { Route, Switch, NavLink, BrowserRouter } from 'react-router-dom';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
 
-  constructor() {
-    super();
-    this.state = {
-      playersHouse: ["gryffindor", "slytherin", "ravenclaw", "hufflepuff"],
-    }
-  }
+      this.state = {
+        playerHouse: [],
+      }
+  }  
 
   /*
   <Route exact path="/" component={Home} />
@@ -21,13 +23,20 @@ class App extends Component {
   <Route path="/arena" component={ArenaSelection} />
   <Route path="/victory" component={Victory} />
   */
+
+
+
+  finalSelection = (players) => {
+    this.setState({ playerHouse: players})
+  }
  
   render() {
-    console.log(this.state.playersHouse)
+    console.log("PlayerHouse", this.state.playerHouse)
     return (
       <div className="App">
         <BrowserRouter>
           <Switch>
+            <Route path="/HouseSelection" component={HouseSelection} />
             <Route
               path="/fight"
               render={() => (
@@ -37,7 +46,7 @@ class App extends Component {
             />
           </Switch>
         </BrowserRouter>
-       
+        <HouseSelection finalSelection={this.finalSelection} />
       </div>
     );
   }
