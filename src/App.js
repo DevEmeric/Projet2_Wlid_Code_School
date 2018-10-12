@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
 
       this.state = {
-        playerHouse: [],
+        fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
       }
   }  
 
@@ -27,11 +27,11 @@ class App extends Component {
 
 
   finalSelection = (players) => {
-    this.setState({ playerHouse: players})
+    this.setState({ fightersHouse: players})
   }
  
   render() {
-    console.log("PlayerHouse", this.state.playerHouse)
+    console.log("PlayerHouse", this.state.fightersHouse)
     return (
       <div className="App">
         <BrowserRouter>
@@ -41,7 +41,7 @@ class App extends Component {
               path="/fight"
               render={() => (
                 <Fight
-                  fightersHouse={this.state.playersHouse}
+                  fightersHouse={this.state.fightersHouse}
                 />)}
             />
           </Switch>

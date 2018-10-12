@@ -3,8 +3,6 @@ import Hogwarts from "../image/Hogwarts.png";
 import "./Houses.css"
 
 
-
-
 class HouseSelection extends Component {
   constructor(props) {
     super(props);

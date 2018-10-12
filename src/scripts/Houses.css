@@ -18,9 +18,10 @@ h1 {
 }
 
 .player-amount {
-    background-color: rgb(212, 190, 149)6, 159, 52);
+    background-color: rgb(255, 251, 251);
+    font-size: 1.6 em;
     border: none;
-    width: 100px;
+    width: 160px;
     height: 30px;
     text-align: center;
 }
