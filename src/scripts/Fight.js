@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Fighter from './Fighter';
 import Spell from './Spell';
 import Header from './Header';
+import Instructions from './Instructions'
 import './Fight.css';
+import VictoryMessage from "./VictoryMessage"
+import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 
 
@@ -22,11 +25,16 @@ const ProgressBar1 = ({ progress1 }) => (
 
 class Fight extends Component {
 
-
-
     constructor() {
         super()
+
         this.state = {
+            
+            //Instructions Screen
+            displayInstr: false,
+            keyInstr: 66,
+            turn: 1,
+
 
             //Avatar 1
             progress: 100,
@@ -48,7 +56,7 @@ class Fight extends Component {
             widthavatar1: 130,
             borderradius1: 50,
 
-
+            //turn:this.props.turn,
 
             fighter1: {
                 id: "fighter1",
@@ -67,7 +75,9 @@ class Fight extends Component {
                 moveDown: 68,      // Down: d
                 moveLeft: 83,        // Left: s
                 moveRight: 70,       // Right: f
-                house: "slytherin",
+                house:"",
+                //house: this.props.fightersHouse[0],
+                //house:this.getCurrentFighters()[0],
                 castSpell: this.castSpell,
                 move: this.move,
                 rotateFighter: this.rotate
@@ -82,14 +92,14 @@ class Fight extends Component {
                 life: 100,
                 width: 250,
                 height: 200,
-                attack: 17,                 // Attaque: Ctrl 
-                defense: 223,               // Défense: !
-                rotate: 191,                // Rotate: :
+                attack: 223,                 // Attaque: ! 
+                defense: 77,               // Défense: m
+                rotate: 80,                // Rotate: p
                 moveUp: 38,                 // Up: Flèche du haut
                 moveDown: 40,               // Down: Flèche du bas
                 moveLeft: 37,               // Left: Flèche de gauche
                 moveRight: 39,              // Right: Flèche de droite
-                house: "gryffindor",
+                house:"",
                 allCharacteristics: this.fighterAndSpellCallback,
                 castSpell: this.castSpell,
                 move: this.move,
@@ -100,18 +110,21 @@ class Fight extends Component {
                 top: 0,
                 height: 20,
                 width: 20,
-                id: "spellslytherin",
                 direction: 10,
+                id:"",
             },
             spellfighter2: {
                 left: 0,
                 top: 0,
                 height: 20,
                 width: 20,
-                id: "spellgryffindor",
                 direction: -1,
-            }
+                id:"",
+            },
+            modalVictory: false,
+
         }
+        this.handleKeyPress=this.handleKeyPress.bind(this)
     }
 
     castSpell = (fighterID, facesRight) => {
@@ -166,6 +179,7 @@ class Fight extends Component {
             [fighterID]: {
                 ...this.state[fighterID],
                 rotation: this.state[fighterID].rotation - 180,
+                facesRight: !this.state[fighterID].facesRight,
             }
         })
     }
@@ -182,13 +196,75 @@ class Fight extends Component {
         };
     };
 
+
+    //Instructions Screen>>>>>>>>>>>>>>>>>>
+    handleKeyPress(event) {
+        if( event.key === " ") {
+            this.Instr()
+        }
+    }
+    Instr = () => {
+        this.setState({ displayInstr: !this.state.displayInstr})
+    }
+
+
+    // Fighters selection depending on turn and number of players
+    getCurrentFighters = (turn) => {
+        if (turn===undefined) turn=1;
+        let i = 0;
+        let j = 1;
+        switch (this.props.fightersHouse.length) {
+            case 3:
+                switch (turn) {
+                    case 1: { i = 0; j = 1 }; break;
+                    case 2: { i = 1; j = 2 }; break;
+                    case 3: { i = 0; j = 2 }; break;
+                };
+                break;
+            case 4:
+                switch (turn) {
+                    case 1: { i = 0; j = 1 }; break;
+                    case 2: { i = 2; j = 3 }; break;
+                    case 3: { i = 0; j = 2 }; break;
+                    case 4: { i = 1; j = 3 }; break;
+                    case 5: { i = 0; j = 3 }; break;
+                    case 6: { i = 1; j = 2 }; break;
+                };
+                break;
+            default: { i = 0; j = 1 }; break;
+        }
+        console.log("Fighters selected : ")
+        console.log([this.props.fightersHouse[i], this.props.fightersHouse[j]])
+
+        this.setState({
+            fighter1: {
+                ...this.state.fighter1,
+                house: this.props.fightersHouse[i],
+            },
+            fighter2: {
+                ...this.state.fighter2,
+                house: this.props.fightersHouse[j],
+            },
+            spellfighter1: {
+                ...this.state.spellfighter1,
+                id: "spell"+this.props.fightersHouse[i],
+            },
+            spellfighter2: {
+                ...this.state.spellfighter2,
+                id: "spell"+this.props.fightersHouse[j],
+            }
+        })
+    }
+
+
     componentDidMount = () => {
+        this.getCurrentFighters();
         setInterval(() => {
             const currentState = this.state.progress;
             const currentState1 = this.state.progress1;
             if (this.hasCollision(this.state.spellfighter1, this.state.fighter2)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
-                this.setState({ 
+                this.setState({
                     progress1: currentState1 - 10,
                     fighter1: {
                         ...this.state.fighter1,
@@ -200,11 +276,21 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
+                if (this.state.progress1 === 0 || this.state.progress === 0){
+                    //alert("un joueur est mort") 
+                    console.log(this.state.modalVictory)
+                    this.setState({
+                        modalVictory:  !this.state.modalVictory
+                    })
+                    
+    
+                }
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
-                this.setState({ 
+                this.setState({
                     progress: currentState - 10,
+
                     fighter2: {
                         ...this.state.fighter2,
                         spellCasted: false,
@@ -215,12 +301,35 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
+                if (this.state.progress1 === 0 || this.state.progress === 0){
+                    //alert("un joueur est mort") 
+                    console.log(this.state.modalVictory)
+                    this.setState({
+                        modalVictory:  !this.state.modalVictory
+                    })
+                    
+    
+                }
             }
+           
         }, 10)
+        document.addEventListener("keydown", this.handleKeyPress)
     }
 
-    render() {
 
+
+    render() {
+        console.log(this.state.progress1)
+      /*  console.log("Fighter 1 : ")
+        console.log(this.state.fighter1)
+        console.log("Spell Fighter 1 : ")
+        console.log(this.state.spellfighter1)
+        console.log("Fighter 2 : ")
+        console.log(this.state.fighter2)
+        console.log("Spell Fighter 2 : ")
+        console.log(this.state.spellfighter2)
+
+        */
         let avatarStyle = {
             position: "absolute",
             top: this.state.topavatar + "px",
@@ -241,10 +350,22 @@ class Fight extends Component {
         }
         let avatarId1 = "avatar" + this.props.house
 
+        let instrStyle = {
+            position: "relative",
+            top: -20 + "px",
+            width: 150 + "px",
+            margin: "auto",
+            border: 5 + "px" + " " + "solid" + " " + "black",
+            lineHeight: 2 + "px",
+            opacity: 0.5
+        }
 
         return (
             <div>
-                <div class="full">
+                <div>
+                    <Wall />
+                </div>
+                <div className="full">
                     <Header
                     />
                     <div className="avatar" id={avatarId} style={avatarStyle}></div>
@@ -281,6 +402,25 @@ class Fight extends Component {
                         :
                         <div></div>
                 }</div>
+
+                <div><div className="spaceInstr" style={instrStyle}><p>INSTRUCTIONS</p><p>Press SPACEBAR</p></div>{
+                    this.state.displayInstr ?
+                        <Instructions />
+                        :
+                        <div></div>
+                }
+                </div>
+
+                <div>{
+                    this.state.modalVictory ?
+                    <VictoryMessage 
+                        getCurrentFighters={this.getCurrentFighters}
+                        turn={this.state.turn}
+                    />
+                    :
+                    <div></div>
+                }</div>
+
             </div>
         );
     }

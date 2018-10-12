@@ -13,9 +13,16 @@ h1 {
 }
 
 .player-selection {
-
     text-align: center;
     left: 42%;
+}
+
+.player-amount {
+    background-color: rgb(212, 190, 149)6, 159, 52);
+    border: none;
+    width: 100px;
+    height: 30px;
+    text-align: center;
 }
 
 .main-shield {
