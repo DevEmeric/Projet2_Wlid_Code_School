@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-//import Spell from './scripts/Spell';
 import Fight from './scripts/Fight';
-//import Char from'./scripts/Char';
 import { Route, Switch, NavLink, BrowserRouter } from 'react-router-dom';
 
+
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      playersHouse: ["gryffindor", "slytherin", "ravenclaw", "hufflepuff"],
+    }
+  }
 
   /*
   <Route exact path="/" component={Home} />
@@ -15,15 +21,23 @@ class App extends Component {
   <Route path="/arena" component={ArenaSelection} />
   <Route path="/victory" component={Victory} />
   */
-
+ 
   render() {
+    console.log(this.state.playersHouse)
     return (
       <div className="App">
         <BrowserRouter>
           <Switch>
-            <Route path="/fight" component={Fight} />
+            <Route
+              path="/fight"
+              render={() => (
+                <Fight
+                  fightersHouse={this.state.playersHouse}
+                />)}
+            />
           </Switch>
         </BrowserRouter>
+       
       </div>
     );
   }
