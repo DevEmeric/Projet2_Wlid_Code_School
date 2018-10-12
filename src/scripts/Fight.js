@@ -5,6 +5,7 @@ import Header from './Header';
 import Instructions from './Instructions'
 import './Fight.css';
 import VictoryMessage from "./VictoryMessage"
+import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 
 
@@ -361,6 +362,9 @@ class Fight extends Component {
 
         return (
             <div>
+                <div>
+                    <Wall />
+                </div>
                 <div className="full">
                     <Header
                     />
