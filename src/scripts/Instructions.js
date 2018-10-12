@@ -19,7 +19,7 @@ class Instructions extends Component {
                         <table>
                             <tr>
                                 <th></th>
-                                <td>F</td>
+                                <td>E</td>
                             </tr>
                             <tr>
                                 <td>S</td>
