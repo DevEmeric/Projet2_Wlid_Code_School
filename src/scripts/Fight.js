@@ -92,7 +92,7 @@ class Fight extends Component {
                 life: 100,
                 width: 250,
                 height: 200,
-                attack: 223,                 // Attaque: ! 
+                attack: 161,                 // Attaque: ! 
                 defense: 77,               // Défense: m
                 rotate: 80,                // Rotate: p
                 moveUp: 38,                 // Up: Flèche du haut
@@ -128,6 +128,7 @@ class Fight extends Component {
     }
 
     castSpell = (fighterID, facesRight) => {
+        console.log("shoot");
         let spellID = "spell" + fighterID
         let x = facesRight ? 260 : -30;
         // Apparition du spell
@@ -363,7 +364,7 @@ class Fight extends Component {
         return (
             <div>
                 <div>
-                    <Wall />
+            <Wall />
                 </div>
                 <div className="full">
                     <Header

@@ -85,6 +85,7 @@ h1 {
     top: 600px;
     left: 42.5%;
     line-height: 1.5em;
+    animation: button-blink1 infinite 1.5s linear;
     z-index: 1;
 }
 
@@ -100,5 +101,18 @@ h1 {
     top: 600px;
     left: 42.5%;
     line-height: 1.5em;
+    animation: button-blink2 infinite 1s linear;
     z-index: 2;
 }
+
+@keyframes button-blink1 {
+    0% {background-color: orange}
+    30% {background-color: rgb(255, 51, 0)}
+    100% {background-color: orange} 
+  }
+
+  @keyframes button-blink2 {
+    0% {background-color: green}
+    30% {background-color: rgb(123, 212, 123)}
+    100% {background-color: green} 
+  }
