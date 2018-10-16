@@ -4,6 +4,7 @@ import Spell from './Spell';
 import Header from './Header';
 import './Fight.css';
 import VictoryMessage from "./VictoryMessage"
+import ScoreFighters from "./ScoreFighters"
 //import ReactDOM from 'react-dom';
 
 
@@ -21,6 +22,8 @@ const ProgressBar1 = ({ progress1 }) => (
     </div>
 )
 
+
+
 class Fight extends Component {
 
     constructor() {
@@ -30,7 +33,7 @@ class Fight extends Component {
             turn: 1,
 
             //Avatar 1
-            score1: 0,
+            scoreFighter1: 0,
             progress: 100,
             leftavatar: 5,
             topavatar: 5,
@@ -40,9 +43,9 @@ class Fight extends Component {
 
 
 
-            
+
             //Avatar 2
-            score2: 0,
+            scoreFighter2: 0,
             progress1: 100,
             righttavatar1: 5,
             topavatar1: 5,
@@ -115,20 +118,13 @@ class Fight extends Component {
                 height: 20,
                 width: 20,
                 direction: -1,
-                id:"",
+                id: "",
             },
             modalVictory: false,
 
         }
-        ///////////////////////////////////////////////////////////////////
-
-        ////////////////////////////////////////////////////////////////////
 
     }
-
-    ////////////////////////////////////////////////////////
-
-    /////////////////////////////////////////////////////
 
 
     castSpell = (fighterID, facesRight) => {
@@ -249,10 +245,6 @@ class Fight extends Component {
     }
 
     componentDidMount = () => {
-        ///////////////////////////////////////////////////////////////
-
-        ///////////////////////////////////////////////////////////////
-
 
         this.getCurrentFighters();
         setInterval(() => {
@@ -263,19 +255,22 @@ class Fight extends Component {
 
             if (currentState1 === 0) {
                 this.setState({
-                    winner2: this.state.winner2 = false,
-                    winner1: this.state.winner1 = true,
-                    score1: this.state.score1 + 1,
-                    progress1: currentState1 + 100,
+                    //winner2: this.state.winner2 = false,
+                    //winner1: this.state.winner1 = true,
+                    scoreFighter1: this.state.scoreFighter1 + 1,
+                    progress1: currentState1 - 1,
 
+                    modalVictory: true
                 });
             }
             if (currentState === 0) {
                 this.setState({
-                    winner1: this.state.winner1 = false,
-                    winner2: this.state.winner2 = true,
-                    score2: this.state.score2 + 1,
-                    progress: currentState + 100,
+                    //winner1: this.state.winner1 = false,
+                    // winner2: this.state.winner2 = true,
+                    scoreFighter2: this.state.scoreFighter2 + 1,
+                    progress: currentState - 1,
+
+                    modalVictory: true
                 });
             }
 
@@ -293,7 +288,7 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
-                if (this.state.progress1 === 0 || this.state.progress === 0) {
+                /*if (this.state.progress1 === 0 || this.state.progress === 0) {
                     //alert("un joueur est mort") 
                     console.log(this.state.modalVictory)
                     this.setState({
@@ -301,7 +296,7 @@ class Fight extends Component {
                     })
 
 
-                }
+                }*/
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
@@ -318,7 +313,7 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
-                if (this.state.progress1 === 0 || this.state.progress === 0) {
+                /*if (this.state.progress1 === 0 || this.state.progress === 0) {
                     //alert("un joueur est mort") 
                     console.log(this.state.modalVictory)
                     this.setState({
@@ -326,32 +321,18 @@ class Fight extends Component {
                     })
 
 
-                }
+                }*/
             }
 
         }, 10)
 
     }
 
-
-    /////////////////////////////////////////////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
     render() {
-        const whole1 = this.state.winner1 ? 'Player 1 Win !!!' : '';
-        const whole2 = this.state.winner2 ? 'Player 2 Win !!!' : '';
-        let score1 = this.state.score1 ? 'Score Player1 = ' + this.state.score1 : 'Score Player1: ' + this.state.score1;
-        let score2 = this.state.score2 ? 'Score Player2 = ' + this.state.score2 : 'Score Player2: ' + this.state.score2;
+        //const whole1 = this.state.winner1 ? 'Player 1 Win !!!' : '';
+        //const whole2 = this.state.winner2 ? 'Player 2 Win !!!' : '';
+        let scoreFighter1 = this.state.scoreFighter1 ? 'Score Player1 : ' + this.state.scoreFighter1 : 'Score Player1: ' + this.state.scoreFighter1;
+        let scoreFighter2 = this.state.scoreFighter2 ? 'Score Player2 : ' + this.state.scoreFighter2 : 'Score Player2: ' + this.state.scoreFighter2;
 
 
 
@@ -412,8 +393,8 @@ class Fight extends Component {
 
 
 
-                <h3 className={score1}>{score1}</h3>
-                <h3 className={score2}>{score2}</h3>
+                <h3 className={scoreFighter1}>{scoreFighter1}</h3>
+                <h3 className={scoreFighter2}>{scoreFighter2}</h3>
                 <div>
                     <Fighter                // Player#1
                         fighter={this.state.fighter1}
@@ -441,8 +422,8 @@ class Fight extends Component {
                         <div></div>
                 }</div>
                 <div>{
-                    this.state.modalVictory ?
-                        <VictoryMessage
+                    this.state.modalVictory ? 
+                        <VictoryMessage 
                             getCurrentFighters={this.getCurrentFighters}
                             turn={this.state.turn}
                         />
@@ -450,10 +431,12 @@ class Fight extends Component {
                         <div></div>
                 }</div>
 
-                <h1 style={{ color: 'red' }} className={whole1}>{whole1}</h1>
-                <h1 style={{ color: 'green' }} className={whole2}>{whole2}</h1>
 
 
+
+                <div>
+                    <ScoreFighters style={{}} />
+                </div>
             </div>
 
         );
@@ -461,3 +444,5 @@ class Fight extends Component {
 }
 
 export default Fight;
+/** <h1 style={{ color: 'red' }} className={whole1}>{whole1}</h1>
+                <h1 style={{ color: 'green' }} className={whole2}>{whole2}</h1> */
