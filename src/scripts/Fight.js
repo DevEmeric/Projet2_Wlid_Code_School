@@ -9,27 +9,31 @@ import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 
 
-const ProgressBar = ({ progress }) => (
-    <div className="progressbar">
-        <div className="progress" style={{ width: `${progress}%` }}>
-        </div>
-    </div>
-)
 
-const ProgressBar1 = ({ progress1 }) => (
-    <div className="progressbar1">
-        <div className="progress1" style={{ width: `${progress1}%` }}>
-        </div>
-    </div>
-)
 
 class Fight extends Component {
 
     constructor() {
-        super()
-
+        super();
+        /*this.gryffindorBar = {
+            backgroundColor: "red",
+        },
+        this.slytherinBar = {
+            backgroundColor: "green",
+        },
+        this.ravenclawBar = {
+            backgroundColor: "blue",
+        },
+        this.gryffindorBar = {
+            backgroundColor: "yellow",
+        },*/
+        this.gryffindorShield = require("../image/Gryffindor.png");
+        this.slytherinShield = require("../image/Slytherin.png");
+        this.ravenclawShield = require("../image/Ravenclaw.png");
+        this.hufflepuffShield = require("../image/Hufflepuff.png");
+        
         this.state = {
-            
+
             //Instructions Screen
             displayInstr: false,
             keyInstr: 66,
@@ -38,7 +42,6 @@ class Fight extends Component {
 
             //Avatar 1
             progress: 100,
-
             leftavatar: 5,
             topavatar: 5,
             heightavatar: 130,
@@ -75,7 +78,7 @@ class Fight extends Component {
                 moveDown: 68,      // Down: d
                 moveLeft: 83,        // Left: s
                 moveRight: 70,       // Right: f
-                house:"",
+                house: "",
                 //house: this.props.fightersHouse[0],
                 //house:this.getCurrentFighters()[0],
                 castSpell: this.castSpell,
@@ -99,7 +102,7 @@ class Fight extends Component {
                 moveDown: 40,               // Down: Flèche du bas
                 moveLeft: 37,               // Left: Flèche de gauche
                 moveRight: 39,              // Right: Flèche de droite
-                house:"",
+                house: "",
                 allCharacteristics: this.fighterAndSpellCallback,
                 castSpell: this.castSpell,
                 move: this.move,
@@ -111,7 +114,7 @@ class Fight extends Component {
                 height: 20,
                 width: 20,
                 direction: 10,
-                id:"",
+                id: "",
             },
             spellfighter2: {
                 left: 0,
@@ -119,13 +122,57 @@ class Fight extends Component {
                 height: 20,
                 width: 20,
                 direction: -1,
-                id:"",
+                id: "",
             },
             modalVictory: false,
 
         }
-        this.handleKeyPress=this.handleKeyPress.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
     }
+
+
+
+    progressBar = (progress) => {
+        return <div className="progressbar">
+            <div className="progress" style={{
+                width: `${progress}%`,
+                backgroundColor: this.barColor(this.state.fighter1.house)
+            }}>
+            </div>
+        </div>
+    }
+
+    progressBar1 = (progress1) => {
+        return <div className="progressbar1">
+            <div className="progress1" style={{
+                width: `${progress1}%`,
+                backgroundColor: this.barColor(this.state.fighter2.house)
+            }}>
+            </div>
+        </div>
+    }
+
+    barColor(house) {
+        switch (house) {
+            case "Gryffindor":  return "red" ;
+            case "Slytherin":  return "green" ;
+            case "Ravenclaw":  return "blue" ;
+            case "Hufflepuff":  return "yellow" ;
+            default:  return "rgb(233, 165, 64)" ;
+        }
+    }
+
+
+    houseAvatar(house) {
+        switch (house) {
+            case "Gryffindor":  return "url(" + this.gryffindorShield + ")" ;
+            case "Slytherin":  return "url(" + this.slytherinShield + ")" ;
+            case "Ravenclaw":  return "url(" + this.ravenclawShield + ")" ;
+            case "Hufflepuff":  return "url(" + this.hufflepuffShield + ")" ;
+            default:  return "rgb(233, 165, 64)" ;
+        }
+    }
+
 
     castSpell = (fighterID, facesRight) => {
         console.log("shoot");
@@ -200,18 +247,18 @@ class Fight extends Component {
 
     //Instructions Screen>>>>>>>>>>>>>>>>>>
     handleKeyPress(event) {
-        if( event.key === " ") {
+        if (event.key === " ") {
             this.Instr()
         }
     }
     Instr = () => {
-        this.setState({ displayInstr: !this.state.displayInstr})
+        this.setState({ displayInstr: !this.state.displayInstr })
     }
 
 
     // Fighters selection depending on turn and number of players
     getCurrentFighters = (turn) => {
-        if (turn===undefined) turn=1;
+        if (turn === undefined) turn = 1;
         let i = 0;
         let j = 1;
         switch (this.props.fightersHouse.length) {
@@ -248,11 +295,11 @@ class Fight extends Component {
             },
             spellfighter1: {
                 ...this.state.spellfighter1,
-                id: "spell"+this.props.fightersHouse[i],
+                id: "spell" + this.props.fightersHouse[i],
             },
             spellfighter2: {
                 ...this.state.spellfighter2,
-                id: "spell"+this.props.fightersHouse[j],
+                id: "spell" + this.props.fightersHouse[j],
             }
         })
     }
@@ -277,14 +324,14 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
-                if (this.state.progress1 === 0 || this.state.progress === 0){
+                if (this.state.progress1 === 0 || this.state.progress === 0) {
                     //alert("un joueur est mort") 
                     console.log(this.state.modalVictory)
                     this.setState({
-                        modalVictory:  !this.state.modalVictory
+                        modalVictory: !this.state.modalVictory
                     })
-                    
-    
+
+
                 }
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
@@ -302,17 +349,17 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
-                if (this.state.progress1 === 0 || this.state.progress === 0){
+                if (this.state.progress1 === 0 || this.state.progress === 0) {
                     //alert("un joueur est mort") 
                     console.log(this.state.modalVictory)
                     this.setState({
-                        modalVictory:  !this.state.modalVictory
+                        modalVictory: !this.state.modalVictory
                     })
-                    
-    
+
+
                 }
             }
-           
+
         }, 10)
         document.addEventListener("keydown", this.handleKeyPress)
     }
@@ -321,24 +368,30 @@ class Fight extends Component {
 
     render() {
         console.log(this.state.progress1)
-      /*  console.log("Fighter 1 : ")
-        console.log(this.state.fighter1)
-        console.log("Spell Fighter 1 : ")
-        console.log(this.state.spellfighter1)
-        console.log("Fighter 2 : ")
-        console.log(this.state.fighter2)
-        console.log("Spell Fighter 2 : ")
-        console.log(this.state.spellfighter2)
+        /*  console.log("Fighter 1 : ")
+          console.log(this.state.fighter1)
+          console.log("Spell Fighter 1 : ")
+          console.log(this.state.spellfighter1)
+          console.log("Fighter 2 : ")
+          console.log(this.state.fighter2)
+          console.log("Spell Fighter 2 : ")
+          console.log(this.state.spellfighter2)
+  
+          */
 
-        */
         let avatarStyle = {
             position: "absolute",
             top: this.state.topavatar + "px",
             left: this.state.leftavatar + "px",
             width: this.state.widthavatar + "px",
             height: this.state.heightavatar + "px",
-            borderRadius: this.state.borderradius + "%",
+            //borderRadius: this.state.borderradius + "%",
+            backgroundImage: this.houseAvatar(this.state.fighter1.house),
+            backgroundPosition: "right",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
         }
+
         let avatarId = "avatar" + this.props.house
 
         let avatarStyle1 = {
@@ -347,7 +400,11 @@ class Fight extends Component {
             right: this.state.righttavatar1 + "px",
             width: this.state.widthavatar1 + "px",
             height: this.state.heightavatar1 + "px",
-            borderRadius: this.state.borderradius1 + "%",
+            // borderRadius: this.state.borderradius1 + "%",
+            backgroundImage: this.houseAvatar(this.state.fighter2.house),
+            backgroundPosition: "left",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
         }
         let avatarId1 = "avatar" + this.props.house
 
@@ -364,18 +421,16 @@ class Fight extends Component {
         return (
             <div>
                 <div>
-            <Wall />
+                    <Wall />
                 </div>
                 <div className="full">
                     <Header
                     />
                     <div className="avatar" id={avatarId} style={avatarStyle}></div>
-                    <ProgressBar
-                        progress={this.state.progress} />
+                    {this.progressBar(this.state.progress)}
 
                     <div className="avatar1" id={avatarId1} style={avatarStyle1}></div>
-                    <ProgressBar1
-                        progress1={this.state.progress1} />
+                    {this.progressBar1(this.state.progress1)}
                 </div>
                 <div>
                     <Fighter                // Player#1
@@ -414,12 +469,12 @@ class Fight extends Component {
 
                 <div>{
                     this.state.modalVictory ?
-                    <VictoryMessage 
-                        getCurrentFighters={this.getCurrentFighters}
-                        turn={this.state.turn}
-                    />
-                    :
-                    <div></div>
+                        <VictoryMessage
+                            getCurrentFighters={this.getCurrentFighters}
+                            turn={this.state.turn}
+                        />
+                        :
+                        <div></div>
                 }</div>
 
             </div>
