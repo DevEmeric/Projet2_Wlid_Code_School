@@ -2,6 +2,7 @@
     margin-top: 300px;
     font-size: 30px;
     border: 2px solid black;
+    z-index: 1;
 }
 /*.ButtonChoice{
     margin-top: 500px;
