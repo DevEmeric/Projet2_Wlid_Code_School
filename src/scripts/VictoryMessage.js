@@ -6,7 +6,7 @@ class VictoryMessage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modeTournoi: false,
+      modeTournoi: true,
       turn:this.props.turn,
     };
   }
@@ -22,12 +22,25 @@ toggle() {
 }*/
   nextFight=()=>{
     this.setState({
-        turn:this.state.turn++
+      turn:this.state.turn++
     })
     this.props.getCurrentFighter(this.state.turn);
   }
 
+  restartFight=()=>{
+    this.props.restartFight();
+  }
+
   render() {
+
+    let buttonStyle={
+      color: 'white', 
+      backgroundColor: 'orange', 
+      width: 100, 
+      height: 70, 
+      fontSize: 20,
+    }
+
     return (
       <div>
         <div className="VictoryText">
@@ -35,11 +48,11 @@ toggle() {
           <div className="ButtonChoice">{
             this.state.modeTournoi ?
 
-              <button style={{ color: 'white', backgroundColor: 'orange', width: 100, height: 70, fontSize: 20, }} onClick={this.nextFight}>Next Fight</button>
+              <button style={buttonStyle} onClick={this.nextFight}>Next Fight</button>
               :
-              <a href="/fight"><button style={{ color: 'white', backgroundColor: 'orange', width: 100, height: 70, fontSize: 20, }}>Start Again</button></a>
+              <button style={buttonStyle} onClick={this.restartFight}>Start Again</button>
           }
-            <button style={{ color: 'white', backgroundColor: 'orange', width: 100, height: 70, fontSize: 20, }} href="https://www.layoutit.com/build">Home Page</button>
+            <a to="/"><button style={buttonStyle}>Home Page</button></a>
           </div>
         </div>
       </div>

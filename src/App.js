@@ -6,14 +6,13 @@ import HouseSelection from './scripts/HouseSelection';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-      this.state = {
-        fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
-      }
-  }  
+class App extends Component { 
+  constructor() {
+    super();
+    this.state = {
+      playersHouse: [],
+    }
+  }
 
   /*
   <Route exact path="/" component={Home} />
@@ -32,6 +31,7 @@ class App extends Component {
  
   render() {
     console.log("PlayerHouse", this.state.fightersHouse)
+    //console.log(this.state.playersHouse)
     return (
       <div className="App">
         <BrowserRouter>
