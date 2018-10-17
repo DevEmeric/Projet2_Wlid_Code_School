@@ -8,6 +8,11 @@ import VictoryMessage from "./VictoryMessage"
 import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 
+import gryffindorShield from '../image/Gryffindor.png'
+import slytherinShield from '../image/Slytherin.png'
+import ravenclawShield from '../image/Ravenclaw.png'
+import hufflepuffShield from '../image/Hufflepuff.png'
+
 
 
 
@@ -15,124 +20,130 @@ class Fight extends Component {
 
     constructor() {
         super();
-        /*this.gryffindorBar = {
-            backgroundColor: "red",
+
+        this.houseStyles = {
+            Gryffindor: {
+                shield: gryffindorShield,
+                barColor: "red",
+            },
+            Slytherin: {
+                shield: slytherinShield,
+                barColor: "green",
+            },
+            Ravenclaw: {
+                shield: ravenclawShield,
+                barColor: "blue",
+            },
+            Hufflepuff: {
+                shield: hufflepuffShield,
+                barColor: "yellow",
+            },
         },
-        this.slytherinBar = {
-            backgroundColor: "green",
-        },
-        this.ravenclawBar = {
-            backgroundColor: "blue",
-        },
-        this.gryffindorBar = {
-            backgroundColor: "yellow",
-        },*/
-        this.gryffindorShield = require("../image/Gryffindor.png");
-        this.slytherinShield = require("../image/Slytherin.png");
-        this.ravenclawShield = require("../image/Ravenclaw.png");
-        this.hufflepuffShield = require("../image/Hufflepuff.png");
-        
-        this.state = {
-
-            //Instructions Screen
-            displayInstr: false,
-            keyInstr: 66,
-            turn: 1,
 
 
-            //Avatar 1
-            progress: 100,
-            leftavatar: 5,
-            topavatar: 5,
-            heightavatar: 130,
-            widthavatar: 130,
-            borderradius: 50,
+            this.state = {
+
+                //Instructions Screen
+                displayInstr: false,
+                keyInstr: 66,
+                turn: 1,
+
+
+                //Avatar 1
+                progress: 100,
+                leftavatar: 5,
+                topavatar: 5,
+                heightavatar: 130,
+                widthavatar: 130,
+                borderradius: 50,
 
 
 
-            //Avatar 2
-            progress1: 100,
+                //Avatar 2
+                progress1: 100,
 
-            righttavatar1: 5,
-            topavatar1: 5,
-            heightavatar1: 130,
-            widthavatar1: 130,
-            borderradius1: 50,
+                righttavatar1: 5,
+                topavatar1: 5,
+                heightavatar1: 130,
+                widthavatar1: 130,
+                borderradius1: 50,
 
-            //turn:this.props.turn,
+                //turn:this.props.turn,
 
-            fighter1: {
-                id: "fighter1",
-                spellCasted: false,
-                rotation: 0,
-                facesRight: true,
-                top: 250,
-                left: 100,
-                life: 100,
-                width: 250,
-                height: 200,
-                attack: 87,      // Attaque: w
-                defense: 81,    // Défense: q
-                rotate: 65,     // Rotate: a
-                moveUp: 69,         // Up: e
-                moveDown: 68,      // Down: d
-                moveLeft: 83,        // Left: s
-                moveRight: 70,       // Right: f
-                house: "",
-                //house: this.props.fightersHouse[0],
-                //house:this.getCurrentFighters()[0],
-                castSpell: this.castSpell,
-                move: this.move,
-                rotateFighter: this.rotate
-            },
-            fighter2: {
-                id: "fighter2",
-                spellCasted: false,
-                rotation: 180,
-                facesRight: false,
-                top: 250,
-                left: 1100,
-                life: 100,
-                width: 250,
-                height: 200,
-                attack: 161,                 // Attaque: ! 
-                defense: 77,               // Défense: m
-                rotate: 80,                // Rotate: p
-                moveUp: 38,                 // Up: Flèche du haut
-                moveDown: 40,               // Down: Flèche du bas
-                moveLeft: 37,               // Left: Flèche de gauche
-                moveRight: 39,              // Right: Flèche de droite
-                house: "",
-                allCharacteristics: this.fighterAndSpellCallback,
-                castSpell: this.castSpell,
-                move: this.move,
-                rotateFighter: this.rotate
-            },
-            spellfighter1: {
-                left: 0,
-                top: 0,
-                height: 20,
-                width: 20,
-                direction: 10,
-                id: "",
-            },
-            spellfighter2: {
-                left: 0,
-                top: 0,
-                height: 20,
-                width: 20,
-                direction: -1,
-                id: "",
-            },
-            modalVictory: false,
+                fighter1: {
+                    id: "fighter1",
+                    spellCasted: false,
+                    rotation: 0,
+                    facesRight: true,
+                    top: 250,
+                    left: 100,
+                    life: 100,
+                    width: 250,
+                    height: 200,
+                    attack: 87,      // Attaque: w
+                    defense: 81,    // Défense: q
+                    rotate: 65,     // Rotate: a
+                    moveUp: 69,         // Up: e
+                    moveDown: 68,      // Down: d
+                    moveLeft: 83,        // Left: s
+                    moveRight: 70,       // Right: f
+                    house: "Slytherin",
+                    //house: this.props.fightersHouse[0],
+                    //house:this.getCurrentFighters()[0],
+                    castSpell: this.castSpell,
+                    move: this.move,
+                    rotateFighter: this.rotate
+                },
+                fighter2: {
+                    id: "fighter2",
+                    spellCasted: false,
+                    rotation: 180,
+                    facesRight: false,
+                    top: 250,
+                    left: 1100,
+                    life: 100,
+                    width: 250,
+                    height: 200,
+                    attack: 161,                 // Attaque: ! 
+                    defense: 77,               // Défense: m
+                    rotate: 80,                // Rotate: p
+                    moveUp: 38,                 // Up: Flèche du haut
+                    moveDown: 40,               // Down: Flèche du bas
+                    moveLeft: 37,               // Left: Flèche de gauche
+                    moveRight: 39,              // Right: Flèche de droite
+                    house: "Gryffindor",
+                    allCharacteristics: this.fighterAndSpellCallback,
+                    castSpell: this.castSpell,
+                    move: this.move,
+                    rotateFighter: this.rotate
+                },
+                spellfighter1: {
+                    left: 0,
+                    top: 0,
+                    height: 20,
+                    width: 20,
+                    direction: 10,
+                    id: "",
+                },
+                spellfighter2: {
+                    left: 0,
+                    top: 0,
+                    height: 20,
+                    width: 20,
+                    direction: -1,
+                    id: "",
+                },
+                modalVictory: false,
 
-        }
+            }
         this.handleKeyPress = this.handleKeyPress.bind(this)
     }
 
-
+    barColor = (house) =>  this.houseStyles[house].barColor
+    houseAvatar = (house) => `url(${this.houseStyles[house].shield})`;
 
     progressBar = (progress) => {
+        console.log("test")
         return <div className="progressbar">
             <div className="progress" style={{
                 width: `${progress}%`,
@@ -150,27 +161,6 @@ class Fight extends Component {
             }}>
             </div>
         </div>
-    }
-
-    barColor(house) {
-        switch (house) {
-            case "Gryffindor":  return "red" ;
-            case "Slytherin":  return "green" ;
-            case "Ravenclaw":  return "blue" ;
-            case "Hufflepuff":  return "yellow" ;
-            default:  return "rgb(233, 165, 64)" ;
-        }
-    }
-
-
-    houseAvatar(house) {
-        switch (house) {
-            case "Gryffindor":  return "url(" + this.gryffindorShield + ")" ;
-            case "Slytherin":  return "url(" + this.slytherinShield + ")" ;
-            case "Ravenclaw":  return "url(" + this.ravenclawShield + ")" ;
-            case "Hufflepuff":  return "url(" + this.hufflepuffShield + ")" ;
-            default:  return "rgb(233, 165, 64)" ;
-        }
     }
 
 
@@ -330,6 +320,8 @@ class Fight extends Component {
             modalVictory: false,
             turn: turn,
         })
+
+        console.log(this.state.fighter1)
     }
 
 
@@ -441,6 +433,7 @@ class Fight extends Component {
 
 
     render() {
+ 
         console.log(this.state.progress1)
         /*  console.log("Fighter 1 : ")
           console.log(this.state.fighter1)
