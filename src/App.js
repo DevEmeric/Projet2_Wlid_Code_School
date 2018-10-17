@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      playersHouse: ["gryffindor", "slytherin", "ravenclaw", "hufflepuff"],
+      playersHouse: ["gryffindor", "slytherin", "ravenclaw"],
     }
   }
 
@@ -23,7 +23,7 @@ class App extends Component {
   */
  
   render() {
-    console.log(this.state.playersHouse)
+    //console.log(this.state.playersHouse)
     return (
       <div className="App">
         <BrowserRouter>
