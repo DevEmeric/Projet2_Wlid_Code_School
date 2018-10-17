@@ -50,6 +50,7 @@ class HouseSelection extends Component {
 
 
   playerAmount = (amount) => {   //permet aussi de reset la page
+    console.log("je passe par là",amount)
     this.setState({ 
       playerSelection: [], 
       playerAmount: amount, 
@@ -62,8 +63,9 @@ class HouseSelection extends Component {
   }
 
   // pré-selection maison:
-  selectHouse = (house) => {   
-    this.setState({ selection: house, confirmButton: true })
+  selectHouse = (house) => {  
+    if (!this.state[house].isSelected) 
+      this.setState({ selection: house, confirmButton: true })
   }
 
   // affichage du bouton de confirmation de choix maison suite clic pré-selection sur maison:
@@ -166,7 +168,6 @@ class HouseSelection extends Component {
 
 
     return (
-      <div>
         <body className="body">
           <div>
             {/* blason poudlard */}
@@ -174,22 +175,27 @@ class HouseSelection extends Component {
             {/* titre page */}
             {this.pageTitle()}
             {/* choix du nombre de joueurs */}
-            <select className="player-amount">
-              <option onClick={() => this.playerAmount(2)} value="2 players">2 players</option>
-              <option onClick={() => this.playerAmount(3)} value="3 players">3 players</option>
-              <option onClick={() => this.playerAmount(4)} value="4 players">4 players</option>
+            <select className="player-amount" onChange={(e) => {this.playerAmount(parseInt(e.target.value))}} >
+              <option value="2">2 players</option>
+              <option value="3">3 players</option>
+              <option value="4">4 players</option>
             </select>
           </div>
+          <div>
           {/* affichage du choix des joueurs */}
           {this.selectionChoice1()}
           {this.selectionChoice2()}
           {this.selectionChoice3()}
           {this.selectionChoice4()}
+          </div>
           <div>
             {()=>this.grayOut()}
             {/* blasons des maisons */}
-            <button className="Slytherin shield-button" onClick={()=> {if (this.state.Slytherin.isSelected === false){this.selectHouse("Slytherin")}}} style={slytherinStyle}>
-            </button>
+
+
+            <button className="Slytherin shield-button" onClick={()=>this.selectHouse("Slytherin")} style={slytherinStyle}></button>
+
+
             <button className="Gryffindor shield-button" onClick={() => {if (this.state.Gryffindor.isSelected === false){this.selectHouse("Gryffindor")}}} style={gryffindorStyle}>
             </button>
             <button className="Ravenclaw shield-button" onClick={() => {if (this.state.Ravenclaw.isSelected === false){this.selectHouse("Ravenclaw")}}} style={ravenclawStyle}>
@@ -201,7 +207,6 @@ class HouseSelection extends Component {
           {this.displayConfirmButton()}
           {this.playerConfirmation()}
         </body>
-      </div>
 
     );
   }
