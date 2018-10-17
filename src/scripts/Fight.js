@@ -185,14 +185,14 @@ class Fight extends Component {
                 spellCasted: true,
             }
         })
-        window.setTimeout = () => {
+        /*window.setTimeout = () => {
             this.setState({
                 [fighterID]: {
                     ...this.state[fighterID],
                     spellCasted: false,
                 }
             }, 2000)
-        }
+        }*/
         this.setState({
             [spellID]: {
                 ...this.state[spellID],
@@ -201,7 +201,9 @@ class Fight extends Component {
                 direction: x / Math.abs(x)
             }
         })
-        setInterval(() => {
+        // Spell movement
+        let spellIntervall = setInterval(() => {
+            console.log("mon set interval de ouf")
             this.setState({
                 [spellID]: {
                     ...this.state[spellID],
@@ -209,6 +211,20 @@ class Fight extends Component {
                 }
             })
         }, 10)
+        // Destruction of spell
+        setTimeout(
+            function () {
+                clearInterval(spellIntervall);
+                this.setState({
+                    [fighterID]: {
+                        ...this.state[fighterID],
+                        spellCasted: false,
+                    }
+                });
+            }
+                .bind(this),
+            3000
+        );
     }
 
     move = (fighterID, x, y) => {
@@ -258,7 +274,7 @@ class Fight extends Component {
 
     // Fighters selection depending on turn and number of players
     getCurrentFighters = (turn) => {
-        if (turn === undefined) turn = 1;
+        console.log("turn : "+turn);
         let i = 0;
         let j = 1;
         switch (this.props.fightersHouse.length) {
@@ -287,11 +303,19 @@ class Fight extends Component {
         this.setState({
             fighter1: {
                 ...this.state.fighter1,
+                life: 100,
                 house: this.props.fightersHouse[i],
+                style: {
+                    opacity: 1,
+                },
             },
             fighter2: {
                 ...this.state.fighter2,
+                life: 100,
                 house: this.props.fightersHouse[j],
+                style: {
+                    opacity: 1,
+                },
             },
             spellfighter1: {
                 ...this.state.spellfighter1,
@@ -300,20 +324,24 @@ class Fight extends Component {
             spellfighter2: {
                 ...this.state.spellfighter2,
                 id: "spell" + this.props.fightersHouse[j],
-            }
+            },
+            progress: 100,
+            progress1: 100,
+            modalVictory: false,
+            turn: turn,
         })
     }
 
 
     componentDidMount = () => {
-        this.getCurrentFighters();
+        this.getCurrentFighters(1);
         setInterval(() => {
             const currentState = this.state.progress;
             const currentState1 = this.state.progress1;
             if (this.hasCollision(this.state.spellfighter1, this.state.fighter2)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
-                    progress1: currentState1 - 10,
+                    progress1: currentState1 - 50,
                     fighter1: {
                         ...this.state.fighter1,
                         spellCasted: false,
@@ -337,7 +365,7 @@ class Fight extends Component {
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
-                    progress: currentState - 10,
+                    progress: currentState - 50,
 
                     fighter2: {
                         ...this.state.fighter2,
@@ -364,6 +392,52 @@ class Fight extends Component {
         document.addEventListener("keydown", this.handleKeyPress)
     }
 
+    restartFight = () => {
+        console.log("restart fight before setState")
+        this.setState({
+            fighter1: {
+                ...this.state.fighter1,
+                life: 100,
+                spellCasted: false,
+                style: {
+                    opacity: 1
+                },
+                top: 250,
+                left: 100,
+                facesRight: true,
+                rotation: 0,
+            },
+            fighter2: {
+                ...this.state.fighter2,
+                life: 100,
+                spellCasted: false,
+                style: {
+                    opacity: 1
+                },
+                top: 250,
+                left: 1100,
+                facesRight: false,
+                rotation: 180,
+            },
+            progress:100,
+            progress1:100,
+            modalVictory: false,
+            
+        })
+        console.log("restart fight after setState")
+        console.log(this.state.fighter1)
+        console.log(this.state.fighter2)
+    }
+
+    nextFight = (turn) => {
+        this.getCurrentFighters(turn);
+        /*this.setState({
+            modalVictory: false,
+            progress:100,
+            progress1:100,
+        })*/
+    }
+
 
 
     render() {
@@ -374,10 +448,21 @@ class Fight extends Component {
           console.log(this.state.spellfighter1)
           console.log("Fighter 2 : ")
           console.log(this.state.fighter2)
+
+          console.log("Fighter 1 : ")
+          console.log(this.state.fighter1)
+          console.log("Fighter 2 : ")
+          console.log(this.state.fighter2)
+        /*  console.log("Fighter 2 : ")
+          console.log(this.state.fighter2)
           console.log("Spell Fighter 2 : ")
           console.log(this.state.spellfighter2)
   
           */
+
+          console.log("Progress : "+this.state.progress)
+          console.log("Progress1 : "+this.state.progress1)
+
 
         let avatarStyle = {
             position: "absolute",
@@ -423,6 +508,7 @@ class Fight extends Component {
                 <div>
                     <Wall />
                 </div>
+            <div id="bodyFight">
                 <div className="full">
                     <Header
                     />
@@ -472,11 +558,16 @@ class Fight extends Component {
                         <VictoryMessage
                             getCurrentFighters={this.getCurrentFighters}
                             turn={this.state.turn}
+                            getCurrentFighter={this.getCurrentFighters}
+                            turn={this.state.turn}
+                            nextFight={this.nextFight}
+                            restartFight={this.restartFight}
                         />
                         :
                         <div></div>
                 }</div>
 
+            </div>
             </div>
         );
     }
