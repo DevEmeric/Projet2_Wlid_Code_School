@@ -514,8 +514,7 @@ class Fight extends Component {
                 }
                 </div>
 
-                <h3 className={scoreFighter1}>{scoreFighter1}</h3>
-                <h3 className={scoreFighter2}>{scoreFighter2}</h3>
+            
 
                 <div>{
                     this.state.modalVictory ?
