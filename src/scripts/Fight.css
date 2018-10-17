@@ -15,18 +15,6 @@
   transition: width 400ms ease-in-out;
   height: 100%;
   
-<<<<<<< Updated upstream
- /* .avatar{
-    background-color: rgb(233, 165, 64);
-    border: solid 8px lightgrey;
-  }
-  
-  .avatar1{
-    background-color: rgb(233, 165, 64);;
-    border: solid 8px lightgrey; 
-  }
-  */
-=======
 }
 
 .progressbar {
@@ -72,4 +60,3 @@
   background-color: rgb(233, 165, 64);
   border: solid 8px lightgrey;
 }
->>>>>>> Stashed changes
