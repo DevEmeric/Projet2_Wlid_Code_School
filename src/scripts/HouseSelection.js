@@ -50,32 +50,32 @@ class HouseSelection extends Component {
 
 
   playerAmount = (amount) => {   //permet aussi de reset la page
-    this.setState({
-      playerSelection: [],
-      playerAmount: amount,
+    this.setState({ 
+      playerSelection: [], 
+      playerAmount: amount, 
       confirmButton: false,
-      Gryffindor: { opacity: 1, isSelected: false },
-      Slytherin: { opacity: 1, isSelected: false },
-      Ravenclaw: { opacity: 1, isSelected: false },
-      Hufflepuff: { opacity: 1, isSelected: false },
+      Gryffindor: {opacity: 1, isSelected: false},
+      Slytherin: {opacity: 1, isSelected: false},
+      Ravenclaw: {opacity: 1, isSelected: false},
+      Hufflepuff: {opacity: 1, isSelected: false},
     })
   }
 
   // pré-selection maison:
-  selectHouse = (house) => {
+  selectHouse = (house) => {   
     this.setState({ selection: house, confirmButton: true })
   }
 
   // affichage du bouton de confirmation de choix maison suite clic pré-selection sur maison:
-  displayConfirmButton() {
+  displayConfirmButton() {   
     if (this.state.selection !== "" && this.state.confirmButton === true)
-      return <button
+      return <button 
         onClick={this.addToPlayerSelection} className="confirm-button">Confirm choice: {this.state.selection} ?</button>;
   }
 
   // fonction du onclick du bouton de confirmation de choix maison:
-  addToPlayerSelection = () => {
-    const playerAdd = this.state.playerSelection
+  addToPlayerSelection = () => {   
+    const playerAdd = this.state.playerSelection   
     playerAdd.push(this.state.selection)
     this.setState({ playerSelection: playerAdd, confirmButton: false })
     this.grayOut(this.state.selection)
@@ -83,17 +83,17 @@ class HouseSelection extends Component {
   }
 
   // fonction pour empêcher de sélectionner maison deux fois:
-  grayOut = (select) => {
-    this.setState({
-      [select]: {
-        isSelected: true,
-        opacity: 0.4,
-      }
-    })
+  grayOut = (select) => {   
+     this.setState({
+        [select]: {
+          isSelected: true,
+          opacity: 0.4,
+        }
+      })
   }
 
   // fonction du onclick pour confirmer le choix final et passer à la page de combat. Link pour envoyer sur ./fight.js
-  playerConfirmation() {
+  playerConfirmation() {   
     if (this.state.playerAmount !== 0 && this.state.playerSelection.length === this.state.playerAmount) //1ère condition du "if" nécessaire pour que bouton apparaisse pas au début
       return <Link to="/fight"><button
         onClick={() => this.props.finalSelection(this.state.playerSelection)}
@@ -101,13 +101,13 @@ class HouseSelection extends Component {
   }
 
   // titre de la page -> change en fonction du joueur qui doit choisir sa maison:
-  pageTitle = () => {
+  pageTitle = () => {    
     if (this.state.playerSelection.length < this.state.playerAmount) { return <h1 className="page-title"> Player {this.state.playerSelection.length + 1}: Choose your  House</h1> }
     else { return <h1 className="page-title">Houses have been chosen!</h1> }
   }
 
   //les quatre fonctions suivantes affichent les choix de maison pour chaque joueur (faudrait en faire une seule fonction)
-  selectionChoice1 = () => {
+  selectionChoice1 = () => {   
     if (typeof this.state.playerSelection[0] !== "undefined") return <h2 className="player-selection">Player 1: {this.state.playerSelection[0]}</h2>
   }
   selectionChoice2 = () => {
@@ -186,15 +186,15 @@ class HouseSelection extends Component {
           {this.selectionChoice3()}
           {this.selectionChoice4()}
           <div>
-            {() => this.grayOut()}
+            {()=>this.grayOut()}
             {/* blasons des maisons */}
-            <button className="Slytherin shield-button" onClick={() => { if (this.state.Slytherin.isSelected === false) { this.selectHouse("Slytherin") } }} style={slytherinStyle}>
+            <button className="Slytherin shield-button" onClick={()=> {if (this.state.Slytherin.isSelected === false){this.selectHouse("Slytherin")}}} style={slytherinStyle}>
             </button>
-            <button className="Gryffindor shield-button" onClick={() => { if (this.state.Gryffindor.isSelected === false) { this.selectHouse("Gryffindor") } }} style={gryffindorStyle}>
+            <button className="Gryffindor shield-button" onClick={() => {if (this.state.Gryffindor.isSelected === false){this.selectHouse("Gryffindor")}}} style={gryffindorStyle}>
             </button>
-            <button className="Ravenclaw shield-button" onClick={() => { if (this.state.Ravenclaw.isSelected === false) { this.selectHouse("Ravenclaw") } }} style={ravenclawStyle}>
+            <button className="Ravenclaw shield-button" onClick={() => {if (this.state.Ravenclaw.isSelected === false){this.selectHouse("Ravenclaw")}}} style={ravenclawStyle}>
             </button>
-            <button className="Hufflepuff shield-button" onClick={() => { if (this.state.Hufflepuff.isSelected === false) { this.selectHouse("Hufflepuff") } }} style={hufflepuffStyle}>
+            <button className="Hufflepuff shield-button" onClick={() => {if (this.state.Hufflepuff.isSelected === false){this.selectHouse("Hufflepuff")}}} style={hufflepuffStyle}>
             </button>
           </div>
           {/* boutons de confirmation */}
