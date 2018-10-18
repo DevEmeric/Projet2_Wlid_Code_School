@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './Fighter.css';
+import GryffindorColor from "../image/silouhetteGryffindor.png";
+import SlytherinColor from "../image/silouhetteSlytherin.png";
+import RavenclawColor from "../image/silouhetteRavenclaw.png";
+import HufflepuffColorColor from "../image/silouhetteHufflepuff.png";
 
 class Fighter extends Component {
 
   constructor(props) {
     super(props);
-    this.gryffindorColor = require ("../image/silouhetteGryffindor.png");
-    this.slytherinColor = require ("../image/silouhetteSlytherin.png");
-    this.ravenclawColor = require ("../image/silouhetteRavenclaw.png");
-    this.hufflepuffColor = require ("../image/silouhetteHufflepuff.png");
-    this.defaultColor = require ("../image/silouhette.png");
+    this.Gryffindor =  GryffindorColor,
+    this.Slytherin = SlytherinColor,
+    this.Ravenclaw = RavenclawColor,
+    this.Hufflepuff = HufflepuffColorColor,
+
     this.state = {
       spellCasted: false,
       rotation: this.props.fighter.rotation,
@@ -45,15 +49,7 @@ class Fighter extends Component {
     document.addEventListener("keydown", this.handleKeyPress, false);
   }
 
-  houseColor(house) {
-    switch (house) {
-        case "Gryffindor":  return "url(" + this.gryffindorColor + ")" ;
-        case "Slytherin":  return "url(" + this.slytherinColor + ")" ;
-        case "Ravenclaw":  return "url(" + this.ravenclawColor + ")" ;
-        case "Hufflepuff":  return "url(" + this.hufflepuffColor + ")" ;
-        default:  return "url(" + this.defaultColor + ")" ;
-    }
-}
+  fighterColor = house => `url(${this[house]})`;
 
 
   render() {
@@ -64,7 +60,7 @@ class Fighter extends Component {
       left: this.state.left + "px",
       width: this.state.width + "px",
       height: this.state.height + "px",
-      backgroundImage: this.houseColor(this.props.fighter.house)
+      backgroundImage: this.fighterColor(this.props.fighter.house)
     };
 
     let fighterId = "fighter" + this.props.fighter.house

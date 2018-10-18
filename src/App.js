@@ -3,14 +3,14 @@ import './App.css';
 import Fight from './scripts/Fight';
 import HouseSelection from './scripts/HouseSelection';
 //import Char from'./scripts/Char';
-import { Route, Switch, NavLink, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 
 class App extends Component { 
   constructor() {
     super();
     this.state = {
-      playersHouse: [],
+      fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
     }
   }
 
