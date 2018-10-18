@@ -139,15 +139,11 @@ class Fight extends Component {
         this.handleKeyPress = this.handleKeyPress.bind(this)
     }
 
-    barColor = (house) =>  this.houseStyles[house].barColor
-    houseAvatar = (house) => `url(${this.houseStyles[house].shield})`;
-
     progressBar = (progress) => {
-        console.log("test")
         return <div className="progressbar">
             <div className="progress" style={{
                 width: `${progress}%`,
-                backgroundColor: this.barColor(this.state.fighter1.house)
+                backgroundColor: this.houseStyles[this.state.fighter1.house].barColor
             }}>
             </div>
         </div>
@@ -157,7 +153,7 @@ class Fight extends Component {
         return <div className="progressbar1">
             <div className="progress1" style={{
                 width: `${progress1}%`,
-                backgroundColor: this.barColor(this.state.fighter2.house)
+                backgroundColor: this.houseStyles[this.state.fighter2.house].barColor
             }}>
             </div>
         </div>
@@ -463,7 +459,7 @@ class Fight extends Component {
             width: this.state.widthavatar + "px",
             height: this.state.heightavatar + "px",
             //borderRadius: this.state.borderradius + "%",
-            backgroundImage: this.houseAvatar(this.state.fighter1.house),
+            backgroundImage: `url(${this.houseStyles[this.state.fighter1.house].shield})`,
             backgroundPosition: "right",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
@@ -478,7 +474,7 @@ class Fight extends Component {
             width: this.state.widthavatar1 + "px",
             height: this.state.heightavatar1 + "px",
             // borderRadius: this.state.borderradius1 + "%",
-            backgroundImage: this.houseAvatar(this.state.fighter2.house),
+            backgroundImage: `url(${this.houseStyles[this.state.fighter2.house].shield})`,
             backgroundPosition: "left",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",

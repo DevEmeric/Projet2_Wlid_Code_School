@@ -9,7 +9,7 @@ class Fighter extends Component {
 
   constructor(props) {
     super(props);
-    this.Gryffindor =  GryffindorColor,
+    this.Gryffindor = GryffindorColor,
     this.Slytherin = SlytherinColor,
     this.Ravenclaw = RavenclawColor,
     this.Hufflepuff = HufflepuffColorColor,
@@ -49,9 +49,6 @@ class Fighter extends Component {
     document.addEventListener("keydown", this.handleKeyPress, false);
   }
 
-  fighterColor = house => `url(${this[house]})`;
-
-
   render() {
     let fighterStyle = {
       transform: `rotateY(${this.state.rotation}deg)`,
@@ -60,7 +57,7 @@ class Fighter extends Component {
       left: this.state.left + "px",
       width: this.state.width + "px",
       height: this.state.height + "px",
-      backgroundImage: this.fighterColor(this.props.fighter.house)
+      backgroundImage: `url(${this[this.props.fighter.house]})`,
     };
 
     let fighterId = "fighter" + this.props.fighter.house
