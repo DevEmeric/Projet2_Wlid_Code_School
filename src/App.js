@@ -30,8 +30,6 @@ class App extends Component {
   }
  
   render() {
-    console.log("PlayerHouse", this.state.fightersHouse)
-    //console.log(this.state.playersHouse)
     return (
       <div className="App">
         <BrowserRouter>
