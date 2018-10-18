@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import './Fighter.css';
+import GryffindorColor from "../image/silouhetteGryffindor.png";
+import SlytherinColor from "../image/silouhetteSlytherin.png";
+import RavenclawColor from "../image/silouhetteRavenclaw.png";
+import HufflepuffColorColor from "../image/silouhetteHufflepuff.png";
 
 class Fighter extends Component {
 
   constructor(props) {
     super(props);
+    this.Gryffindor = GryffindorColor,
+    this.Slytherin = SlytherinColor,
+    this.Ravenclaw = RavenclawColor,
+    this.Hufflepuff = HufflepuffColorColor,
+
     this.state = {
       spellCasted: false,
       rotation: this.props.fighter.rotation,
@@ -48,6 +57,7 @@ class Fighter extends Component {
       left: this.state.left + "px",
       width: this.state.width + "px",
       height: this.state.height + "px",
+      backgroundImage: `url(${this[this.props.fighter.house]})`,
     };
 
     let fighterId = "fighter" + this.props.fighter.house
