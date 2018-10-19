@@ -1,5 +1,6 @@
 import React from 'react';
 import './VictoryMessage.css'
+import { Link } from "react-router-dom";
 
 //import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -43,7 +44,7 @@ class VictoryMessage extends React.Component {
               :
               <button style={buttonStyle} onClick={this.restartFight}>Start Again</button>
           }
-              <a to="/"><button style={buttonStyle}>Home Page</button></a>
+              <Link to="/"><button style={buttonStyle}>Home Page</button></Link>
           </div>
         </div>
       </div>
