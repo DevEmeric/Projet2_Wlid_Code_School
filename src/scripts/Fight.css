@@ -62,6 +62,23 @@
   
 }
 
+.score {
+  display: flex;
+  position: fixed;
+  top: 90vh;
+  z-index: -1;
+}
+
+.scorePerso {
+  margin-right: 50px;
+  display: flex;
+  float: right;
+  z-index: 10;
+  color: black;
+  border-radius: 45px;
+  padding: 10px;
+}
+
 
 /*.avatar{
   background-color: rgb(233, 165, 64);

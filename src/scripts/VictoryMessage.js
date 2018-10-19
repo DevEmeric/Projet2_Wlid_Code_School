@@ -1,5 +1,6 @@
 import React from 'react';
 import './VictoryMessage.css'
+
 //import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class VictoryMessage extends React.Component {
@@ -20,7 +21,7 @@ toggle() {
     modal: !this.state.modal
   });
 }*/
-  nextFight=()=>{
+  nextFight = () => {
     this.setState({
       turn:this.state.turn++
     })
