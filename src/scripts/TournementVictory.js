@@ -6,15 +6,15 @@ class TournementVictory extends Component {
     constructor (props) {
         super (props);
         this.state = {
-            isTournementFinished: true,
-            whoIsWon: [],
+            //isTournementFinished: true,
+            whoIsWon: [], //Tableau Simon
             
           
         }
 
     }
 
-    isTournementFinished = () => {
+    whoIsTheWinner = (scoreFighter) => {
         this.setState ({
 
             boutonHomePage:true,
@@ -24,6 +24,13 @@ class TournementVictory extends Component {
     }
 
     render(){
+        let styleTournement = {
+            
+
+
+
+
+        }
         return (
             <div>
                 <body className="bodyTournementVictory">
