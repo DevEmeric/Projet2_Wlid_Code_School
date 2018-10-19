@@ -1,7 +1,8 @@
-@font-face { 
-    font-family: 'HARRYP';
-    src: url('/home/mathieudearmey/Projet2/lyon-0918-js-potter-fighter/font/HARRYP__.TTF');
-    }
+@font-face{
+    font-family: "PotterFont";
+    src: url('../font/HARRYP__.TTF')format("truetype");
+}
+
 
 h1 {
     white-space: nowrap;
@@ -11,7 +12,7 @@ h1 {
     text-shadow: 4px 4px 4px black;
     color: orange;
     font-size: 50px;
-    font-family: "HARRYP";
+    font-family: "PotterFont";
 }
 
 .player-selection {
@@ -80,15 +81,15 @@ h1 {
 }
 
 .confirm-button {
-    width: 150px;
-    height: 55px;
+    width: 200px;
+    height: 70px;
     font-size: 1.2em;
     border-radius: 20px;
     border: none;
     color: orange;
     position: absolute;
     top: 600px;
-    left: 45%;
+    left: 43%;
     line-height: 1.5em;
     animation: button-blink1 infinite 1.5s linear;
     z-index: 1;
@@ -97,15 +98,15 @@ h1 {
 
 .start-button {
     width: 200px;
-    height: 80px;
+    height: 70px;
     background-color: rgb(51, 202, 51);
     font-size: 1.2em;
     border-radius: 20px;
     border: none;
-    color: orange;
+    color: yellow;
     position: absolute;
     top: 600px;
-    left: 42.5%;
+    left: 43%;
     line-height: 1.5em;
     animation: button-blink2 infinite 1s linear;
     z-index: 2;

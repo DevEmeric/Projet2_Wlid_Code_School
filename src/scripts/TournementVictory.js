@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./TournementVictory.css";
+import { Link } from "react-router-dom";
 
 
 class TournementVictory extends Component {
@@ -30,7 +31,7 @@ class TournementVictory extends Component {
 
                     <p className= "titleWinners"> WINNERS </p>
                     <div className="gobleoffireimage"></div>
-                    <a to="/houseSelection"><button className= "boutonTournementHomePage">Home Page</button></a>
+                    <Link to = "/"><button className= "boutonTournementHomePage">Home Page</button></Link>
                     <div className="boutonPodium"></div>
                     <div className= "firstAward"></div>
                     <div className= "secondAward"></div>
