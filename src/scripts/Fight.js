@@ -15,22 +15,10 @@ class Fight extends Component {
 
     constructor() {
         super();
-        /*this.gryffindorBar = {
-            backgroundColor: "red",
-        },
-        this.slytherinBar = {
-            backgroundColor: "green",
-        },
-        this.ravenclawBar = {
-            backgroundColor: "blue",
-        },
-        this.gryffindorBar = {
-            backgroundColor: "yellow",
-        },*/
-        this.gryffindorShield = require("../image/Gryffindor.png");
-        this.slytherinShield = require("../image/Slytherin.png");
-        this.ravenclawShield = require("../image/Ravenclaw.png");
-        this.hufflepuffShield = require("../image/Hufflepuff.png");
+        this.gryffindorShield = require("../image/gryffindor2.png");
+        this.slytherinShield = require("../image/slytherin2.png");
+        this.ravenclawShield = require("../image/ravenclaw2.png");
+        this.hufflepuffShield = require("../image/hufflepuff2.png");
         
         this.state = {
 
