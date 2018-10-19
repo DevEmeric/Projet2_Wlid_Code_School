@@ -22,39 +22,79 @@ class Fighter extends Component {
       left: this.props.fighter.left,
       width: this.props.fighter.width,
       height: this.props.fighter.height,
-      speed: 5,
+      speed: 20,
+      tabKeys:[],
     }
   }
 
-  handleKeyPress = (event) => {
-    switch (event.which) {
-      case this.props.fighter.attack: this.props.fighter.castSpell(this.props.fighter.id, this.props.fighter.facesRight); break;
-      //case this.props.fighter.defense : this.props.fighter.defend(this.props.fighter.id); break;
-      case this.props.fighter.rotate: this.props.fighter.rotateFighter(this.props.fighter.id); break;
-      case this.props.fighter.moveUp: this.props.fighter.move(this.props.fighter.id, -this.state.speed, 0); break;
-      case this.props.fighter.moveDown: this.props.fighter.move(this.props.fighter.id, this.state.speed, 0); break;
-      case this.props.fighter.moveLeft: this.props.fighter.move(this.props.fighter.id, 0, -this.state.speed); break;
-      case this.props.fighter.moveRight: this.props.fighter.move(this.props.fighter.id, 0, this.state.speed); break;
-    }
-
-    this.setState({
-      spellCasted: this.props.fighter.spellCasted,
-      top: this.props.fighter.top,
-      left: this.props.fighter.left,
-      rotation: this.props.fighter.rotation
-    })
-  }
-
+ 
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyPress, false);
+
+    document.addEventListener("keydown", this.inTab1, false)
+    document.addEventListener("keyup", this.outTab1, false);
+    
   }
+
+  
+
+  inTab1 = (event) => {
+      let localTabKeys=this.state.tabKeys;
+      if(localTabKeys.indexOf(event.key) < 0) {
+        localTabKeys.push(event.key)
+      }
+      this.setState({
+        tabKeys:localTabKeys,
+      })
+      this.handleKeyPress(localTabKeys)
+  }
+  
+
+  handleKeyPress = (localTabKeys) => {
+    
+      if(localTabKeys.indexOf(this.props.fighter.moveUp)!==-1){
+        this.props.fighter.move(this.props.fighter.id, -this.state.speed, 0)
+      }
+      if(localTabKeys.indexOf(this.props.fighter.moveDown)!==-1){
+        this.props.fighter.move(this.props.fighter.id, this.state.speed, 0)   
+      }
+      if(localTabKeys.indexOf(this.props.fighter.moveLeft)!==-1){
+        this.props.fighter.move(this.props.fighter.id, 0, -this.state.speed)
+      }
+      if(localTabKeys.indexOf(this.props.fighter.moveRight)!==-1){
+        this.props.fighter.move(this.props.fighter.id, 0, this.state.speed)
+      }
+      if(localTabKeys.indexOf(this.props.fighter.attack)!==-1){
+        this.props.fighter.castSpell(this.props.fighter.id, this.props.fighter.facesRight)
+      }
+      if(localTabKeys.indexOf(this.props.fighter.rotate)!==-1){
+        this.props.fighter.rotateFighter(this.props.fighter.id)
+      }
+      /*if(localTabKeys.indexOf(this.props.fighter.defense)!==-1){
+        this.props.fighter.defend(this.props.fighter.id)
+      }*/
+
+  
+}
+        
+      
+
+  outTab1 = (event) => {
+    let localTabKeys=this.state.tabKeys;
+      if(localTabKeys.indexOf(event.key) >= 0) {
+        localTabKeys.splice(localTabKeys.indexOf(event.key), 1)
+      }
+      this.setState({
+        tabKeys:localTabKeys,
+      })
+    }  
+  
 
   render() {
     let fighterStyle = {
-      transform: `rotateY(${this.state.rotation}deg)`,
+      transform: `rotateY(${this.props.fighter.rotation}deg)`,
       position: "absolute",
-      top: this.state.top + "px",
-      left: this.state.left + "px",
+      top: this.props.fighter.top + "px",
+      left: this.props.fighter.left + "px",
       width: this.state.width + "px",
       height: this.state.height + "px",
       backgroundImage: `url(${this[this.props.fighter.house]})`,
