@@ -1,7 +1,8 @@
-@font-face { 
-    font-family: 'HARRYP';
-    src: url('/home/mathieudearmey/Projet2/lyon-0918-js-potter-fighter/font/HARRYP__.TTF');
-    }
+@font-face{
+    font-family: "PotterFont";
+    src: url('../font/HARRYP__.TTF')format("truetype");
+}
+
 
 h1 {
     white-space: nowrap;
@@ -11,7 +12,7 @@ h1 {
     text-shadow: 4px 4px 4px black;
     color: orange;
     font-size: 50px;
-    font-family: "HARRYP";
+    font-family: "PotterFont";
 }
 
 .player-selection {
