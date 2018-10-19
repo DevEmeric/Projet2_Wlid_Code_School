@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Fight from './scripts/Fight';
 import HouseSelection from './scripts/HouseSelection';
+import TournementVictory from './scripts/TournementVictory';
 //import Char from'./scripts/Char';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
@@ -11,6 +12,7 @@ class App extends Component {
     super();
     this.state = {
       fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
+      isEndTournement: true,
     }
   }
 
@@ -48,7 +50,14 @@ class App extends Component {
                   fightersHouse={this.state.fightersHouse}
                 />)}
             />
-          
+            <Route
+              path="/TournementVictory"
+              render={() => (
+                <TournementVictory
+                  isEndTournement={this.state.isEndTournement}
+                />)}
+            />
+
           </Switch>
         </BrowserRouter>
         
