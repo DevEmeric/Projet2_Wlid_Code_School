@@ -56,6 +56,7 @@ class Fight extends Component {
                 heightavatar: 130,
                 widthavatar: 130,
                 borderradius: 50,
+                scoreFighter1: 0,
 
 
 
@@ -67,6 +68,7 @@ class Fight extends Component {
                 heightavatar1: 130,
                 widthavatar1: 130,
                 borderradius1: 50,
+                scoreFighter2: 0,
 
                 //turn:this.props.turn,
 
@@ -134,6 +136,15 @@ class Fight extends Component {
                     id: "",
                 },
                 modalVictory: false,
+
+                ///////////PLAYERS
+                scoreFighters: {
+                    gryffindor: 0,
+                    slytherin: 0,
+                    ravenclaw: 0,
+                    hufflepuff: 0,
+                },
+
 
             }
         this.handleKeyPress = this.handleKeyPress.bind(this)
@@ -315,6 +326,9 @@ class Fight extends Component {
             progress1: 100,
             modalVictory: false,
             turn: turn,
+            //Initialisation des scoreFighter à 0
+            scoreFighter1: 0,
+            scoreFighter2: 0,
         })
 
         console.log(this.state.fighter1)
@@ -324,12 +338,14 @@ class Fight extends Component {
     componentDidMount = () => {
         this.getCurrentFighters(1);
         setInterval(() => {
-            const currentState = this.state.progress;
-            const currentState1 = this.state.progress1;
+            let currentState1 = this.state.progress;
+            let currentState2 = this.state.progress1;
+
+
             if (this.hasCollision(this.state.spellfighter1, this.state.fighter2)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
-                    progress1: currentState1 - 50,
+                    progress1: currentState2 - 50,
                     fighter1: {
                         ...this.state.fighter1,
                         spellCasted: false,
@@ -340,20 +356,47 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
-                if (this.state.progress1 === 0 || this.state.progress === 0) {
-                    //alert("un joueur est mort") 
-                    console.log(this.state.modalVictory)
-                    this.setState({
-                        modalVictory: !this.state.modalVictory
-                    })
 
+                if (this.state.progress === 0) {
+                    this.setState({
+                        scoreFighter2: this.state.scoreFighter2 + currentState2,
+                        progress: -1,
+                        modalVictory: true,
+                    });
+
+
+
+                    switch (this.state.fighter2.house) {
+                        case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter2; break;
+                        case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter2; break;
+                        case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter2; break;
+                        case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter2; break;
+                    }
+
+
+                }
+                if (this.state.progress1 === 0) {
+                    this.setState({
+                        scoreFighter1: this.state.scoreFighter1 + currentState1,
+                        progress1: - 1,
+                        modalVictory: true,
+                    });
+
+
+
+                    switch (this.state.fighter1.house) {
+                        case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter1; break;
+                        case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter1; break;
+                        case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter1; break;
+                        case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter1; break;
+                    }
 
                 }
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
-                    progress: currentState - 50,
+                    progress: currentState1 - 50,
 
                     fighter2: {
                         ...this.state.fighter2,
@@ -365,14 +408,34 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
-                if (this.state.progress1 === 0 || this.state.progress === 0) {
-                    //alert("un joueur est mort") 
-                    console.log(this.state.modalVictory)
+
+                if (this.state.progress === 0) {
                     this.setState({
-                        modalVictory: !this.state.modalVictory
-                    })
+                        scoreFighter2: this.state.scoreFighter2 + currentState2,
+                        progress: - 1,
+                        modalVictory: true,
 
+                    });
+                    switch (this.state.fighter2.house) {
 
+                        case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter2; break;
+                        case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter2; break;
+                        case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter2; break;
+                        case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter2; break
+                    }
+                }
+                if (this.state.progress1 === 0) {
+                    this.setState({
+                        scoreFighter1: this.state.scoreFighter1 + currentState1,
+                        progress1: - 1,
+                        modalVictory: true
+                    });
+                    switch (this.state.fighter1.house) {
+                        case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter1; break;
+                        case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter1; break;
+                        case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter1; break;
+                        case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter1; break;
+                    }
                 }
             }
 
@@ -411,6 +474,7 @@ class Fight extends Component {
             progress1: 100,
             modalVictory: false,
 
+
         })
         console.log("restart fight after setState")
         console.log(this.state.fighter1)
@@ -419,17 +483,17 @@ class Fight extends Component {
 
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
-        /*this.setState({
-            modalVictory: false,
-            progress:100,
-            progress1:100,
-        })*/
+
+        this.setState({
+            scoreFighter1: 0,
+            scoreFighter2: 0,
+        })
     }
 
 
 
     render() {
- 
+
         console.log(this.state.progress1)
         /*  console.log("Fighter 1 : ")
           console.log(this.state.fighter1)
@@ -491,6 +555,30 @@ class Fight extends Component {
             opacity: 0.5
         }
 
+        let gri = 'Grifondor: ' + this.state.scoreFighters.gryffindor
+        let sly = 'Syltherin: ' + this.state.scoreFighters.slytherin
+        let rav = 'Ravenclaw: ' + this.state.scoreFighters.ravenclaw
+        let huf = 'Hufflepuff: ' + this.state.scoreFighters.hufflepuff
+
+
+
+        let grifStyle = {
+            backgroundColor: "red"
+        }
+
+        let sylStyle = {
+            backgroundColor: "green"
+        }
+
+        let ravStyle = {
+            backgroundColor: "blue"
+        }
+
+        let hufStyle = {
+            backgroundColor: "yellow"
+        }
+
+
         return (
             <div>
                 <div>
@@ -541,19 +629,26 @@ class Fight extends Component {
                     }
                     </div>
 
-                    <div>{
-                        this.state.modalVictory ?
-                            <VictoryMessage
-                                getCurrentFighters={this.getCurrentFighters}
-                                turn={this.state.turn}
-                                getCurrentFighter={this.getCurrentFighters}
-                                turn={this.state.turn}
-                                nextFight={this.nextFight}
-                                restartFight={this.restartFight}
-                            />
-                            :
-                            <div></div>
-                    }</div>
+                    <div>
+                        <div className="score">
+                            <h3 className="scorePerso" style={grifStyle}>{gri}</h3>
+                            <h3 className="scorePerso" style={sylStyle}>{sly}</h3>
+                            <h3 className="scorePerso" style={hufStyle}>{huf}</h3>
+                            <h3 className="scorePerso" style={ravStyle}>{rav}</h3>
+
+                        </div>{
+                            this.state.modalVictory ?
+                                <VictoryMessage
+                                    getCurrentFighters={this.getCurrentFighters}
+                                    turn={this.state.turn}
+                                    getCurrentFighter={this.getCurrentFighters}
+                                    turn={this.state.turn}
+                                    nextFight={this.nextFight}
+                                    restartFight={this.restartFight}
+                                />
+                                :
+                                <div></div>
+                        }</div>
 
                 </div>
             </div>
