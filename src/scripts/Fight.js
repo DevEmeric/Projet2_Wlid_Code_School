@@ -79,13 +79,13 @@ class Fight extends Component {
                     life: 100,
                     width: 250,
                     height: 200,
-                    attack: 87,      // Attaque: w
-                    defense: 81,    // Défense: q
-                    rotate: 65,     // Rotate: a
-                    moveUp: 69,         // Up: e
-                    moveDown: 68,      // Down: d
-                    moveLeft: 83,        // Left: s
-                    moveRight: 70,       // Right: f
+                    attack: "w",      // Attaque: w
+                    defense: "q",    // Défense: q
+                    rotate: "a",     // Rotate: a
+                    moveUp: "e",         // Up: e
+                    moveDown: "d",      // Down: d
+                    moveLeft: "s",        // Left: s
+                    moveRight: "f",       // Right: f
                     house: "Slytherin",
                     //house: this.props.fightersHouse[0],
                     //house:this.getCurrentFighters()[0],
@@ -103,13 +103,13 @@ class Fight extends Component {
                     life: 100,
                     width: 250,
                     height: 200,
-                    attack: 161,                 // Attaque: ! 
-                    defense: 77,               // Défense: m
-                    rotate: 80,                // Rotate: p
-                    moveUp: 38,                 // Up: Flèche du haut
-                    moveDown: 40,               // Down: Flèche du bas
-                    moveLeft: 37,               // Left: Flèche de gauche
-                    moveRight: 39,              // Right: Flèche de droite
+                    attack: "!",                 // Attaque: ! 
+                    defense: "m",               // Défense: m
+                    rotate: "p",                // Rotate: p
+                    moveUp: "ArrowUp",                 // Up: Flèche du haut
+                    moveDown: "ArrowDown",               // Down: Flèche du bas
+                    moveLeft: "ArrowLeft",               // Left: Flèche de gauche
+                    moveRight: "ArrowRight",              // Right: Flèche de droite
                     house: "Gryffindor",
                     allCharacteristics: this.fighterAndSpellCallback,
                     castSpell: this.castSpell,
