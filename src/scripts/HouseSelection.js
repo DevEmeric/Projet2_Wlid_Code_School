@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Hogwarts from "../image/Hogwarts.png";
+import Hogwarts from "../image/logochoice.png";
 import "./Houses.css";
 import { Link } from "react-router-dom";
 

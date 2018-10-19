@@ -8,10 +8,10 @@ import VictoryMessage from "./VictoryMessage"
 import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 
-import gryffindorShield from '../image/Gryffindor.png'
-import slytherinShield from '../image/Slytherin.png'
-import ravenclawShield from '../image/Ravenclaw.png'
-import hufflepuffShield from '../image/Hufflepuff.png'
+import gryffindorShield from '../image/gryffindor2.png'
+import slytherinShield from '../image/slytherin2.png'
+import ravenclawShield from '../image/ravenclaw2.png'
+import hufflepuffShield from '../image/hufflepuff2.png'
 
 
 
@@ -20,7 +20,6 @@ class Fight extends Component {
 
     constructor() {
         super();
-
         this.houseStyles = {
             Gryffindor: {
                 shield: gryffindorShield,
@@ -39,8 +38,6 @@ class Fight extends Component {
                 barColor: "yellow",
             },
         },
-
-
             this.state = {
 
                 //Instructions Screen
