@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 import Fight from './scripts/Fight';
 import HouseSelection from './scripts/HouseSelection';
+import TournementVictory from './scripts/TournementVictory';
 //import Char from'./scripts/Char';
-import { Route, Switch, NavLink, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-      this.state = {
-        fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
-      }
-  }  
+class App extends Component { 
+  constructor() {
+    super();
+    this.state = {
+      fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
+      isEndTournement: true,
+    }
+  }
 
   /*
   <Route exact path="/" component={Home} />
@@ -31,7 +32,6 @@ class App extends Component {
   }
  
   render() {
-    console.log("PlayerHouse", this.state.fightersHouse)
     return (
       <div className="App">
         <BrowserRouter>
@@ -50,7 +50,14 @@ class App extends Component {
                   fightersHouse={this.state.fightersHouse}
                 />)}
             />
-          
+            <Route
+              path="/TournementVictory"
+              render={() => (
+                <TournementVictory
+                  isEndTournement={this.state.isEndTournement}
+                />)}
+            />
+
           </Switch>
         </BrowserRouter>
         

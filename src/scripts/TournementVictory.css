@@ -1,0 +1,121 @@
+.bodyTournementVictory{
+
+    /*background-image: url("../image/background1tournement.jpg");*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 800px;
+    background-color: white;
+    color: black;
+}
+
+.gobleoffireimage{
+    position: absolute;
+    background-image: url("../image/fireGoblet.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    width: 400px;
+    top: 80px;
+    left: 1100px;
+
+}
+.boutonTournementHomePage{
+    position: absolute;
+    top: 700px;
+    left: 1210px;
+    color: black;
+    width: 200px;
+    height: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    opacity: 1;
+    background-color: inherit;
+    border-bottom-color: 20px, rgb(240, 240, 39);
+    box-shadow:20px, rgb(236, 214, 9);
+    text-align: center;
+
+}
+.boutonPodium{
+    position: absolute;
+    background-image: url("../image/podium3new.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    width: 900px;
+    top: 500px;
+    left: 100px;
+
+}
+
+.titleWinners{
+    position: absolute;
+    font-size: 60px;
+    font-weight: bold;
+    top: 5px;
+    left: 500px;
+    color: rgb(27, 27, 26);
+    box-shadow: black;
+
+}
+
+
+
+.firstAward {
+    position: absolute;
+    background-image: url("../image/Slytherin.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    width: 200px;
+    top: 230px;
+    left: 460px;
+
+}
+
+.thirdAward {
+    position: absolute;
+    background-image: url("../image/Gryffindor.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 200px;
+    top: 230px;
+    left: 750px;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.secondAward {
+
+    position: absolute;
+    background-image: url("../image/Ravenclaw.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    width: 200px;
+    top: 230px;
+    left: 140px;
+
+
+}
+
+.logoHufflepuffHouse {
+
+    position: absolute;
+    background-image: url("../image/Hufflepuff.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    width: 200px;
+    top: 230px;
+    left: 140px;
+
+
+}
