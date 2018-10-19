@@ -53,7 +53,7 @@ toggle() {
               :
               <button style={buttonStyle} onClick={this.restartFight}>Start Again</button>
           }
-            <a to="/"><button style={buttonStyle}>Home Page</button></a>
+              <a to="/"><button style={buttonStyle}>Home Page</button></a>
           </div>
         </div>
       </div>
