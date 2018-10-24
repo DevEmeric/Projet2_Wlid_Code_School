@@ -16,7 +16,7 @@ class VictoryMessage extends React.Component {
     this.setState({
       turn:this.state.turn++
     })
-    this.props.getCurrentFighter(this.state.turn);
+    this.props.nextFight(this.state.turn);
   }
 
   restartFight=()=>{

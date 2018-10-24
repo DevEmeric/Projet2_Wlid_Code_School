@@ -69,9 +69,9 @@ class Fighter extends Component {
       if(localTabKeys.indexOf(this.props.fighter.rotate)!==-1){
         this.props.fighter.rotateFighter(this.props.fighter.id)
       }
-      /*if(localTabKeys.indexOf(this.props.fighter.defense)!==-1){
-        this.props.fighter.defend(this.props.fighter.id)
-      }*/
+      if(localTabKeys.indexOf(this.props.fighter.defend)!==-1){
+        this.props.fighter.takeOutShield(this.props.fighter.id)
+      }
 
   
 }
