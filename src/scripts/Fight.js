@@ -287,6 +287,8 @@ class Fight extends Component {
                     case 4: { i = 1; j = 3 }; break;
                     case 5: { i = 0; j = 3 }; break;
                     case 6: { i = 1; j = 2 }; break;
+                    ///////////////////////////////
+                    case 7: { i = 0; j = 0 }; break;
                 };
                 break;
             default: { i = 0; j = 1 }; break;
@@ -481,10 +483,10 @@ class Fight extends Component {
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
 
-        this.setState({
+        /*this.setState({
             scoreFighter1: 0,
             scoreFighter2: 0,
-        })
+        })*/
     }
 
 
