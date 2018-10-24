@@ -1,0 +1,77 @@
+@font-face{
+    font-family: "PotterFont";
+    src: url('../font/HARRYP__.TTF')format("truetype");
+}
+
+.container1 {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../image/salle5.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.title1 {
+    position: absolute;
+    left: 650px;
+    top: 0px;
+    font-family: "PotterFont";
+    color: rgb(252, 222, 53);
+    font-size: 150px;
+    letter-spacing: 10px;
+    text-shadow: 4px 4px 4px black;
+    /* -6px -6px 0 #000,
+    6px -6px 0 #000,
+    -6px 6px 0 #000,
+    6px 6px 0 #000; */
+}
+
+
+.container1 button {
+    align-self: center;
+    width: 300px;
+    height: 100px;
+    font-family: "PotterFont";
+    font-size: 50px;
+    border: none;
+    text-align: center;
+    z-index: 1;
+    margin: 20px;
+    background-color: rgba(134, 134, 134, 0);
+    color: orange;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    transition: transform 0.5s ease-in-out, color 0.6s ease-in-out;
+    outline: none;
+}
+
+button:hover {
+    transform: scale(1.1, 1.1);
+    color: rgb(255, 251, 226);
+}
+
+.newGame {
+    position: absolute;
+    left: 800px;
+    bottom: 450px;
+}
+
+.hidden {
+    position: absolute;
+    left: 600px;
+    bottom: 380px;
+}
+
+.settings {
+    position: absolute;
+    left: 800px;
+    bottom: 250px;
+}

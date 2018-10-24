@@ -27,7 +27,7 @@ class Fighter extends Component {
     }
   }
 
- 
+
   componentDidMount() {
 
     document.addEventListener("keydown", this.inTab1, false)

@@ -9,6 +9,7 @@ import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 import Shield from "./Shield.js"
 
+
 import gryffindorShield from '../image/gryffindor2.png'
 import slytherinShield from '../image/slytherin2.png'
 import ravenclawShield from '../image/ravenclaw2.png'
@@ -708,6 +709,7 @@ class Fight extends Component {
                                 :
                                 <div></div>
                         }</div>
+
 
                 </div>
             </div>

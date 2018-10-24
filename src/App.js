@@ -3,6 +3,7 @@ import './App.css';
 import Fight from './scripts/Fight';
 import HouseSelection from './scripts/HouseSelection';
 import TournementVictory from './scripts/TournementVictory';
+import HomePage from "./scripts/HomePage"
 //import Char from'./scripts/Char';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
@@ -37,14 +38,14 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route
-              exact path="/"
+              path="/HouseSelection"
               render={() => (
                 <HouseSelection
                 finalSelection={this.finalSelection}
                 />)}
             />
             <Route
-              path="/fight"
+              path="/Fight"
               render={() => (
                 <Fight
                   fightersHouse={this.state.fightersHouse}
@@ -57,10 +58,13 @@ class App extends Component {
                   isEndTournement={this.state.isEndTournement}
                 />)}
             />
-
+            <Route
+              exact path="/"
+              render={() => (
+                <HomePage />)}
+            />
           </Switch>
         </BrowserRouter>
-        
       </div>
     );
   }
