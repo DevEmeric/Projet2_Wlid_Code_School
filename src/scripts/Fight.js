@@ -157,7 +157,7 @@ class Fight extends Component {
 
 
             }
-        this.handleKeyPress = this.handleKeyPress.bind(this)
+       this.handleKeyPress = this.handleKeyPress.bind(this)
     }
 
     progressBar = (progress) => {
@@ -182,7 +182,6 @@ class Fight extends Component {
 
 
     castSpell = (fighterID, facesRight) => {
-        console.log("shoot");
         let spellID = "spell" + fighterID
         let x = facesRight ? 260 : -30;
         // Apparition du spell
@@ -210,7 +209,6 @@ class Fight extends Component {
         })
         // Spell movement
         let spellIntervall = setInterval(() => {
-            console.log("mon set interval de ouf")
             this.setState({
                 [spellID]: {
                     ...this.state[spellID],
@@ -245,7 +243,6 @@ class Fight extends Component {
     }
 
     rotate = (fighterID) => {
-        console.log("rotate")
         this.setState({
             [fighterID]: {
                 ...this.state[fighterID],
@@ -311,7 +308,7 @@ class Fight extends Component {
 
     // Fighters selection depending on turn and number of players
     getCurrentFighters = (turn) => {
-        console.log("turn : " + turn);
+     //   console.log("turn : " + turn);
         let i = 0;
         let j = 1;
         switch (this.props.fightersHouse.length) {
@@ -334,8 +331,8 @@ class Fight extends Component {
                 break;
             default: { i = 0; j = 1 }; break;
         }
-        console.log("Fighters selected : ")
-        console.log([this.props.fightersHouse[i], this.props.fightersHouse[j]])
+       // console.log("Fighters selected : ")
+       // console.log([this.props.fightersHouse[i], this.props.fightersHouse[j]])
 
         this.setState({
             fighter1: {
@@ -371,7 +368,7 @@ class Fight extends Component {
             scoreFighter2: 0,
         })
 
-        console.log(this.state.fighter1)
+      //  console.log(this.state.fighter1)
     }
 
 
@@ -494,6 +491,7 @@ class Fight extends Component {
             }
         }, 10)
         document.addEventListener("keydown", this.handleKeyPress)
+      
     }
 
     //loseLife(fighterID){}
@@ -556,8 +554,9 @@ class Fight extends Component {
     }
 
 
-
     render() {
+        console.log("top2: ", this.state.fighter2.top)
+
 
         let avatarStyle = {
             position: "absolute",
@@ -580,7 +579,7 @@ class Fight extends Component {
             width: this.state.widthavatar1 + "px",
             height: this.state.heightavatar1 + "px",
             backgroundImage: `url(${this.houseStyles[this.state.fighter2.house].shield})`,
-            backgroundPosition: "left",
+            backgrounPosition: "left",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
         }
@@ -619,8 +618,9 @@ class Fight extends Component {
             backgroundColor: "yellow"
         }
 
-
+        
         return (
+            
             <div>
                 <div>
                     <Wall />
@@ -710,6 +710,7 @@ class Fight extends Component {
                         }</div>
 
                 </div>
+
             </div>
         );
     }
