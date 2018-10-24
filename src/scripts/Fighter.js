@@ -51,16 +51,16 @@ class Fighter extends Component {
 
   handleKeyPress = (localTabKeys) => {
     
-      if(localTabKeys.indexOf(this.props.fighter.moveUp)!==-1){
+      if(localTabKeys.indexOf(this.props.fighter.moveUp)!==-1 && this.props.fighter.top >110)  {
         this.props.fighter.move(this.props.fighter.id, -this.state.speed, 0)
       }
-      if(localTabKeys.indexOf(this.props.fighter.moveDown)!==-1){
+      if(localTabKeys.indexOf(this.props.fighter.moveDown)!==-1 && this.props.fighter.top < 530){
         this.props.fighter.move(this.props.fighter.id, this.state.speed, 0)   
       }
-      if(localTabKeys.indexOf(this.props.fighter.moveLeft)!==-1){
+      if(localTabKeys.indexOf(this.props.fighter.moveLeft)!==-1 && this.props.fighter.left > -20){
         this.props.fighter.move(this.props.fighter.id, 0, -this.state.speed)
       }
-      if(localTabKeys.indexOf(this.props.fighter.moveRight)!==-1){
+      if(localTabKeys.indexOf(this.props.fighter.moveRight)!==-1 && this.props.fighter.left < 1280){
         this.props.fighter.move(this.props.fighter.id, 0, this.state.speed)
       }
       if(localTabKeys.indexOf(this.props.fighter.attack)!==-1){
