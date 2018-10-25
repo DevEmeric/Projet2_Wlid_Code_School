@@ -5,9 +5,13 @@ import Header from './Header';
 import Instructions from './Instructions'
 import './Fight.css';
 import VictoryMessage from "./VictoryMessage"
+import TournementVictory from "./TournementVictory"
 import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 import Shield from "./Shield.js"
+import {Redirect} from 'react-router'
+import {Link} from "react-router-dom"
+
 
 
 import gryffindorShield from '../image/gryffindor2.png'
@@ -44,6 +48,8 @@ class Fight extends Component {
         this.fightTime = 2,
 
             this.state = {
+
+                redirect: false,
 
                 //Instructions Screen
                 displayInstr: false,
@@ -163,6 +169,14 @@ class Fight extends Component {
             }
         this.handleKeyPress = this.handleKeyPress.bind(this)
     }
+
+
+    sendScore = () => {
+        
+        this.props.endTournament(this.state.scoreFighters)
+    }
+
+
 
     progressBar = (progress) => {
         return <div className="progressbar">
@@ -322,6 +336,7 @@ class Fight extends Component {
                     case 1: { i = 0; j = 1 }; break;
                     case 2: { i = 1; j = 2 }; break;
                     case 3: { i = 0; j = 2 }; break;
+                    case 4: { this.setState({ redirect: !this.state.redirect}) }; break;
                 };
                 break;
             case 4:
@@ -332,6 +347,7 @@ class Fight extends Component {
                     case 4: { i = 1; j = 3 }; break;
                     case 5: { i = 0; j = 3 }; break;
                     case 6: { i = 1; j = 2 }; break;
+                    case 7: { this.setState({ redirect: !this.state.redirect}) }; break;
                 };
                 break;
             default: { i = 0; j = 1 }; break;
@@ -378,6 +394,7 @@ class Fight extends Component {
 
 
     componentDidMount = () => {
+
         this.getCurrentFighters(1);
         setInterval(() => {
             let currentState1 = this.state.progress;
@@ -580,6 +597,7 @@ class Fight extends Component {
     }
 
 
+    redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
     render() {
 
         let avatarStyle = {
@@ -651,6 +669,7 @@ class Fight extends Component {
                 </div>
                 <div id="bodyFight">
                     <div className="full">
+                    {this.redirect()}
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
@@ -726,6 +745,7 @@ class Fight extends Component {
                             <h3 className="scorePerso" style={sylStyle}>{sly}</h3>
                             <h3 className="scorePerso" style={hufStyle}>{huf}</h3>
                             <h3 className="scorePerso" style={ravStyle}>{rav}</h3>
+                            
 
                         </div>{
                             this.state.modalVictory ?
