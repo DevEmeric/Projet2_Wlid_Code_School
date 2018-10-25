@@ -9,7 +9,9 @@ import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 import Shield from "./Shield.js"
 //TESTESTESTESTETST
+import { Redirect } from 'react-router'
 import { Link } from "react-router-dom"
+
 
 import gryffindorShield from '../image/gryffindor2.png'
 import slytherinShield from '../image/slytherin2.png'
@@ -42,6 +44,8 @@ class Fight extends Component {
             },
         },
             this.state = {
+
+                redirect: false,
 
                 //Instructions Screen
                 displayInstr: false,
@@ -184,7 +188,6 @@ class Fight extends Component {
 
 
     castSpell = (fighterID, facesRight) => {
-        console.log("shoot");
         let spellID = "spell" + fighterID
         let x = facesRight ? 260 : -30;
         // Apparition du spell
@@ -212,7 +215,6 @@ class Fight extends Component {
         })
         // Spell movement
         let spellIntervall = setInterval(() => {
-            console.log("mon set interval de ouf")
             this.setState({
                 [spellID]: {
                     ...this.state[spellID],
@@ -247,7 +249,6 @@ class Fight extends Component {
     }
 
     rotate = (fighterID) => {
-        console.log("rotate")
         this.setState({
             [fighterID]: {
                 ...this.state[fighterID],
@@ -288,15 +289,16 @@ class Fight extends Component {
     }
 
     hasCollision(object1, object2) {
-        if (object1.top < object2.top + object2.width &&
-            object1.top + object1.width > object2.top &&
-            object1.left < object2.left + object2.height &&
-            object1.height + object1.left > object2.left) {
-            return true
-        }
-        else {
-            return false
-        };
+        if (this.state.modalVictory === false)
+            if (object1.top < object2.top + object2.width &&
+                object1.top + object1.width > object2.top &&
+                object1.left < object2.left + object2.height &&
+                object1.height + object1.left > object2.left) {
+                return true
+            }
+            else {
+                return false
+            };
     };
 
 
@@ -313,7 +315,7 @@ class Fight extends Component {
     //Fonction fin du tournoi de putain qui sert à rien pour le moment
     EndOfTurn = () => {
         this.getCurrentFighters(1)
-        if(this.state.turn === 3){
+        if (this.state.turn === 3) {
             this.setState({ displayInstr: !this.state.displayInstr })
             console.log("reveille toi connard !!")
         }
@@ -322,16 +324,17 @@ class Fight extends Component {
 
     // Fighters selection depending on turn and number of players
     getCurrentFighters = (turn) => {
-        console.log("turn : " + turn);
+        //   console.log("turn : " + turn);
         let i = 0;
         let j = 1;
-        
+
         switch (this.props.fightersHouse.length) {
             case 3:
                 switch (turn) {
                     case 1: { i = 0; j = 1 }; break;
                     case 2: { i = 1; j = 2 }; break;
                     case 3: { i = 0; j = 2 }; break;
+                    case 4: { this.setState({ redirect: !this.state.redirect }) }; break;
 
                     ///////////////////////////////
                     //case 4:  <Link to="/TournementVictory"></Link> ; break;
@@ -346,6 +349,7 @@ class Fight extends Component {
                     case 4: { i = 1; j = 3 }; break;
                     case 5: { i = 0; j = 3 }; break;
                     case 6: { i = 1; j = 2 }; break;
+                    case 7: { this.setState({ redirect: !this.state.redirect }) }; break;
                     ///////////////////////////////
                     // case 7: {i = j} ; break;                 
                 };
@@ -353,12 +357,13 @@ class Fight extends Component {
                 break;
             //default: { i = 0; j = 1 }; break;
         }
-        if(this.state.turn === 3){
-            this.setState({ displayInstr: !this.state.displayInstr })
+        if (this.state.turn === 3) {
+            //<Link to="/TournementVictory"></Link>
+            // this.setState({ displayInstr: !this.state.displayInstr })
             console.log("reveille toi connard !!")
         }
-        console.log("Fighters selected : ")
-        console.log([this.props.fightersHouse[i], this.props.fightersHouse[j]])
+        // console.log("Fighters selected : ")
+        // console.log([this.props.fightersHouse[i], this.props.fightersHouse[j]])
 
         this.setState({
             fighter1: {
@@ -394,7 +399,7 @@ class Fight extends Component {
             scoreFighter2: 0,
         })
 
-        console.log(this.state.fighter1)
+        //  console.log(this.state.fighter1)
     }
 
 
@@ -420,7 +425,7 @@ class Fight extends Component {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 //this.loseLife(fighter2.id)
                 this.setState({
-                    progress1: currentState2 - 50,
+                    progress1: currentState2 - 10,
                     fighter1: {
                         ...this.state.fighter1,
                         spellCasted: false,
@@ -473,7 +478,7 @@ class Fight extends Component {
                 //this.loseLife(fighter1.id)
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
-                    progress: currentState1 - 50,
+                    progress: currentState1 - 10,
 
                     fighter2: {
                         ...this.state.fighter2,
@@ -519,6 +524,7 @@ class Fight extends Component {
             }
         }, 10)
         document.addEventListener("keydown", this.handleKeyPress)
+
     }
 
     //loseLife(fighterID){}
@@ -574,11 +580,22 @@ class Fight extends Component {
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
 
+        /*  this.setState({
+              scoreFighter1: 0,
+              scoreFighter2: 0,
+          })*/
     }
 
 
 
+    redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
+
     render() {
+        const { redirect } = this.state;
+        if (redirect) {
+            console.log('ça marche')
+            return <Redirect to='/TournementVictory' />;
+        }
 
         let avatarStyle = {
             position: "absolute",
@@ -601,7 +618,7 @@ class Fight extends Component {
             width: this.state.widthavatar1 + "px",
             height: this.state.heightavatar1 + "px",
             backgroundImage: `url(${this.houseStyles[this.state.fighter2.house].shield})`,
-            backgroundPosition: "left",
+            backgrounPosition: "left",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
         }
@@ -640,28 +657,15 @@ class Fight extends Component {
             backgroundColor: "yellow"
         }
 
-        let arr = Object.values(this.state.scoreFighters);
-        let max = Math.max(...arr);
-
-        /*var max = _.max(Object.keys(this.state.scoreFighters), function (o) {
-            return this.state.scoreFighters[o];
-        });*/
-        //let max = (this.state.scoreFighters).max()
-
-        /* const finalScore = this.state.scoreFighters
-         const ordered = {};
- 
-         Object.keys(finalScore).sort().forEach(function (key) {
-             ordered[key] = finalScore[key];
-         });*/
-
         return (
+
             <div>
                 <div>
                     <Wall />
                 </div>
                 <div id="bodyFight">
                     <div className="full">
+                        {this.redirect()}
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
@@ -675,11 +679,13 @@ class Fight extends Component {
                     <div>
                         <Fighter                // Player#1
                             fighter={this.state.fighter1}
+                            victory={this.state.modalVictory}
                         />
                     </div>
                     <div>
                         <Fighter                // Player#2
                             fighter={this.state.fighter2}
+                            victory={this.state.modalVictory}
                         />
                     </div>
                     <div>{
@@ -745,7 +751,9 @@ class Fight extends Component {
                                 <div></div>
                         }</div>
 
+
                 </div>
+
             </div>
         );
     }

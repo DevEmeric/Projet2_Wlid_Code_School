@@ -17,10 +17,7 @@ class TournementVictory extends Component {
 
     isTournementFinished = () => {
         this.setState ({
-
             boutonHomePage:true,
-
-
         })
     }
 

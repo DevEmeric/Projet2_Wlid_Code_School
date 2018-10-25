@@ -75,7 +75,9 @@ h1 {
     background-size: cover;
     background-attachment: fixed; 
     text-align: center;
-    height: 800px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
     background-color: black;
     color: white;
 }
