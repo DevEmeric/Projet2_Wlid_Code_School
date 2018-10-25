@@ -9,8 +9,8 @@ import TournementVictory from "./TournementVictory"
 import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 import Shield from "./Shield.js"
-import {Redirect} from 'react-router'
-import {Link} from "react-router-dom"
+import { Redirect } from 'react-router'
+import { Link } from "react-router-dom"
 
 
 
@@ -45,7 +45,7 @@ class Fight extends Component {
             },
         },
 
-        this.fightTime = 2,
+            this.fightTime = 2,
 
             this.state = {
 
@@ -171,10 +171,10 @@ class Fight extends Component {
     }
 
 
-    sendScore = () => {
+    /*sendScore = () => {
         
-        this.props.endTournament(this.state.scoreFighters)
-    }
+       // this.props.endTournament(this.state.scoreFighters)
+    }*/
 
 
 
@@ -302,15 +302,15 @@ class Fight extends Component {
 
     hasCollision(object1, object2) {
         if (this.state.modalVictory === false)
-        if (object1.top < object2.top + object2.width &&
-            object1.top + object1.width > object2.top &&
-            object1.left < object2.left + object2.height &&
-            object1.height + object1.left > object2.left) {
-            return true
-        }
-        else {
-            return false
-        };
+            if (object1.top < object2.top + object2.width &&
+                object1.top + object1.width > object2.top &&
+                object1.left < object2.left + object2.height &&
+                object1.height + object1.left > object2.left) {
+                return true
+            }
+            else {
+                return false
+            };
     };
 
 
@@ -336,7 +336,7 @@ class Fight extends Component {
                     case 1: { i = 0; j = 1 }; break;
                     case 2: { i = 1; j = 2 }; break;
                     case 3: { i = 0; j = 2 }; break;
-                    case 4: { this.setState({ redirect: !this.state.redirect}) }; break;
+                    case 4: { this.setState({ redirect: !this.state.redirect })}; break;
                 };
                 break;
             case 4:
@@ -347,7 +347,7 @@ class Fight extends Component {
                     case 4: { i = 1; j = 3 }; break;
                     case 5: { i = 0; j = 3 }; break;
                     case 6: { i = 1; j = 2 }; break;
-                    case 7: { this.setState({ redirect: !this.state.redirect}) }; break;
+                    case 7: { this.setState({ redirect: !this.state.redirect })}; break;
                 };
                 break;
             default: { i = 0; j = 1 }; break;
@@ -416,7 +416,7 @@ class Fight extends Component {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 //this.loseLife(fighter2.id)
                 this.setState({
-                    progress1: currentState2 - 10,
+                    progress1: currentState2 - 50,
                     fighter1: {
                         ...this.state.fighter1,
                         spellCasted: false,
@@ -468,7 +468,7 @@ class Fight extends Component {
                 //this.loseLife(fighter1.id)
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
-                    progress: currentState1 - 10,
+                    progress: currentState1 - 50,
 
                     fighter2: {
                         ...this.state.fighter2,
@@ -518,9 +518,7 @@ class Fight extends Component {
 
     //loseLife(fighterID){}
 
-    endOfFight=()=>{
-        console.log(this.state.progress)
-        console.log(this.state.progress1)
+    endOfFight = () => {
         this.setState({
             scoreFighter1: this.state.scoreFighter1 + this.state.progress,
             scoreFighter2: this.state.scoreFighter2 + this.state.progress1,
@@ -597,7 +595,13 @@ class Fight extends Component {
     }
 
 
-    redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
+    redirect = () => {
+        this.state.redirect ? <Redirect to='/TournementVictory' />  : ""
+        //this.props.endTournament(this.state.scoreFighters)
+        
+    }
+
+
     render() {
 
         let avatarStyle = {
@@ -662,14 +666,14 @@ class Fight extends Component {
         }
 
         return (
-            
+
             <div>
                 <div>
                     <Wall />
                 </div>
                 <div id="bodyFight">
                     <div className="full">
-                    {this.redirect()}
+                        {this.redirect()}
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
@@ -729,14 +733,14 @@ class Fight extends Component {
 
                     <div>
                         <div className="spaceInstr" style={instrStyle}>
-                        <p>INSTRUCTIONS</p>
-                        <p>Press SPACEBAR</p>
-                    </div>{
-                        this.state.displayInstr ?
-                            <Instructions />
-                            :
-                            <div></div>
-                    }
+                            <p>INSTRUCTIONS</p>
+                            <p>Press SPACEBAR</p>
+                        </div>{
+                            this.state.displayInstr ?
+                                <Instructions />
+                                :
+                                <div></div>
+                        }
                     </div>
 
                     <div>
@@ -745,7 +749,7 @@ class Fight extends Component {
                             <h3 className="scorePerso" style={sylStyle}>{sly}</h3>
                             <h3 className="scorePerso" style={hufStyle}>{huf}</h3>
                             <h3 className="scorePerso" style={ravStyle}>{rav}</h3>
-                            
+
 
                         </div>{
                             this.state.modalVictory ?
