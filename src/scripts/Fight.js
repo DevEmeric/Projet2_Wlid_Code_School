@@ -173,7 +173,7 @@ class Fight extends Component {
 
     sendScore = () => {
         
-        this.props.endTournament(this.state.scoreFighters)
+        this.setState(this.props.endTournament(this.state.scoreFighters));
     }
 
 

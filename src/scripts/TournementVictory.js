@@ -28,7 +28,9 @@ class TournementVictory extends Component {
                 logo: hufflepuffTeam
             },
            
-                    
+            /*state = {
+                win: [],*/
+        }            
         }
         
 
@@ -36,11 +38,12 @@ class TournementVictory extends Component {
 
     whoIsTheWinner = () => {
         this.props.scoreFighters.sort(function(a, b){
-            return  this.props.scoreFighters.a - this.props.scoreFighters.b;
-        });
+            return  this.props.scoreFighters.point.a - this.props.scoreFighters.point.b;
+        });W
         
-        console.log(this.props.isEndtournament.gryffindor);
-    }
+        //this.setState((state) => ({whoIsTheWinner: this.state.win + 1}));
+    
+
 
     render(){
         let styleTournement = {
