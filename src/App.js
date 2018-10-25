@@ -12,6 +12,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      gameType: "tournament",
       fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
       isEndTournament: [],
     }
@@ -28,14 +29,23 @@ class App extends Component {
 
 
 
-  finalSelection = (players) => {
+  getGameType = (choice) => {
+    this.setState({ gameType: choice })
+  }
+
+  getFinalSelection = (players) => {
     this.setState({ fightersHouse: players})
   }
   endTournament = (scoreFighters) => {
     this.setState({isEndTournament: scoreFighters})
   }
+
+  
+
+
+ 
   render() {
-    console.log("tableau score", this.state.isEndTournament)
+
     return (
       <div className="App">
         <BrowserRouter>
@@ -44,7 +54,8 @@ class App extends Component {
               path="/HouseSelection"
               render={() => (
                 <HouseSelection
-                finalSelection={this.finalSelection}
+                finalSelection={this.getFinalSelection}
+                gameType={this.state.gameType}
                 />)}
             />
             <Route
@@ -60,12 +71,13 @@ class App extends Component {
               render={() => (
                 <TournementVictory
                   isEndtournament={this.state.isEndTournament}
+                  
                 />)}
             />
             <Route
               exact path="/"
               render={() => (
-                <HomePage />)}
+                <HomePage gameType={this.getGameType} />)}
             />
           </Switch>
         </BrowserRouter>

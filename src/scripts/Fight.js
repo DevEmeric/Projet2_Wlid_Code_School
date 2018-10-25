@@ -9,9 +9,9 @@ import TournementVictory from "./TournementVictory"
 import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 import Shield from "./Shield.js"
-//TESTESTESTESTETST
-import { Redirect } from 'react-router'
-import { Link } from "react-router-dom"
+import {Redirect} from 'react-router'
+import {Link} from "react-router-dom"
+
 
 
 import gryffindorShield from '../image/gryffindor2.png'
@@ -171,10 +171,10 @@ class Fight extends Component {
     }
 
 
-    /*sendScore = () => {
-        console.log("je suis là")
+    sendScore = () => {
+        
         this.props.endTournament(this.state.scoreFighters)
-    }*/
+    }
 
 
 
@@ -347,10 +347,7 @@ class Fight extends Component {
                     case 1: { i = 0; j = 1 }; break;
                     case 2: { i = 1; j = 2 }; break;
                     case 3: { i = 0; j = 2 }; break;
-                    case 4: { this.setState({ redirect: !this.state.redirect }) }; break;
-
-                    ///////////////////////////////
-                    //case 4:  <Link to="/TournementVictory"></Link> ; break;
+                    case 4: { this.setState({ redirect: !this.state.redirect}) }; break;
                 };
 
                 break;
@@ -362,9 +359,7 @@ class Fight extends Component {
                     case 4: { i = 1; j = 3 }; break;
                     case 5: { i = 0; j = 3 }; break;
                     case 6: { i = 1; j = 2 }; break;
-                    case 7: { this.setState({ redirect: !this.state.redirect }) }; break;
-                    ///////////////////////////////
-                    // case 7: {i = j} ; break;                 
+                    case 7: { this.setState({ redirect: !this.state.redirect}) }; break;
                 };
 
                 break;
@@ -622,9 +617,7 @@ class Fight extends Component {
     }
 
 
-
     redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
-
     render() {
         const { redirect } = this.state;
         if (redirect) {
@@ -701,7 +694,7 @@ class Fight extends Component {
                 </div>
                 <div id="bodyFight">
                     <div className="full">
-                        {this.redirect()}
+                    {this.redirect()}
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
