@@ -10,21 +10,21 @@ class Fighter extends Component {
   constructor(props) {
     super(props);
     this.Gryffindor = GryffindorColor,
-    this.Slytherin = SlytherinColor,
-    this.Ravenclaw = RavenclawColor,
-    this.Hufflepuff = HufflepuffColorColor,
+      this.Slytherin = SlytherinColor,
+      this.Ravenclaw = RavenclawColor,
+      this.Hufflepuff = HufflepuffColorColor,
 
-    this.state = {
-      spellCasted: false,
-      rotation: this.props.fighter.rotation,
-      facesRight: this.props.fighter.facesRight,
-      top: this.props.fighter.top,
-      left: this.props.fighter.left,
-      width: this.props.fighter.width,
-      height: this.props.fighter.height,
-      speed: 20,
-      tabKeys:[],
-    }
+      this.state = {
+        spellCasted: false,
+        rotation: this.props.fighter.rotation,
+        facesRight: this.props.fighter.facesRight,
+        top: this.props.fighter.top,
+        left: this.props.fighter.left,
+        width: this.props.fighter.width,
+        height: this.props.fighter.height,
+        speed: 20,
+        tabKeys: [],
+      }
   }
 
 
@@ -32,64 +32,66 @@ class Fighter extends Component {
 
     document.addEventListener("keydown", this.inTab1, false)
     document.addEventListener("keyup", this.outTab1, false);
-    
+
   }
 
-  
+
 
   inTab1 = (event) => {
-      let localTabKeys=this.state.tabKeys;
-      if(localTabKeys.indexOf(event.key) < 0) {
-        localTabKeys.push(event.key)
-      }
-      this.setState({
-        tabKeys:localTabKeys,
-      })
-      this.handleKeyPress(localTabKeys)
+    let localTabKeys = this.state.tabKeys;
+    if (localTabKeys.indexOf(event.key) < 0) {
+      localTabKeys.push(event.key)
+    }
+    this.setState({
+      tabKeys: localTabKeys,
+    })
+    this.handleKeyPress(localTabKeys)
   }
-  
+
 
   handleKeyPress = (localTabKeys) => {
-    
-      if(localTabKeys.indexOf(this.props.fighter.moveUp)!==-1 && this.props.fighter.top >110)  {
+    if (this.props.victory === false) {
+      if (localTabKeys.indexOf(this.props.fighter.moveUp) !== -1 && this.props.fighter.top > 110) {
         this.props.fighter.move(this.props.fighter.id, -this.state.speed, 0)
       }
-      if(localTabKeys.indexOf(this.props.fighter.moveDown)!==-1 && this.props.fighter.top < 530){
-        this.props.fighter.move(this.props.fighter.id, this.state.speed, 0)   
+      if (localTabKeys.indexOf(this.props.fighter.moveDown) !== -1 && this.props.fighter.top < 530) {
+        this.props.fighter.move(this.props.fighter.id, this.state.speed, 0)
       }
-      if(localTabKeys.indexOf(this.props.fighter.moveLeft)!==-1 && this.props.fighter.left > -20){
+      if (localTabKeys.indexOf(this.props.fighter.moveLeft) !== -1 && this.props.fighter.left > -20) {
         this.props.fighter.move(this.props.fighter.id, 0, -this.state.speed)
       }
-      if(localTabKeys.indexOf(this.props.fighter.moveRight)!==-1 && this.props.fighter.left < 1280){
+      if (localTabKeys.indexOf(this.props.fighter.moveRight) !== -1 && this.props.fighter.left < 1280) {
         this.props.fighter.move(this.props.fighter.id, 0, this.state.speed)
       }
-      if(localTabKeys.indexOf(this.props.fighter.attack)!==-1){
+      if (localTabKeys.indexOf(this.props.fighter.attack) !== -1) {
         this.props.fighter.castSpell(this.props.fighter.id, this.props.fighter.facesRight)
       }
-      if(localTabKeys.indexOf(this.props.fighter.rotate)!==-1){
+      if (localTabKeys.indexOf(this.props.fighter.rotate) !== -1) {
         this.props.fighter.rotateFighter(this.props.fighter.id)
       }
-      if(localTabKeys.indexOf(this.props.fighter.defend)!==-1){
+      if (localTabKeys.indexOf(this.props.fighter.defend) !== -1 && this.props.fighter.defense.shieldNumber > 0) {
         this.props.fighter.takeOutShield(this.props.fighter.id)
       }
+    }
+  }
 
-  
-}
-        
-      
+
 
   outTab1 = (event) => {
-    let localTabKeys=this.state.tabKeys;
-      if(localTabKeys.indexOf(event.key) >= 0) {
-        localTabKeys.splice(localTabKeys.indexOf(event.key), 1)
-      }
-      this.setState({
-        tabKeys:localTabKeys,
-      })
-    }  
-  
+    let localTabKeys = this.state.tabKeys;
+    if (localTabKeys.indexOf(event.key) >= 0) {
+      localTabKeys.splice(localTabKeys.indexOf(event.key), 1)
+    }
+    this.setState({
+      tabKeys: localTabKeys,
+    })
+  }
+
+
 
   render() {
+
+
     let fighterStyle = {
       transform: `rotateY(${this.props.fighter.rotation}deg)`,
       position: "absolute",
@@ -101,8 +103,9 @@ class Fighter extends Component {
     };
 
     let fighterId = "fighter" + this.props.fighter.house
-
+    console.log("progress", this.props.progress)
     return (
+
       <div>
         <div className="fighter" style={fighterStyle} id={fighterId}>
         </div>
