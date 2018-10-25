@@ -166,16 +166,12 @@ class Fight extends Component {
             }
         this.handleKeyPress = this.handleKeyPress.bind(this)
     }
-    endAllGame= (scoreFighters) => {
-        if (this.setState)
-            return <Link to="/TournementVictory"></Link>
 
-    }
 
-    sendScore = () => {
+    /*sendScore = () => {
         console.log("je suis là")
         this.props.endTournament(this.state.scoreFighters)
-    }
+    }*/
 
 
 
@@ -662,7 +658,6 @@ class Fight extends Component {
         return (
             
             <div>
-                {this.sendScore()}
                 <div>
                     <Wall />
                 </div>

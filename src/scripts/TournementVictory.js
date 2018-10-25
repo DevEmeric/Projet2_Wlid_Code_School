@@ -33,7 +33,7 @@ class TournementVictory extends Component {
         }
         return (
             <div>
-                {this.whoIsTheWinner()}
+                
                 <body className="bodyTournementVictory">
 
                     <p className= "titleWinners"> WINNERS </p>
