@@ -9,6 +9,7 @@ import TournementVictory from "./TournementVictory"
 import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 import Shield from "./Shield.js"
+import {Redirect} from 'react-router'
 import {Link} from "react-router-dom"
 
 
@@ -47,6 +48,8 @@ class Fight extends Component {
         this.fightTime = 2,
 
             this.state = {
+
+                redirect: false,
 
                 //Instructions Screen
                 displayInstr: false,
@@ -168,10 +171,10 @@ class Fight extends Component {
     }
 
 
-    /*sendScore = () => {
-        console.log("je suis là")
+    sendScore = () => {
+        
         this.props.endTournament(this.state.scoreFighters)
-    }*/
+    }
 
 
 
@@ -333,6 +336,7 @@ class Fight extends Component {
                     case 1: { i = 0; j = 1 }; break;
                     case 2: { i = 1; j = 2 }; break;
                     case 3: { i = 0; j = 2 }; break;
+                    case 4: { this.setState({ redirect: !this.state.redirect}) }; break;
                 };
                 break;
             case 4:
@@ -343,6 +347,7 @@ class Fight extends Component {
                     case 4: { i = 1; j = 3 }; break;
                     case 5: { i = 0; j = 3 }; break;
                     case 6: { i = 1; j = 2 }; break;
+                    case 7: { this.setState({ redirect: !this.state.redirect}) }; break;
                 };
                 break;
             default: { i = 0; j = 1 }; break;
@@ -592,6 +597,7 @@ class Fight extends Component {
     }
 
 
+    redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
     render() {
 
         let avatarStyle = {
@@ -663,6 +669,7 @@ class Fight extends Component {
                 </div>
                 <div id="bodyFight">
                     <div className="full">
+                    {this.redirect()}
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}

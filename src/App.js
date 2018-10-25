@@ -60,6 +60,7 @@ class App extends Component {
               render={() => (
                 <TournementVictory
                   isEndtournament={this.state.isEndTournament}
+                  
                 />)}
             />
             <Route

@@ -65,7 +65,7 @@
 
 .firstAward {
     position: absolute;
-    background-image: url("../image/Slytherin.png");
+    /*background-image: url("../image/Slytherin.png");*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -78,7 +78,7 @@
 
 .thirdAward {
     position: absolute;
-    background-image: url("../image/Gryffindor.png");
+    /*background-image: url("../image/Gryffindor.png");*/
     background-position: center;
     background-repeat: no-repeat;
     height: 300px;
@@ -93,7 +93,7 @@
 .secondAward {
 
     position: absolute;
-    background-image: url("../image/Ravenclaw.png");
+    /*background-image: url("../image/Ravenclaw.png");*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
