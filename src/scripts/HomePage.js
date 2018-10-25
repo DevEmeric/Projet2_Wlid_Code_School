@@ -24,21 +24,21 @@ class HomePage extends Component {
 
                 <h1 className="title1">Potter Fight</h1>
 
-                    <div>
-                        <button onClick={() => this.displayPopups()} className="newGame">NEW GAME</button>
+                    
+                <button onClick={() => this.displayPopups()} className="newGame">NEW GAME</button>
 
-                        {
-                            this.state.popupButtons ? 
-                            <div className="hidden">
-                            <Link to="/HouseSelection"><button>1 VS 1</button></Link>
-                            <button>TOURNAMENT</button>
-                            </div> 
-                            : 
-                            <div></div>
-                        }
+                {
+                     this.state.popupButtons ? 
+                    <div className="hidden">
+                    <Link to="/HouseSelection"><button>1 VS 1</button></Link>
+                    <button>TOURNAMENT</button>
+                    </div> 
+                    : 
+                    <div></div>
+                }
 
-                        <button className="settings">SETTINGS</button>
-                    </div>
+                <button className="settings">SETTINGS</button>
+                    
            
             </div>
         )
