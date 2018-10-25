@@ -45,7 +45,7 @@ class App extends Component {
 
  
   render() {
-
+    console.log("tableau", this.state.isEndTournament);
     return (
       <div className="App">
         <BrowserRouter>
