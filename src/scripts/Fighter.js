@@ -54,13 +54,13 @@ class Fighter extends Component {
       if (localTabKeys.indexOf(this.props.fighter.moveUp) !== -1 && this.props.fighter.top > 110) {
         this.props.fighter.move(this.props.fighter.id, -this.state.speed, 0)
       }
-      if (localTabKeys.indexOf(this.props.fighter.moveDown) !== -1 && this.props.fighter.top < 530) {
+      if (localTabKeys.indexOf(this.props.fighter.moveDown) !== -1 && this.props.fighter.top < window.innerHeight-this.props.fighter.height-20) {
         this.props.fighter.move(this.props.fighter.id, this.state.speed, 0)
       }
       if (localTabKeys.indexOf(this.props.fighter.moveLeft) !== -1 && this.props.fighter.left > -20) {
         this.props.fighter.move(this.props.fighter.id, 0, -this.state.speed)
       }
-      if (localTabKeys.indexOf(this.props.fighter.moveRight) !== -1 && this.props.fighter.left < 1280) {
+      if (localTabKeys.indexOf(this.props.fighter.moveRight) !== -1 && this.props.fighter.left < window.innerWidth-this.props.fighter.width-20) {
         this.props.fighter.move(this.props.fighter.id, 0, this.state.speed)
       }
       if (localTabKeys.indexOf(this.props.fighter.attack) !== -1) {
@@ -91,7 +91,6 @@ class Fighter extends Component {
 
   render() {
 
-
     let fighterStyle = {
       transform: `rotateY(${this.props.fighter.rotation}deg)`,
       position: "absolute",
@@ -103,7 +102,6 @@ class Fighter extends Component {
     };
 
     let fighterId = "fighter" + this.props.fighter.house
-    console.log("progress", this.props.progress)
     return (
 
       <div>
