@@ -12,7 +12,7 @@ class App extends Component {
     super();
     this.state = {
       fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
-      isEndTournement: true,
+      isEndTournament: [],
     }
   }
 
@@ -30,8 +30,11 @@ class App extends Component {
   finalSelection = (players) => {
     this.setState({ fightersHouse: players})
   }
- 
+  endTournament = (scoreFighters) => {
+    this.setState({isEndTournament: scoreFighters})
+  }
   render() {
+    console.log("tableau score", this.state.isEndTournament)
     return (
       <div className="App">
         <BrowserRouter>
@@ -48,19 +51,20 @@ class App extends Component {
               render={() => (
                 <Fight
                   fightersHouse={this.state.fightersHouse}
+                  endTournament= {this.endTournament}
                 />)}
             />
             <Route
               path="/TournementVictory"
               render={() => (
                 <TournementVictory
-                  isEndTournement={this.state.isEndTournement}
+                  isEndtournament={this.state.isEndTournament}
                 />)}
             />
 
           </Switch>
         </BrowserRouter>
-        
+    
       </div>
     );
   }

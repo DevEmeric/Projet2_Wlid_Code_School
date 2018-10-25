@@ -1,24 +1,29 @@
-@font-face { 
-    font-family: 'HARRYP';
-    src: url('/home/mathieudearmey/Projet2/lyon-0918-js-potter-fighter/font/HARRYP__.TTF');
-    }
+@font-face{
+    font-family: "PotterFont";
+    src: url('../font/HARRYP__.TTF')format("truetype");
+}
+
 
 h1 {
     white-space: nowrap;
 }    
 
 .page-title {
-    font-family: "HARRYP";
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)); 
+    text-shadow: 4px 4px 4px black;
+    color: orange;
+    font-size: 50px;
+    font-family: "PotterFont";
 }
 
 .player-selection {
     text-align: center;
     left: 42%;
+    color: orange;
 }
 
 .player-amount {
-    background-color: rgb(255, 251, 251);
+    background-color:black;
+    color: orange;
     font-size: 1.6 em;
     border: none;
     width: 160px;
@@ -27,7 +32,7 @@ h1 {
 }
 
 .main-shield {
-    height: 120px;
+    height: 200px;
     padding-top: 40px;
   }
   
@@ -37,38 +42,39 @@ h1 {
 }
 
 .Slytherin {
-    background-image: url("../image/Slytherin.png");
+    background-image: url("../image/slytherin2.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .Gryffindor {
-    background-image: url("../image/Gryffindor.png");
+    background-image: url("../image/gryffindor2.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .Ravenclaw {
-    background-image: url("../image/Ravenclaw.png");
+    background-image: url("../image/ravenclaw2.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .Hufflepuff {
-    background-image: url("../image/Hufflepuff.png");
+    background-image: url("../image/hufflepuff2.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .body {
-    background-image: url("../image/slytherinRoom.jpg");
+    background-image: url("../image/salle5.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed; 
+    text-align: center;
     height: 800px;
     background-color: black;
     color: white;
@@ -76,43 +82,33 @@ h1 {
 
 .confirm-button {
     width: 200px;
-    height: 80px;
+    height: 70px;
     font-size: 1.2em;
     border-radius: 20px;
     border: none;
-    color: black;
+    color: orange;
     position: absolute;
     top: 600px;
-    left: 42.5%;
+    left: 43%;
     line-height: 1.5em;
     animation: button-blink1 infinite 1.5s linear;
     z-index: 1;
+    background-color: black;
 }
 
 .start-button {
     width: 200px;
-    height: 80px;
+    height: 70px;
     background-color: rgb(51, 202, 51);
     font-size: 1.2em;
     border-radius: 20px;
     border: none;
-    color: white;
+    color: yellow;
     position: absolute;
     top: 600px;
-    left: 42.5%;
+    left: 43%;
     line-height: 1.5em;
     animation: button-blink2 infinite 1s linear;
     z-index: 2;
 }
 
-@keyframes button-blink1 {
-    0% {background-color: orange}
-    30% {background-color: rgb(255, 51, 0)}
-    100% {background-color: orange} 
-  }
-
-  @keyframes button-blink2 {
-    0% {background-color: green}
-    30% {background-color: rgb(123, 212, 123)}
-    100% {background-color: green} 
-  }

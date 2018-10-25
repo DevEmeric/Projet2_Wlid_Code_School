@@ -1,26 +1,26 @@
 import React, {Component} from "react";
 import "./TournementVictory.css";
+import { Link } from "react-router-dom";
 
 
 class TournementVictory extends Component {
     constructor (props) {
         super (props);
         this.state = {
-            //isTournementFinished: true,
-            whoIsWon: [], //Tableau Simon
+            
+            
             
           
         }
 
     }
 
-    whoIsTheWinner = (scoreFighter) => {
-        this.setState ({
+    whoIsTheWinner = () => {
+        this.props.scoreFighters.sort(function(a, b){
+            return  this.props.scoreFighters.point.a - this.props.scoreFighters.point.b;
+        });
+       console.log(this.props.scoreFighters);
 
-            boutonHomePage:true,
-
-
-        })
     }
 
     render(){
@@ -33,13 +33,14 @@ class TournementVictory extends Component {
         }
         return (
             <div>
+                {this.whoIsTheWinner()}
                 <body className="bodyTournementVictory">
 
                     <p className= "titleWinners"> WINNERS </p>
                     <div className="gobleoffireimage"></div>
-                    <a to="/houseSelection"><button className= "boutonTournementHomePage">Home Page</button></a>
+                    <Link to = "/"><button className= "boutonTournementHomePage">Home Page</button></Link>
                     <div className="boutonPodium"></div>
-                    <div className= "firstAward"></div>
+                    <div className= "firstAward" ></div>
                     <div className= "secondAward"></div>
                     <div className= "thirdAward"></div>
 

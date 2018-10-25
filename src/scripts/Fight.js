@@ -5,13 +5,16 @@ import Header from './Header';
 import Instructions from './Instructions'
 import './Fight.css';
 import VictoryMessage from "./VictoryMessage"
+import TournementVictory from "./TournementVictory"
 import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
+import Shield from "./Shield.js"
+import { Link } from "react-router-dom"
 
-import gryffindorShield from '../image/Gryffindor.png'
-import slytherinShield from '../image/Slytherin.png'
-import ravenclawShield from '../image/Ravenclaw.png'
-import hufflepuffShield from '../image/Hufflepuff.png'
+import gryffindorShield from '../image/gryffindor2.png'
+import slytherinShield from '../image/slytherin2.png'
+import ravenclawShield from '../image/ravenclaw2.png'
+import hufflepuffShield from '../image/hufflepuff2.png'
 
 
 
@@ -20,7 +23,6 @@ class Fight extends Component {
 
     constructor() {
         super();
-
         this.houseStyles = {
             Gryffindor: {
                 shield: gryffindorShield,
@@ -39,8 +41,6 @@ class Fight extends Component {
                 barColor: "yellow",
             },
         },
-
-
             this.state = {
 
                 //Instructions Screen
@@ -82,19 +82,25 @@ class Fight extends Component {
                     life: 100,
                     width: 250,
                     height: 200,
-                    attack: 87,      // Attaque: w
-                    defense: 81,    // Défense: q
-                    rotate: 65,     // Rotate: a
-                    moveUp: 69,         // Up: e
-                    moveDown: 68,      // Down: d
-                    moveLeft: 83,        // Left: s
-                    moveRight: 70,       // Right: f
+                    attack: "w",      // Attaque: w
+                    defend: "q",    // Défense: q
+                    rotate: "a",     // Rotate: a
+                    moveUp: "e",         // Up: e
+                    moveDown: "d",      // Down: d
+                    moveLeft: "s",        // Left: s
+                    moveRight: "f",       // Right: f
                     house: "Slytherin",
                     //house: this.props.fightersHouse[0],
                     //house:this.getCurrentFighters()[0],
                     castSpell: this.castSpell,
                     move: this.move,
-                    rotateFighter: this.rotate
+                    rotateFighter: this.rotate,
+                    takeOutShield: this.takeOutShield,
+                    defense: {
+                        shieldOn: false,
+                        shieldNumber: 3,
+                        shieldTime: 3000,
+                    }
                 },
                 fighter2: {
                     id: "fighter2",
@@ -106,18 +112,24 @@ class Fight extends Component {
                     life: 100,
                     width: 250,
                     height: 200,
-                    attack: 161,                 // Attaque: ! 
-                    defense: 77,               // Défense: m
-                    rotate: 80,                // Rotate: p
-                    moveUp: 38,                 // Up: Flèche du haut
-                    moveDown: 40,               // Down: Flèche du bas
-                    moveLeft: 37,               // Left: Flèche de gauche
-                    moveRight: 39,              // Right: Flèche de droite
+                    attack: "!",                 // Attaque: ! 
+                    defend: "m",               // Défense: m
+                    rotate: "p",                // Rotate: p
+                    moveUp: "ArrowUp",                 // Up: Flèche du haut
+                    moveDown: "ArrowDown",               // Down: Flèche du bas
+                    moveLeft: "ArrowLeft",               // Left: Flèche de gauche
+                    moveRight: "ArrowRight",              // Right: Flèche de droite
                     house: "Gryffindor",
                     allCharacteristics: this.fighterAndSpellCallback,
                     castSpell: this.castSpell,
                     move: this.move,
-                    rotateFighter: this.rotate
+                    rotateFighter: this.rotate,
+                    takeOutShield: this.takeOutShield,
+                    defense: {
+                        shieldOn: false,
+                        shieldNumber: 3,
+                        shieldTime: 3000,
+                    }
                 },
                 spellfighter1: {
                     left: 0,
@@ -139,16 +151,28 @@ class Fight extends Component {
 
                 ///////////PLAYERS
                 scoreFighters: {
-                    gryffindor: 0,
-                    slytherin: 0,
-                    ravenclaw: 0,
-                    hufflepuff: 0,
+                    gryffindor: 70,
+                    slytherin: 10,
+                    ravenclaw: 30,
+                    hufflepuff: 100,
                 },
 
 
             }
         this.handleKeyPress = this.handleKeyPress.bind(this)
     }
+    endAllGame= (scoreFighters) => {
+        if (this.setState)
+            return <Link to="/TournementVictory"></Link>
+
+    }
+
+    sendScore = () => {
+        console.log("je suis là")
+        this.props.endTournament(this.state.scoreFighters)
+    }
+
+
 
     progressBar = (progress) => {
         return <div className="progressbar">
@@ -245,6 +269,36 @@ class Fight extends Component {
         })
     }
 
+    // Wizard shield function
+    takeOutShield = (fighterID) => {
+        //console.log([fighterID]+" take out shield")
+        this.setState({
+            [fighterID]: {
+                ...this.state[fighterID],
+                defense: {
+                    ...this.state[fighterID].defense,
+                    shieldOn: true,
+                    shieldNumber: this.state[fighterID].defense.shieldNumber - 1,
+                },
+            }
+        })
+        setTimeout(
+            function () {
+                this.setState({
+                    [fighterID]: {
+                        ...this.state[fighterID],
+                        defense: {
+                            ...this.state[fighterID].defense,
+                            shieldOn: false,
+                        },
+                    }
+                })
+            }
+                .bind(this),
+            this.state[fighterID].defense.shieldTime
+        );
+    }
+
     hasCollision(object1, object2) {
         if (object1.top < object2.top + object2.width &&
             object1.top + object1.width > object2.top &&
@@ -336,14 +390,27 @@ class Fight extends Component {
 
 
     componentDidMount = () => {
+
         this.getCurrentFighters(1);
         setInterval(() => {
             let currentState1 = this.state.progress;
             let currentState2 = this.state.progress1;
 
+            // Collision detection between a spell and a shield
+            if (this.state.fighter1.defense.shieldOn) {
+                if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
+                    this.hitsShield("spellfighter2", "fighter2");
+                }
+            }
+            if (this.state.fighter2.defense.shieldOn) {
+                if (this.hasCollision(this.state.spellfighter1, this.state.fighter2)) {
+                    this.hitsShield("spellfighter1", "fighter1");
+                }
+            }
 
             if (this.hasCollision(this.state.spellfighter1, this.state.fighter2)) {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
+                //this.loseLife(fighter2.id)
                 this.setState({
                     progress1: currentState2 - 50,
                     fighter1: {
@@ -357,13 +424,13 @@ class Fight extends Component {
                     }
                 })
 
+                //this.deathOfAPlayer(fighter2.id)
                 if (this.state.progress === 0) {
                     this.setState({
                         scoreFighter2: this.state.scoreFighter2 + currentState2,
                         progress: -1,
                         modalVictory: true,
                     });
-
 
 
                     switch (this.state.fighter2.house) {
@@ -394,6 +461,7 @@ class Fight extends Component {
                 }
             }
             if (this.hasCollision(this.state.spellfighter2, this.state.fighter1)) {
+                //this.loseLife(fighter1.id)
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
                     progress: currentState1 - 50,
@@ -409,6 +477,7 @@ class Fight extends Component {
                     }
                 })
 
+                //this.deathOfAPlayer(fighter1.id)
                 if (this.state.progress === 0) {
                     this.setState({
                         scoreFighter2: this.state.scoreFighter2 + currentState2,
@@ -438,83 +507,72 @@ class Fight extends Component {
                     }
                 }
             }
-
         }, 10)
         document.addEventListener("keydown", this.handleKeyPress)
     }
 
-    restartFight = () => {
-        console.log("restart fight before setState")
+    //loseLife(fighterID){}
+
+    //deathOfAPlayer(fighterID){}
+
+    // Consequence of a shield being hitten
+    hitsShield(spellID, fighterID) {
+        console.log("Passage dans hitsShield")
         this.setState({
-            fighter1: {
-                ...this.state.fighter1,
-                life: 100,
-                spellCasted: false,
-                style: {
-                    opacity: 1
-                },
-                top: 250,
-                left: 100,
-                facesRight: true,
-                rotation: 0,
+            [spellID]: {
+                ...this.state[spellID],
+                left: 0,
+                top: 0,
             },
-            fighter2: {
-                ...this.state.fighter2,
-                life: 100,
+            [fighterID]: {
+                ...this.state[fighterID],
                 spellCasted: false,
-                style: {
-                    opacity: 1
-                },
-                top: 250,
-                left: 1100,
-                facesRight: false,
-                rotation: 180,
-            },
+            }
+
+        })
+        console.log(this.state[spellID])
+        console.log(this.state[fighterID])
+    }
+
+    restartFight = () => {
+        //console.log("restart fight before setState")
+        this.reIntitialize(this.state.fighter1.id, 100, true);
+        this.reIntitialize(this.state.fighter2.id, 1100, false);
+        this.setState({
             progress: 100,
             progress1: 100,
             modalVictory: false,
-
-
         })
         console.log("restart fight after setState")
         console.log(this.state.fighter1)
         console.log(this.state.fighter2)
     }
 
+    reIntitialize = (fighterID, leftPosition, newFacePosition) => {
+        this.setState({
+            [fighterID]: {
+                ...this.state[fighterID],
+                life: 100,
+                spellCasted: false,
+                top: 250,
+                left: leftPosition,
+                facesRight: newFacePosition,
+            },
+        })
+    }
+
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
 
-        this.setState({
-            scoreFighter1: 0,
-            scoreFighter2: 0,
-        })
+        /*  this.setState({
+              scoreFighter1: 0,
+              scoreFighter2: 0,
+          })*/
     }
 
 
 
     render() {
-
-        console.log(this.state.progress1)
-        /*  console.log("Fighter 1 : ")
-          console.log(this.state.fighter1)
-          console.log("Spell Fighter 1 : ")
-          console.log(this.state.spellfighter1)
-          console.log("Fighter 2 : ")
-          console.log(this.state.fighter2)
-          console.log("Fighter 1 : ")
-          console.log(this.state.fighter1)
-          console.log("Fighter 2 : ")
-          console.log(this.state.fighter2)
-        /*  console.log("Fighter 2 : ")
-          console.log(this.state.fighter2)
-          console.log("Spell Fighter 2 : ")
-          console.log(this.state.spellfighter2)
-  
-          */
-
-        console.log("Progress : " + this.state.progress)
-        console.log("Progress1 : " + this.state.progress1)
-
 
         let avatarStyle = {
             position: "absolute",
@@ -522,7 +580,6 @@ class Fight extends Component {
             left: this.state.leftavatar + "px",
             width: this.state.widthavatar + "px",
             height: this.state.heightavatar + "px",
-            //borderRadius: this.state.borderradius + "%",
             backgroundImage: `url(${this.houseStyles[this.state.fighter1.house].shield})`,
             backgroundPosition: "right",
             backgroundSize: "contain",
@@ -537,7 +594,6 @@ class Fight extends Component {
             right: this.state.righttavatar1 + "px",
             width: this.state.widthavatar1 + "px",
             height: this.state.heightavatar1 + "px",
-            // borderRadius: this.state.borderradius1 + "%",
             backgroundImage: `url(${this.houseStyles[this.state.fighter2.house].shield})`,
             backgroundPosition: "left",
             backgroundSize: "contain",
@@ -555,8 +611,8 @@ class Fight extends Component {
             opacity: 0.5
         }
 
-        let gri = 'Grifondor: ' + this.state.scoreFighters.gryffindor
-        let sly = 'Syltherin: ' + this.state.scoreFighters.slytherin
+        let gri = 'Gryffindor: ' + this.state.scoreFighters.gryffindor
+        let sly = 'Slytherin: ' + this.state.scoreFighters.slytherin
         let rav = 'Ravenclaw: ' + this.state.scoreFighters.ravenclaw
         let huf = 'Hufflepuff: ' + this.state.scoreFighters.hufflepuff
 
@@ -578,15 +634,20 @@ class Fight extends Component {
             backgroundColor: "yellow"
         }
 
+        let arr = Object.values(this.state.scoreFighters);
+        let max = Math.max(...arr);
 
         return (
             <div>
+                {this.sendScore()}
                 <div>
                     <Wall />
                 </div>
                 <div id="bodyFight">
                     <div className="full">
                         <Header
+                            fighter1={this.state.fighter1}
+                            fighter2={this.state.fighter2}
                         />
                         <div className="avatar" id={avatarId} style={avatarStyle}></div>
                         {this.progressBar(this.state.progress)}
@@ -620,6 +681,22 @@ class Fight extends Component {
                             :
                             <div></div>
                     }</div>
+                    <div>{
+                        this.state.fighter1.defense.shieldOn ?
+                            <Shield
+                                fighter={this.state.fighter1}
+                            />
+                            :
+                            <div></div>
+                    }</div>
+                    <div>{
+                        this.state.fighter2.defense.shieldOn ?
+                            <Shield
+                                fighter={this.state.fighter2}
+                            />
+                            :
+                            <div></div>
+                    }</div>
 
                     <div><div className="spaceInstr" style={instrStyle}><p>INSTRUCTIONS</p><p>Press SPACEBAR</p></div>{
                         this.state.displayInstr ?
@@ -635,6 +712,7 @@ class Fight extends Component {
                             <h3 className="scorePerso" style={sylStyle}>{sly}</h3>
                             <h3 className="scorePerso" style={hufStyle}>{huf}</h3>
                             <h3 className="scorePerso" style={ravStyle}>{rav}</h3>
+                            <h3 className="scorePerso" style={ravStyle}>{max}</h3>
 
                         </div>{
                             this.state.modalVictory ?

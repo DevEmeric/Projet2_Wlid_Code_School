@@ -6,10 +6,7 @@ class Spell extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      /*left: this.props.spell.left,
-      top: this.props.spell.top,
-      height: this.props.spell.height,
-      width: this.props.spell.width,*/
+
     }
   }
   
