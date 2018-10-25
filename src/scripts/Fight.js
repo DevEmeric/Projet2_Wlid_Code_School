@@ -151,10 +151,10 @@ class Fight extends Component {
 
                 ///////////PLAYERS
                 scoreFighters: {
-                    gryffindor: 70,
-                    slytherin: 10,
-                    ravenclaw: 30,
-                    hufflepuff: 100,
+                    gryffindor: 0,
+                    slytherin: 0,
+                    ravenclaw: 0,
+                    hufflepuff: 0,
                 },
 
 
