@@ -181,7 +181,7 @@ class Fight extends Component {
     progressBar = (progress) => {
         return <div className="progressbar">
             <div className="progress" style={{
-                width: `${progress}%`,
+                width: progress + '%',
                 backgroundColor: this.houseStyles[this.state.fighter1.house].barColor
             }}>
             </div>
@@ -191,7 +191,8 @@ class Fight extends Component {
     progressBar1 = (progress1) => {
         return <div className="progressbar1">
             <div className="progress1" style={{
-                width: `${progress1}%`,
+                //width: `${progress1}%`,
+                width: progress1 + '%',
                 backgroundColor: this.houseStyles[this.state.fighter2.house].barColor
             }}>
             </div>
