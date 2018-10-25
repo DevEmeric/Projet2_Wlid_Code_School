@@ -57,7 +57,7 @@ class TournementVictory extends Component {
 
                     <p className= "titleWinners"> WINNERS </p>
                     <div className="gobleoffireimage"></div>
-                    <Link to = "/HouseSelection"><button className= "boutonTournementHomePage">Home Page</button></Link>
+                    <Link to = "/"><button className= "boutonTournementHomePage">Home Page</button></Link>
                     <div className="boutonPodium"></div>
                     <div className= "firstAward" ></div>
                     <div className= "secondAward"></div>
