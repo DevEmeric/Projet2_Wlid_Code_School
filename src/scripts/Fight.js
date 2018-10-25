@@ -43,6 +43,9 @@ class Fight extends Component {
                 barColor: "yellow",
             },
         },
+
+        this.fightTime = 2,
+
             this.state = {
 
                 //Instructions Screen
@@ -514,7 +517,28 @@ class Fight extends Component {
 
     //loseLife(fighterID){}
 
-    //deathOfAPlayer(fighterID){}
+    endOfFight=()=>{
+        console.log(this.state.progress)
+        console.log(this.state.progress1)
+        this.setState({
+            scoreFighter1: this.state.scoreFighter1 + this.state.progress,
+            scoreFighter2: this.state.scoreFighter2 + this.state.progress1,
+            progress1: - 1,
+            modalVictory: true
+        });
+        switch (this.state.fighter1.house) {
+            case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter1; break;
+            case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter1; break;
+            case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter1; break;
+            case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter1; break;
+        }
+        switch (this.state.fighter2.house) {
+            case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter2; break;
+            case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter2; break;
+            case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter2; break;
+            case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter2; break;
+        }
+    }
 
     // Consequence of a shield being hitten
     hitsShield(spellID, fighterID) {
@@ -602,8 +626,9 @@ class Fight extends Component {
         let avatarId1 = "avatar" + this.props.house
 
         let instrStyle = {
-            position: "relative",
-            top: -20 + "px",
+            position: "absolute",
+            bottom: "20px",
+            right: "20px",
             width: 150 + "px",
             margin: "auto",
             border: 5 + "px" + " " + "solid" + " " + "black",
@@ -646,6 +671,8 @@ class Fight extends Component {
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
+                            fightTime={this.fightTime}
+                            endOfFight={this.endOfFight}
                         />
                         <div className="avatar" id={avatarId} style={avatarStyle}></div>
                         {this.progressBar(this.state.progress)}
@@ -698,7 +725,11 @@ class Fight extends Component {
                             <div></div>
                     }</div>
 
-                    <div><div className="spaceInstr" style={instrStyle}><p>INSTRUCTIONS</p><p>Press SPACEBAR</p></div>{
+                    <div>
+                        <div className="spaceInstr" style={instrStyle}>
+                        <p>INSTRUCTIONS</p>
+                        <p>Press SPACEBAR</p>
+                    </div>{
                         this.state.displayInstr ?
                             <Instructions />
                             :
