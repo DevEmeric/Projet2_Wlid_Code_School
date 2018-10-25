@@ -6,7 +6,7 @@ class HomePage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            popupButtons: false
+            popupButtons: false,
         }
         this.displayPopups = this.displayPopups.bind(this)
     }
@@ -15,6 +15,11 @@ class HomePage extends Component {
         this.setState({
             popupButtons: !this.state.popupButtons
         })
+    }
+
+    gameTypeChoice = (choice) => {
+        this.props.gameType(choice)
+       // this.setState ({gameType: choice})
     }
 
     render() {
@@ -30,8 +35,8 @@ class HomePage extends Component {
                 {
                      this.state.popupButtons ? 
                     <div className="hidden">
-                    <Link to="/HouseSelection"><button>1 VS 1</button></Link>
-                    <button>TOURNAMENT</button>
+                    <Link to="/HouseSelection"><button onClick={()=> this.gameTypeChoice("1v1")}>1 VS 1</button></Link>
+                    <Link to="/HouseSelection"><button onClick={()=> this.gameTypeChoice("tournament")}>TOURNAMENT</button></Link>
                     </div> 
                     : 
                     <div></div>
