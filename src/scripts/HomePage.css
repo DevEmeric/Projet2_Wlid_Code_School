@@ -17,9 +17,8 @@
 }
 
 .title1 {
-    position: absolute;
-    left: 650px;
-    top: 0px;
+    position: relative;
+    left: 3%;
     font-family: "PotterFont";
     color: rgb(252, 222, 53);
     font-size: 150px;
@@ -59,19 +58,18 @@ button:hover {
 }
 
 .newGame {
-    position: absolute;
-    left: 800px;
-    bottom: 450px;
+    position: relative;
+    left: 3%;
+    bottom: 5%;
 }
 
 .hidden {
-    position: absolute;
-    left: 600px;
-    bottom: 380px;
+    position: relative;
+    left: 2%;
+    bottom: 8%;
 }
 
 .settings {
-    position: absolute;
-    left: 800px;
-    bottom: 250px;
+    position: relative;
+    left: 3%;
 }
