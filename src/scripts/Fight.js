@@ -9,15 +9,15 @@ import TournementVictory from "./TournementVictory"
 import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 import Shield from "./Shield.js"
-import {Redirect} from 'react-router'
-import {Link} from "react-router-dom"
+import { Redirect } from 'react-router'
+import { Link } from "react-router-dom"
 
 
 
-import gryffindorShield from '../image/gryffindor2.png'
-import slytherinShield from '../image/slytherin2.png'
-import ravenclawShield from '../image/ravenclaw2.png'
-import hufflepuffShield from '../image/hufflepuff2.png'
+import GryffindorShield from '../image/gryffindor2.png'
+import SlytherinShield from '../image/slytherin2.png'
+import RavenclawShield from '../image/ravenclaw2.png'
+import HufflepuffShield from '../image/hufflepuff2.png'
 
 
 
@@ -28,24 +28,24 @@ class Fight extends Component {
         super();
         this.houseStyles = {
             Gryffindor: {
-                shield: gryffindorShield,
+                shield: GryffindorShield,
                 barColor: "red",
             },
             Slytherin: {
-                shield: slytherinShield,
+                shield: SlytherinShield,
                 barColor: "green",
             },
             Ravenclaw: {
-                shield: ravenclawShield,
+                shield: RavenclawShield,
                 barColor: "blue",
             },
             Hufflepuff: {
-                shield: hufflepuffShield,
+                shield: HufflepuffShield,
                 barColor: "yellow",
             },
         },
 
-        this.fightTime = 2,
+            this.fightTime = 2,
 
             this.state = {
 
@@ -159,10 +159,10 @@ class Fight extends Component {
 
                 ///////////PLAYERS
                 scoreFighters: {
-                    gryffindor: 0,
-                    slytherin: 0,
-                    ravenclaw: 0,
-                    hufflepuff: 0,
+                    Gryffindor: 0,
+                    Slytherin: 0,
+                    Ravenclaw: 0,
+                    Hufflepuff: 0,
                 },
 
 
@@ -172,7 +172,7 @@ class Fight extends Component {
 
 
     sendScore = () => {
-        
+
         this.props.endTournament(this.state.scoreFighters)
     }
 
@@ -302,15 +302,15 @@ class Fight extends Component {
 
     hasCollision(object1, object2) {
         if (this.state.modalVictory === false)
-        if (object1.top < object2.top + object2.width &&
-            object1.top + object1.width > object2.top &&
-            object1.left < object2.left + object2.height &&
-            object1.height + object1.left > object2.left) {
-            return true
-        }
-        else {
-            return false
-        };
+            if (object1.top < object2.top + object2.width &&
+                object1.top + object1.width > object2.top &&
+                object1.left < object2.left + object2.height &&
+                object1.height + object1.left > object2.left) {
+                return true
+            }
+            else {
+                return false
+            };
     };
 
 
@@ -336,7 +336,6 @@ class Fight extends Component {
                     case 1: { i = 0; j = 1 }; break;
                     case 2: { i = 1; j = 2 }; break;
                     case 3: { i = 0; j = 2 }; break;
-                    case 4: { this.setState({ redirect: !this.state.redirect}) }; break;
                 };
                 break;
             case 4:
@@ -347,7 +346,7 @@ class Fight extends Component {
                     case 4: { i = 1; j = 3 }; break;
                     case 5: { i = 0; j = 3 }; break;
                     case 6: { i = 1; j = 2 }; break;
-                    case 7: { this.setState({ redirect: !this.state.redirect}) }; break;
+                    //case 7: { this.setState({ redirect: !this.state.redirect}) }; break;
                 };
                 break;
             default: { i = 0; j = 1 }; break;
@@ -438,14 +437,14 @@ class Fight extends Component {
 
 
                     switch (this.state.fighter2.house) {
-                        case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter2; break;
-                        case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter2; break;
-                        case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter2; break;
-                        case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter2; break;
+                        case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter2; break;
+                        case "Slytherin": this.state.scoreFighters.Slytherin += this.state.scoreFighter2; break;
+                        case "Ravenclaw": this.state.scoreFighters.Ravenclaw += this.state.scoreFighter2; break;
+                        case "Hufflepuff": this.state.scoreFighters.Hufflepuff += this.state.scoreFighter2; break;
                     }
-
-
                 }
+
+
                 if (this.state.progress1 === 0) {
                     this.setState({
                         scoreFighter1: this.state.scoreFighter1 + currentState1,
@@ -456,10 +455,10 @@ class Fight extends Component {
 
 
                     switch (this.state.fighter1.house) {
-                        case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter1; break;
-                        case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter1; break;
-                        case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter1; break;
-                        case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter1; break;
+                        case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter1; break;
+                        case "Slytherin": this.state.scoreFighters.Slytherin += this.state.scoreFighter1; break;
+                        case "Ravenclaw": this.state.scoreFighters.Ravenclaw += this.state.scoreFighter1; break;
+                        case "Hufflepuff": this.state.scoreFighters.Hufflepuff += this.state.scoreFighter1; break;
                     }
 
                 }
@@ -491,10 +490,10 @@ class Fight extends Component {
                     });
                     switch (this.state.fighter2.house) {
 
-                        case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter2; break;
-                        case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter2; break;
-                        case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter2; break;
-                        case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter2; break
+                        case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter2; break;
+                        case "Slytherin": this.state.scoreFighters.Slytherin += this.state.scoreFighter2; break;
+                        case "Ravenclaw": this.state.scoreFighters.Ravenclaw += this.state.scoreFighter2; break;
+                        case "Hufflepuff": this.state.scoreFighters.Hufflepuff += this.state.scoreFighter2; break
                     }
                 }
                 if (this.state.progress1 === 0) {
@@ -504,10 +503,10 @@ class Fight extends Component {
                         modalVictory: true
                     });
                     switch (this.state.fighter1.house) {
-                        case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter1; break;
-                        case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter1; break;
-                        case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter1; break;
-                        case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter1; break;
+                        case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter1; break;
+                        case "Slytherin": this.state.scoreFighters.Slytherin += this.state.scoreFighter1; break;
+                        case "Ravenclaw": this.state.scoreFighters.Ravenclaw += this.state.scoreFighter1; break;
+                        case "Hufflepuff": this.state.scoreFighters.Hufflepuff += this.state.scoreFighter1; break;
                     }
                 }
             }
@@ -518,7 +517,22 @@ class Fight extends Component {
 
     //loseLife(fighterID){}
 
-    endOfFight=()=>{
+    addScores = () => {
+        switch (this.state.fighter1.house) {
+            case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter1; break;
+            case "Slytherin": this.state.scoreFighters.Slytherin += this.state.scoreFighter1; break;
+            case "Ravenclaw": this.state.scoreFighters.Ravenclaw += this.state.scoreFighter1; break;
+            case "Hufflepuff": this.state.scoreFighters.Hufflepuff += this.state.scoreFighter1; break;
+        }
+        switch (this.state.fighter2.house) {
+            case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter2; break;
+            case "Slytherin": this.state.scoreFighters.Slytherin += this.state.scoreFighter2; break;
+            case "Ravenclaw": this.state.scoreFighters.Ravenclaw += this.state.scoreFighter2; break;
+            case "Hufflepuff": this.state.scoreFighters.Hufflepuff += this.state.scoreFighter2; break;
+        }
+    }
+
+    endOfFight = () => {
         console.log(this.state.progress)
         console.log(this.state.progress1)
         this.setState({
@@ -527,18 +541,7 @@ class Fight extends Component {
             progress1: - 1,
             modalVictory: true
         });
-        switch (this.state.fighter1.house) {
-            case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter1; break;
-            case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter1; break;
-            case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter1; break;
-            case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter1; break;
-        }
-        switch (this.state.fighter2.house) {
-            case "Gryffindor": this.state.scoreFighters.gryffindor += this.state.scoreFighter2; break;
-            case "Slytherin": this.state.scoreFighters.slytherin += this.state.scoreFighter2; break;
-            case "Ravenclaw": this.state.scoreFighters.ravenclaw += this.state.scoreFighter2; break;
-            case "Hufflepuff": this.state.scoreFighters.hufflepuff += this.state.scoreFighter2; break;
-        }
+        this.addScores()
     }
 
     // Consequence of a shield being hitten
@@ -596,8 +599,21 @@ class Fight extends Component {
           })*/
     }
 
+    redirect =()=> {
+    if (this.state.modalVictory === true && this.state.turn === 3 && this.props.fightersHouse.length === 3) {
+        this.props.endTournament(this.state.scoreFighters)
+        this.addScores()
+        return <Redirect to='/TournementVictory' />
+    }
+    if (this.state.modalVictory === true && this.state.turn === 6 && this.props.fightersHouse.length === 4) {
+        this.props.endTournament(this.state.scoreFighters)
+        this.addScores()
+        return <Redirect to='/TournementVictory' />
+    }
+}
 
-    redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
+
+    //redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
     render() {
 
         let avatarStyle = {
@@ -638,10 +654,10 @@ class Fight extends Component {
             opacity: 0.5
         }
 
-        let gri = 'Gryffindor: ' + this.state.scoreFighters.gryffindor
-        let sly = 'Slytherin: ' + this.state.scoreFighters.slytherin
-        let rav = 'Ravenclaw: ' + this.state.scoreFighters.ravenclaw
-        let huf = 'Hufflepuff: ' + this.state.scoreFighters.hufflepuff
+        let gri = 'Gryffindor: ' + this.state.scoreFighters.Gryffindor
+        let sly = 'Slytherin: ' + this.state.scoreFighters.Slytherin
+        let rav = 'Ravenclaw: ' + this.state.scoreFighters.Ravenclaw
+        let huf = 'Hufflepuff: ' + this.state.scoreFighters.Hufflepuff
 
 
 
@@ -662,14 +678,14 @@ class Fight extends Component {
         }
 
         return (
-            
+
             <div>
                 <div>
                     <Wall />
                 </div>
                 <div id="bodyFight">
                     <div className="full">
-                    {this.redirect()}
+                       {this.redirect()}
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
@@ -729,14 +745,14 @@ class Fight extends Component {
 
                     <div>
                         <div className="spaceInstr" style={instrStyle}>
-                        <p>INSTRUCTIONS</p>
-                        <p>Press SPACEBAR</p>
-                    </div>{
-                        this.state.displayInstr ?
-                            <Instructions />
-                            :
-                            <div></div>
-                    }
+                            <p>INSTRUCTIONS</p>
+                            <p>Press SPACEBAR</p>
+                        </div>{
+                            this.state.displayInstr ?
+                                <Instructions />
+                                :
+                                <div></div>
+                        }
                     </div>
 
                     <div>
@@ -745,7 +761,7 @@ class Fight extends Component {
                             <h3 className="scorePerso" style={sylStyle}>{sly}</h3>
                             <h3 className="scorePerso" style={hufStyle}>{huf}</h3>
                             <h3 className="scorePerso" style={ravStyle}>{rav}</h3>
-                            
+
 
                         </div>{
                             this.state.modalVictory ?
