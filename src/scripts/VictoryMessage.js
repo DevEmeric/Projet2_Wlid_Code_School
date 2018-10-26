@@ -8,11 +8,13 @@ class VictoryMessage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modeTournoi: true,
+      modeTournoi: this.props.gameType === "1v1" ? false : true,
       turn:this.props.turn,
     };
   }
+
   nextFight=()=>{
+    console.log("Next fight in Victory message")
     this.setState({
       turn:this.state.turn++
     })
@@ -24,7 +26,6 @@ class VictoryMessage extends React.Component {
   }
 
   render() {
-
     let buttonStyle={
       color: 'white', 
       backgroundColor: 'orange', 
