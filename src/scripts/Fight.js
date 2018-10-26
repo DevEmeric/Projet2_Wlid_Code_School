@@ -427,7 +427,7 @@ class Fight extends Component {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 //this.loseLife(fighter2.id)
                 this.setState({
-                    progress1: currentState2 - 50,
+                    progress1: currentState2 - 20,
                     fighter1: {
                         ...this.state.fighter1,
                         spellCasted: false,
@@ -480,7 +480,7 @@ class Fight extends Component {
                 //this.loseLife(fighter1.id)
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
-                    progress: currentState1 - 50,
+                    progress: currentState1 - 20,
 
                     fighter2: {
                         ...this.state.fighter2,
