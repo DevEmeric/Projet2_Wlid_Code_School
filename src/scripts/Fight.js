@@ -358,6 +358,8 @@ class Fight extends Component {
             fighter1: {
                 ...this.state.fighter1,
                 life: 100,
+                left : 100,
+                top: 250,
                 house: this.props.fightersHouse[i],
                 style: {
                     opacity: 1,
@@ -366,6 +368,8 @@ class Fight extends Component {
             fighter2: {
                 ...this.state.fighter2,
                 life: 100,
+                left : 1100,
+                top: 250,
                 house: this.props.fightersHouse[j],
                 style: {
                     opacity: 1,
@@ -592,8 +596,9 @@ class Fight extends Component {
 
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
-        this.reIntitialize(this.state.fighter1.id, 100, true);
-        this.reIntitialize(this.state.fighter2.id, 1100, false);
+        //this.restartFight();
+
+        
 
         /*  this.setState({
               scoreFighter1: 0,
