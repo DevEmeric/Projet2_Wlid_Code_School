@@ -358,18 +358,32 @@ class Fight extends Component {
             fighter1: {
                 ...this.state.fighter1,
                 life: 100,
+                left : 100,
+                top: 250,
                 house: this.props.fightersHouse[i],
                 style: {
                     opacity: 1,
                 },
+                defense: {
+                    shieldTime:3000,
+                    shieldOn: false,
+                    shieldNumber: 3,
+                }
             },
             fighter2: {
                 ...this.state.fighter2,
                 life: 100,
+                left : 1100,
+                top: 250,
                 house: this.props.fightersHouse[j],
                 style: {
                     opacity: 1,
                 },
+                defense: {
+                    shieldTime:3000,
+                    shieldOn: false,
+                    shieldNumber: 3,
+                }
             },
             spellfighter1: {
                 ...this.state.spellfighter1,
@@ -592,6 +606,9 @@ class Fight extends Component {
 
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
+        //this.restartFight();
+
+        
 
         /*  this.setState({
               scoreFighter1: 0,
@@ -772,6 +789,7 @@ class Fight extends Component {
                                     turn={this.state.turn}
                                     nextFight={this.nextFight}
                                     restartFight={this.restartFight}
+                                    gameType = {this.props.gameType}
                                 />
                                 :
                                 <div></div>
