@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./TournementVictory.css";
 import { Link } from "react-router-dom";
 
@@ -10,59 +10,58 @@ import hufflepuffTeam from '../image/Hufflepuff.png'
 
 
 class TournementVictory extends Component {
-    constructor (props) {
-        super (props);
-        this.logosTeams = {
-            GryffindorLogo: {
-                logo: gryffindorTeam
-            },
+    constructor(props) {
+        super(props);
+        this.Gryffindor = gryffindorTeam;
+        this.Slytherin = slytherinTeam;
+        this.Ravenclaw = ravenclawTeam;
+        this.Hufflepuff = hufflepuffTeam;
 
-            SlyherinLogo: {
-                logo: slytherinTeam
-            },
-            RavenclawLogo: {
-                logo: ravenclawTeam
-            },
-
-            HufflepuffLogo: {
-                logo: hufflepuffTeam
-            },
-           
-                    
+        this.state = {
+            score: this.props.isEndTournament
         }
-        
 
     }
-
-    whoIsTheWinner = () => {
-        this.props.scoreFighters.sort(function(a, b){
-            return  this.props.scoreFighters.a - this.props.scoreFighters.b;
+   
+    rankHouses() {
+        let score = this.state.score
+        let houseSort = [];
+        for (let key in score) {
+            houseSort.push([key, score[key]]);
+        }
+        houseSort.sort(function (a, b) {
+            return (a[1] < b[1] ? -1 : (a[1] > b[1] ? 1 : 0))
         });
+        let first = houseSort[houseSort.length - 1]
+        let second = houseSort[houseSort.length - 2]
+        let third = houseSort[houseSort.length - 3]
+        let style1 = { backgroundImage: `url(${this[first[0]]})` }
+        let style2 = { backgroundImage: `url(${this[second[0]]})` }
+        let style3 = { backgroundImage: `url(${this[third[0]]})` }
+        console.log("final ranking :", houseSort)
+        return <div>
+            <div className="firstAward" style={style1}>{first[1]} points</div>
+            <div className="secondAward" style={style2}>{second[1]} points</div>
+            <div className="thirdAward" style={style3}>{third[1]} points</div>
+        </div >
         
-        console.log(this.props.isEndtournament.gryffindor);
     }
-
-    render(){
-        let styleTournement = {
-            
+    
 
 
 
+    render() {
 
-        }
+        
+
         return (
             <div>
-                
                 <body className="bodyTournementVictory">
-
-                    <p className= "titleWinners"> WINNERS </p>
+                    <p className="titleWinners"> WINNERS </p>
                     <div className="gobleoffireimage"></div>
-                    <Link to = "/"><button className= "boutonTournementHomePage">Home Page</button></Link>
+                    <Link to="/"><button className="boutonTournementHomePage">Home Page</button></Link>
                     <div className="boutonPodium"></div>
-                    <div className= "firstAward" ></div>
-                    <div className= "secondAward"></div>
-                    <div className= "thirdAward"></div>
-
+                    {this.rankHouses()}
                 </body>
             </div>
 

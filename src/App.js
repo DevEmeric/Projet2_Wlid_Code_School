@@ -14,7 +14,10 @@ class App extends Component {
     this.state = {
       gameType: "tournament",
       fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
-      isEndTournament: [],
+      isEndTournament: {Gryffindor: 600,
+        Slytherin: 200,
+        Ravenclaw: 300,
+        Hufflepuff: 400,},
     }
   }
 
@@ -45,7 +48,6 @@ class App extends Component {
 
  
   render() {
-
     return (
       <div className="App">
         <BrowserRouter>
@@ -70,7 +72,7 @@ class App extends Component {
               path="/TournementVictory"
               render={() => (
                 <TournementVictory
-                  isEndtournament={this.state.isEndTournament}
+                  isEndTournament={this.state.isEndTournament}
                   
                 />)}
             />
