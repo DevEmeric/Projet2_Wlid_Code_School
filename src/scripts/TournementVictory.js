@@ -17,19 +17,15 @@ class TournementVictory extends Component {
             GryffindorLogo: {
                 logo: gryffindorTeam
             },
-
             SlyherinLogo: {
                 logo: slytherinTeam
             },
             RavenclawLogo: {
                 logo: ravenclawTeam
             },
-
             HufflepuffLogo: {
                 logo: hufflepuffTeam
-            },
-           
-                    
+            },         
         }
         
 

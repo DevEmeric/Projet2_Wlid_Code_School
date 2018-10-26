@@ -36,6 +36,7 @@ class App extends Component {
   getFinalSelection = (players) => {
     this.setState({ fightersHouse: players})
   }
+  
   endTournament = (scoreFighters) => {
     this.setState({isEndTournament: scoreFighters})
   }

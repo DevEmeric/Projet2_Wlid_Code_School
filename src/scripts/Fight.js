@@ -616,9 +616,8 @@ class Fight extends Component {
 
 
     redirect = () => {
-        this.state.redirect ? <Redirect to='/TournementVictory' />  : ""
+        this.state.redirect ? <Redirect to='/TournementVictory' />  : null
         //this.props.endTournament(this.state.scoreFighters)
-        
     }
 
 
