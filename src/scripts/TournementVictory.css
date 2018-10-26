@@ -1,10 +1,17 @@
+@font-face{
+    font-family: "PotterFont";
+    src: url('../font/HARRYP__.TTF')format("truetype");
+}
+
+
 .bodyTournementVictory{
 
     /*background-image: url("../image/background1tournement.jpg");*/
+    background-image: url('https://www.dhresource.com/0x0s/f2-albu-g5-M01-74-79-rBVaJFkftaiAMKQPAAJ7wiL9fGo632.jpg/7x5ft-daylight-harry-potter-hogwarts-passage.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    height: 800px;
+    height: 51vw;
     background-color: white;
     color: black;
 }
@@ -52,11 +59,12 @@
 
 .titleWinners{
     position: absolute;
-    font-size: 60px;
+    font-size: 100px;
     font-weight: bold;
     top: 5px;
     left: 500px;
-    color: rgb(27, 27, 26);
+    font-family: "PotterFont";
+    color: rgb(252, 222, 53);
     box-shadow: black;
 
 }
@@ -86,7 +94,7 @@
     top: 230px;
     left: 750px;
     background-size: cover;
-    background-repeat: no-repeat;
+
 
 }
 

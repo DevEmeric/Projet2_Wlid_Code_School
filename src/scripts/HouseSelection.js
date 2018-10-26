@@ -175,7 +175,7 @@ class HouseSelection extends Component {
           {this.pageTitle()}
           {/* choix du nombre de joueurs */}
           {this.props.gameType === "tournament" ?
-            <select className="player-amount" onChange={(e) => { this.playerAmount(parseInt(e.target.value)) }} >
+            <select className="player-amount" onChange={(e) => { this.playerAmount(parseInt(e.target.value, 10)) }} >
              {/*} <option value="2">2 players</option> */}
               <option value="3">3 players</option>
               <option value="4">4 players</option>
