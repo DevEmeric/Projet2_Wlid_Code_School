@@ -45,11 +45,12 @@ class Fight extends Component {
             },
         },
 
-            this.fightTime = 2,
+            
 
             this.state = {
 
                 redirect: false,
+                fightTime : 2,
 
                 //Instructions Screen
                 displayInstr: false,
@@ -398,6 +399,7 @@ class Fight extends Component {
             //Initialisation des scoreFighter à 0
             scoreFighter1: 0,
             scoreFighter2: 0,
+            fightTime: 2,
         })
 
         //  console.log(this.state.fighter1)
@@ -584,6 +586,7 @@ class Fight extends Component {
             progress: 100,
             progress1: 100,
             modalVictory: false,
+            fightTime: 2,
         })
         console.log("restart fight after setState")
         console.log(this.state.fighter1)
@@ -707,7 +710,7 @@ class Fight extends Component {
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
-                            fightTime={this.fightTime}
+                            fightTime={this.state.fightTime}
                             endOfFight={this.endOfFight}
                         />
                         <div className="avatar" id={avatarId} style={avatarStyle}></div>
