@@ -66,6 +66,7 @@ class App extends Component {
                 <Fight
                   fightersHouse={this.state.fightersHouse}
                   endTournament= {this.endTournament}
+                  gameType = {this.state.gameType}
                 />)}
             />
             <Route
