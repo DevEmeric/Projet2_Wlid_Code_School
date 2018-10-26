@@ -592,6 +592,8 @@ class Fight extends Component {
 
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
+        this.reIntitialize(this.state.fighter1.id, 100, true);
+        this.reIntitialize(this.state.fighter2.id, 1100, false);
 
         /*  this.setState({
               scoreFighter1: 0,
@@ -772,6 +774,7 @@ class Fight extends Component {
                                     turn={this.state.turn}
                                     nextFight={this.nextFight}
                                     restartFight={this.restartFight}
+                                    gameType = {this.props.gameType}
                                 />
                                 :
                                 <div></div>
