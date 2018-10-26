@@ -364,6 +364,11 @@ class Fight extends Component {
                 style: {
                     opacity: 1,
                 },
+                defense: {
+                    shieldTime:3000,
+                    shieldOn: false,
+                    shieldNumber: 3,
+                }
             },
             fighter2: {
                 ...this.state.fighter2,
@@ -374,6 +379,11 @@ class Fight extends Component {
                 style: {
                     opacity: 1,
                 },
+                defense: {
+                    shieldTime:3000,
+                    shieldOn: false,
+                    shieldNumber: 3,
+                }
             },
             spellfighter1: {
                 ...this.state.spellfighter1,
