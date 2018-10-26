@@ -45,11 +45,12 @@ class Fight extends Component {
             },
         },
 
-            this.fightTime = 2,
+            
 
             this.state = {
 
                 redirect: false,
+                fightTime : 2,
 
                 //Instructions Screen
                 displayInstr: false,
@@ -171,17 +172,11 @@ class Fight extends Component {
     }
 
 
-    sendScore = () => {
-
-        this.props.endTournament(this.state.scoreFighters)
-    }
-
-
 
     progressBar = (progress) => {
         return <div className="progressbar">
             <div className="progress" style={{
-                width: `${progress}%`,
+                width: progress + '%',
                 backgroundColor: this.houseStyles[this.state.fighter1.house].barColor
             }}>
             </div>
@@ -191,7 +186,8 @@ class Fight extends Component {
     progressBar1 = (progress1) => {
         return <div className="progressbar1">
             <div className="progress1" style={{
-                width: `${progress1}%`,
+                //width: `${progress1}%`,
+                width: progress1 + '%',
                 backgroundColor: this.houseStyles[this.state.fighter2.house].barColor
             }}>
             </div>
@@ -324,12 +320,22 @@ class Fight extends Component {
         this.setState({ displayInstr: !this.state.displayInstr })
     }
 
+    //Fonction fin du tournoi de putain qui sert à rien pour le moment
+    EndOfTurn = () => {
+        this.getCurrentFighters(1)
+        if (this.state.turn === 3) {
+            this.setState({ displayInstr: !this.state.displayInstr })
+            console.log("reveille toi connard !!")
+        }
+    }
+
 
     // Fighters selection depending on turn and number of players
     getCurrentFighters = (turn) => {
         //   console.log("turn : " + turn);
         let i = 0;
         let j = 1;
+
         switch (this.props.fightersHouse.length) {
             case 3:
                 switch (turn) {
@@ -337,6 +343,7 @@ class Fight extends Component {
                     case 2: { i = 1; j = 2 }; break;
                     case 3: { i = 0; j = 2 }; break;
                 };
+
                 break;
             case 4:
                 switch (turn) {
@@ -348,8 +355,14 @@ class Fight extends Component {
                     case 6: { i = 1; j = 2 }; break;
                     //case 7: { this.setState({ redirect: !this.state.redirect}) }; break;
                 };
+
                 break;
-            default: { i = 0; j = 1 }; break;
+            //default: { i = 0; j = 1 }; break;
+        }
+        if (this.state.turn === 3) {
+            //<Link to="/TournementVictory"></Link>
+            // this.setState({ displayInstr: !this.state.displayInstr })
+            console.log("reveille toi connard !!")
         }
         // console.log("Fighters selected : ")
         // console.log([this.props.fightersHouse[i], this.props.fightersHouse[j]])
@@ -400,6 +413,7 @@ class Fight extends Component {
             //Initialisation des scoreFighter à 0
             scoreFighter1: 0,
             scoreFighter2: 0,
+            fightTime: 2,
         })
 
         //  console.log(this.state.fighter1)
@@ -429,7 +443,7 @@ class Fight extends Component {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 //this.loseLife(fighter2.id)
                 this.setState({
-                    progress1: currentState2 - 10,
+                    progress1: currentState2 - 20,
                     fighter1: {
                         ...this.state.fighter1,
                         spellCasted: false,
@@ -441,6 +455,7 @@ class Fight extends Component {
                     }
                 })
 
+                ////JE PENSE QUON  PEUT LE VIRER
                 //this.deathOfAPlayer(fighter2.id)
                 if (this.state.progress === 0) {
                     this.setState({
@@ -481,7 +496,7 @@ class Fight extends Component {
                 //this.loseLife(fighter1.id)
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
-                    progress: currentState1 - 10,
+                    progress: currentState1 - 20,
 
                     fighter2: {
                         ...this.state.fighter2,
@@ -585,6 +600,7 @@ class Fight extends Component {
             progress: 100,
             progress1: 100,
             modalVictory: false,
+            fightTime: 2,
         })
         console.log("restart fight after setState")
         console.log(this.state.fighter1)
@@ -632,6 +648,11 @@ class Fight extends Component {
 
     //redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
     render() {
+        const { redirect } = this.state;
+        if (redirect) {
+            console.log('ça marche')
+            return <Redirect to='/TournementVictory' />;
+        }
 
         let avatarStyle = {
             position: "absolute",
@@ -706,7 +727,7 @@ class Fight extends Component {
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
-                            fightTime={this.fightTime}
+                            fightTime={this.state.fightTime}
                             endOfFight={this.endOfFight}
                         />
                         <div className="avatar" id={avatarId} style={avatarStyle}></div>
@@ -774,6 +795,7 @@ class Fight extends Component {
 
                     <div>
                         <div className="score">
+                            {/* <h2 className="scorePerso" style={grifStyle}>{ordered}</h2> */}
                             <h3 className="scorePerso" style={grifStyle}>{gri}</h3>
                             <h3 className="scorePerso" style={sylStyle}>{sly}</h3>
                             <h3 className="scorePerso" style={hufStyle}>{huf}</h3>
