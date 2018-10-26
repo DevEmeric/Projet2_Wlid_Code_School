@@ -45,12 +45,16 @@ class Fight extends Component {
             },
         },
 
-            
+        
 
             this.state = {
 
                 redirect: false,
-                fightTime : 2,
+                
+                fightTime : {
+                    minutes: 2,
+                    seconds: 0,
+                },
 
                 //Instructions Screen
                 displayInstr: false,
@@ -413,7 +417,10 @@ class Fight extends Component {
             //Initialisation des scoreFighter à 0
             scoreFighter1: 0,
             scoreFighter2: 0,
-            fightTime: 2,
+            fightTime : {
+                minutes: 2,
+                seconds: 0,
+            },
         })
 
         //  console.log(this.state.fighter1)
@@ -600,11 +607,11 @@ class Fight extends Component {
             progress: 100,
             progress1: 100,
             modalVictory: false,
-            fightTime: 2,
+            fightTime : {
+                minutes: 2,
+                seconds: 0,
+            },
         })
-        console.log("restart fight after setState")
-        console.log(this.state.fighter1)
-        console.log(this.state.fighter2)
     }
 
     reIntitialize = (fighterID, leftPosition, newFacePosition) => {
@@ -616,20 +623,17 @@ class Fight extends Component {
                 top: 250,
                 left: leftPosition,
                 facesRight: newFacePosition,
+                defense: {
+                    shieldOn: false,
+                    shieldNumber: 3,
+                    shieldTime: 3000,
+                }
             },
         })
     }
 
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
-        //this.restartFight();
-
-        
-
-        /*  this.setState({
-              scoreFighter1: 0,
-              scoreFighter2: 0,
-          })*/
     }
 
     redirect =()=> {

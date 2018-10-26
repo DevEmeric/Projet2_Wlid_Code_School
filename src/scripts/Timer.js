@@ -4,10 +4,12 @@ export default class Timer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            minutes : this.props.fightTime,
-            seconds: 0,
-            timer : "0"+this.props.fightTime+":00"
+            minutes : this.props.fightTime.minutes,
+            seconds: this.props.fightTime.seconds,
+            timer : "0"+this.props.fightTime.minutes+":0"+this.props.fightTime.seconds
         };
+
+        console.log("passage dans le constructeur")
     }
 
     componentDidMount=()=>{
@@ -33,6 +35,16 @@ export default class Timer extends React.Component {
                 this.props.endOfFight();
             }
         },1000)        
+    }
+
+    componentDidUpdate=(prevProps, prevState)=>{
+        if(prevProps.fightTime !== this.props.fightTime){
+            this.setState({
+                minutes : this.props.fightTime.minutes,
+                seconds: this.props.fightTime.seconds,
+                timer : "0"+this.props.fightTime.minutes+":0"+this.props.fightTime.seconds
+            });
+        }
     }
 
     render() {
