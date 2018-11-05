@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Hogwarts from "../image/logochoice.png";
-import "./Houses.css";
-import { Link } from "react-router-dom";
+import "./Houses.css"
+import { Link } from "react-router-dom"
 
 
 class HouseSelection extends Component {

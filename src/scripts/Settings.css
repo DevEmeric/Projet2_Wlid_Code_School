@@ -1,0 +1,15 @@
+#settings span{
+    display: inline;
+}
+
+#settings button{
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+}
+
+
+#settings button img{
+    width: 100px;
+    height: 70px;
+}
