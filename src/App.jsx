@@ -1,35 +1,31 @@
 import React, { Component } from 'react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Fight from './scripts/Fight';
 import HouseSelection from './scripts/HouseSelection';
-import TournementVictory from './scripts/TournementVictory'
-import HomePage from "./scripts/HomePage"
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
-
-import music from "./sound/backgroundMusic.mp3"
-import sounds from "./sound/attackSound.wav"
-
+import TournementVictory from './scripts/TournementVictory';
+import HomePage from './scripts/HomePage';
+import music from './sound/backgroundMusic.mp3';
 
 class App extends Component { 
   constructor() {
     super();
     this.state = {
-      gameType: "tournament",
-      fightersHouse: ["Gryffindor", "Slytherin", "Hufflepuff"],
-      isEndTournament: {Gryffindor: 600,
+      gameType: 'tournament',
+      fightersHouse: ['Gryffindor', 'Slytherin', 'Hufflepuff'],
+      isEndTournament: {
+        Gryffindor: 600,
         Slytherin: 200,
         Ravenclaw: 300,
-        Hufflepuff: 400,},
-    }
+        Hufflepuff: 400,
+      },
+      soundVolume: 1,
+      musicVolume: 1,
+    };
 
-    let backgroundMusic = new Audio(music);
-    backgroundMusic.play();
-    backgroundMusic.volume=1;
-
-    this.soundsMusic = new Audio(sounds)
-    this.soundsVolume = 1;
-
-  
+    this.backgroundMusic = new Audio(music);
+    this.backgroundMusic.play();
+    this.backgroundMusic.volume = this.state.musicVolume;
   }
 
   getGameType = (choice) => {
@@ -39,23 +35,34 @@ class App extends Component {
   getFinalSelection = (players) => {
     this.setState({ fightersHouse: players})
   }
+  
   endTournament = (scoreFighters) => {
     this.setState({isEndTournament: scoreFighters})
   }
 
   setVolume=(target, bool)=>{
-    console.log("chier")
-    if(target.includes("Music") && bool) this.backgroundMusic.volume = 0
-    if(target.includes("Sound") && bool) this.soundsVolume = 0
+    console.log("in app.js", target, bool, target.includes('Sound'))
+    if (target.includes('Music')) {
+      if (!bool) this.setState({ musicVolume: 0 });
+      else this.setState({ musicVolume: 1 });
+    }
+    else if (target.includes('Sound')) {
+      console.log("réglages son", bool)
+      if (!bool) this.setState({ soundVolume: 0 });
+      else this.setState({ soundVolume: 1 });
+    }
   }
 
+  componentDidUpdate=()=>{
+    this.backgroundMusic.volume = this.state.musicVolume;
+    this.soundsVolume = this.state.soundVolume;
+  }
 
- 
   render() {
     return (
       <div className="App">
         <audio autoPlay>
-          <source src="./sound/backgroundMusic.mp3"></source>
+          <source src='./sound/backgroundMusic.mp3'></source>
         </audio>
         <BrowserRouter>
           <Switch>
@@ -75,8 +82,8 @@ class App extends Component {
                   endTournament= {this.endTournament}
                   gameType = {this.state.gameType}
                   soundEffect = {{
-                    soundsMusic: this.soundsMusic,
-                    soundsVolume: this.soundsVolume,
+                    musicVolume: this.state.musicVolume,
+                    effectsVolume: this.state.soundVolume,
                   }}
                 />)}
             />

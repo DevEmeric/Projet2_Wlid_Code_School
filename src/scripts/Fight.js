@@ -245,8 +245,8 @@ class Fight extends Component {
                 .bind(this),
             3000
         );
-        this.props.soundEffect.soundsMusic.play();
-        this.props.soundEffect.soundsMusic.volume = this.props.soundEffect.soundsMusic.volume;
+        this.spellSound.play();
+        this.spellSound.volume = this.props.soundEffect.effectsVolume;
     }
 
     move = (fighterID, x, y) => {
@@ -297,7 +297,8 @@ class Fight extends Component {
                 .bind(this),
             this.state[fighterID].defense.shieldTime
         );
-        this.shieldSound.play()
+        this.shieldSound.play();
+        this.shieldSound.volume = this.props.soundEffect.effectsVolume;
     }
 
     hasCollision(object1, object2) {
@@ -428,6 +429,8 @@ class Fight extends Component {
 
 
     componentDidMount = () => {
+
+        console.log(this.props)
 
         this.getCurrentFighters(1);
         setInterval(() => {
