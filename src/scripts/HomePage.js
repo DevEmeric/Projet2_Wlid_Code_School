@@ -1,12 +1,14 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import "./HomePage.css"
+import "./HomePage.css";
+import Settings from './Settings.js'
 
 class HomePage extends Component { 
     constructor(props) {
         super(props)
         this.state = {
             popupButtons: false,
+            showSettings: false
         }
         this.displayPopups = this.displayPopups.bind(this)
     }
@@ -20,6 +22,10 @@ class HomePage extends Component {
     gameTypeChoice = (choice) => {
         this.props.gameType(choice)
        // this.setState ({gameType: choice})
+    }
+
+    setVolume(target, bool){
+        this.props.setVolume(target, bool)
     }
 
     render() {
@@ -43,8 +49,10 @@ class HomePage extends Component {
                 }
 
                 <button className="settings">SETTINGS</button>
-                    
-           
+                <Settings 
+                    isMusicOn={this.setVolume}
+                    isSoundOn={this.setVolume}/>
+                />
             </div>
         )
     }

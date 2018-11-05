@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import Fight from './scripts/Fight';
 import HouseSelection from './scripts/HouseSelection';
-import TournementVictory from './scripts/TournementVictory';
+import TournementVictory from './scripts/TournementVictory'
 import HomePage from "./scripts/HomePage"
-//import Char from'./scripts/Char';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
+
+import music from "./sound/backgroundMusic.mp3"
+import sounds from "./sound/attackSound.wav"
 
 
 class App extends Component { 
@@ -19,18 +21,16 @@ class App extends Component {
         Ravenclaw: 300,
         Hufflepuff: 400,},
     }
+
+    let backgroundMusic = new Audio(music);
+    backgroundMusic.play();
+    backgroundMusic.volume=1;
+
+    this.soundsMusic = new Audio(sounds)
+    this.soundsVolume = 1;
+
+  
   }
-
-  /*
-  <Route exact path="/" component={Home} />
-  <Route path="/settings" component={Settings} />
-  <Route path="/instructions" component={Instructions} />
-  <Route path="/house" component={HouseSelection} />
-  <Route path="/arena" component={ArenaSelection} />
-  <Route path="/victory" component={Victory} />
-  */
-
-
 
   getGameType = (choice) => {
     this.setState({ gameType: choice })
@@ -43,13 +43,20 @@ class App extends Component {
     this.setState({isEndTournament: scoreFighters})
   }
 
-  
+  setVolume=(target, bool)=>{
+    console.log("chier")
+    if(target.includes("Music") && bool) this.backgroundMusic.volume = 0
+    if(target.includes("Sound") && bool) this.soundsVolume = 0
+  }
 
 
  
   render() {
     return (
       <div className="App">
+        <audio autoPlay>
+          <source src="./sound/backgroundMusic.mp3"></source>
+        </audio>
         <BrowserRouter>
           <Switch>
             <Route
@@ -67,6 +74,10 @@ class App extends Component {
                   fightersHouse={this.state.fightersHouse}
                   endTournament= {this.endTournament}
                   gameType = {this.state.gameType}
+                  soundEffect = {{
+                    soundsMusic: this.soundsMusic,
+                    soundsVolume: this.soundsVolume,
+                  }}
                 />)}
             />
             <Route
@@ -80,7 +91,10 @@ class App extends Component {
             <Route
               exact path="/"
               render={() => (
-                <HomePage gameType={this.getGameType} />)}
+                <HomePage 
+                  gameType={this.getGameType} 
+                  setVolume={this.setVolume}
+                />)}
             />
           </Switch>
         </BrowserRouter>
