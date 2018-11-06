@@ -22,7 +22,7 @@ class TournementVictory extends Component {
         }
 
     }
-   
+
     rankHouses() {
         let score = this.state.score
         let houseSort = [];
@@ -40,19 +40,27 @@ class TournementVictory extends Component {
         let style3 = { backgroundImage: `url(${this[third[0]]})` }
         console.log("final ranking :", houseSort)
         return <div>
-            <div className="firstAward" style={style1}>{first[1]} points</div>
-            <div className="secondAward" style={style2}>{second[1]} points</div>
-            <div className="thirdAward" style={style3}>{third[1]} points</div>
+            <div className="fullScore">
+                <div className="skore two">{second[1]} pts</div>
+                <div className="skore one">{first[1]} pts</div>
+                <div className="skore three">{third[1]} pts</div>
+            </div>
+
+            <div className="firstAward" style={style1}></div>
+
+            <div className="secondAward" style={style2}></div>
+
+            <div className="thirdAward" style={style3}></div>
         </div >
-        
+
     }
-    
+
 
 
 
     render() {
 
-        
+
 
         return (
             <div>
