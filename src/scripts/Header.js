@@ -30,14 +30,15 @@ class Header extends Component {
     let shieldsFighter1={
       position : "absolute",
       top : "45px",
-      left : "530px",
+      //left : "530px",
+      left: "10%",
       zIndex : 3,
     }
 
     let shieldsFighter2={
       position : "absolute",
       top : "45px",
-      left : "900px",
+      left : "84%",
       zIndex : 3,
     }
       

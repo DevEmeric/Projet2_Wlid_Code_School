@@ -22,7 +22,7 @@ class Fighter extends Component {
       left: this.props.fighter.left,
       width: this.props.fighter.width,
       height: this.props.fighter.height,
-      speed: 20,
+      speed: 50,
       tabKeys: [],
     }
   }
