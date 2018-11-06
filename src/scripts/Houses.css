@@ -42,35 +42,35 @@ h1 {
 }
 
 .Slytherin {
-    background-image: url("../image/slytherin2.png");
+    background-image: url("../image/slytherin.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .Gryffindor {
-    background-image: url("../image/gryffindor2.png");
+    background-image: url("../image/gryffindor.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .Ravenclaw {
-    background-image: url("../image/ravenclaw2.png");
+    background-image: url("../image/ravenclaw.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .Hufflepuff {
-    background-image: url("../image/hufflepuff2.png");
+    background-image: url("../image/hufflepuff.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .body {
-    background-image: url("../image/salle5.jpg");
+    background-image: url("../image/salle.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed; 

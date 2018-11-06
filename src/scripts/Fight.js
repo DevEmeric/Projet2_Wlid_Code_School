@@ -9,10 +9,10 @@ import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 import Shield from "./Shield.js"
 
-import gryffindorShield from '../image/gryffindor2.png'
-import slytherinShield from '../image/slytherin2.png'
-import ravenclawShield from '../image/ravenclaw2.png'
-import hufflepuffShield from '../image/hufflepuff2.png'
+import gryffindorShield from '../image/gryffindor.png'
+import slytherinShield from '../image/slytherin.png'
+import ravenclawShield from '../image/ravenclaw.png'
+import hufflepuffShield from '../image/hufflepuff.png'
 
 
 
@@ -46,8 +46,8 @@ class Fight extends Component {
                 keyInstr: 66,
                 turn: 1,
 
-
                 //Avatar 1
+                progressAttack1: 100,
                 progress: 100,
                 leftavatar: 5,
                 topavatar: 5,
@@ -57,10 +57,9 @@ class Fight extends Component {
                 scoreFighter1: 0,
 
 
-
                 //Avatar 2
+                progressAttack2: 100,
                 progress1: 100,
-
                 righttavatar1: 5,
                 topavatar1: 5,
                 heightavatar1: 130,
@@ -180,6 +179,26 @@ class Fight extends Component {
         </div>
     }
 
+    attackBar1= (progressAttack1) => {
+        return <div className="attackBar1">
+            <div className="progressAttack1" style={{
+                width: {progressAttack1} + "%",
+                backgroundColor: "pink",
+            }}>
+            </div>
+        </div>
+    }
+
+    attackBar2 = (progressAttack2) => {
+        return <div className="attackBar2">
+            <div className="progressAttack2" style={{
+                width: {progressAttack2} + "%",
+                backgroundColor: "pink",
+            }}>
+            </div>
+        </div>
+    }
+
 
     castSpell = (fighterID, facesRight) => {
         console.log("shoot");
@@ -192,14 +211,6 @@ class Fight extends Component {
                 spellCasted: true,
             }
         })
-        /*window.setTimeout = () => {
-            this.setState({
-                [fighterID]: {
-                    ...this.state[fighterID],
-                    spellCasted: false,
-                }
-            }, 2000)
-        }*/
         this.setState({
             [spellID]: {
                 ...this.state[spellID],
@@ -548,11 +559,6 @@ class Fight extends Component {
 
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
-
-      /*  this.setState({
-            scoreFighter1: 0,
-            scoreFighter2: 0,
-        })*/
     }
 
 
@@ -632,9 +638,11 @@ class Fight extends Component {
                             fighter2={this.state.fighter2}
                         />
                         <div className="avatar" id={avatarId} style={avatarStyle}></div>
+                        {this.attackBar1(this.state.progressAttack1)}
                         {this.progressBar(this.state.progress)}
 
                         <div className="avatar1" id={avatarId1} style={avatarStyle1}></div>
+                        {this.attackBar2(this.state.progressAttack2)}
                         {this.progressBar1(this.state.progress1)}
                     </div>
                     <div>

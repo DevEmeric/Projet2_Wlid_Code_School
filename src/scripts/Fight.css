@@ -14,20 +14,8 @@
   border-radius: 4px;
   transition: width 400ms ease-in-out;
   height: 100%;
-  
-
- /* .avatar{
-    background-color: rgb(233, 165, 64);
-    border: solid 8px lightgrey;
-  }
-  
-  .avatar1{
-    background-color: rgb(233, 165, 64);;
-    border: solid 8px lightgrey; 
-  }
-  */
-
 }
+
 
 .progressbar {
   left: 170px;
@@ -55,6 +43,33 @@
   padding: 7px;
 }
 
+.progressAttack1 {
+  left: 185px;
+  top: 10px;
+  position: relative;
+  float: left;
+  width: 2000%;
+  height: 20px;
+  border-radius: 4px;
+  background-color: lightgrey;
+  padding: 7px;
+}
+
+.progressAttack2 {
+  transform: rotate(180deg);
+  top: 40px;
+  right: 170px;
+  display: flex;
+  float: right;
+  position: fixed;  
+  width: 20%;
+  height: 20px;
+  border-radius: 4px;
+  background-color: lightgrey;
+  padding: 7px;
+}
+
+
 
 
 .full {
@@ -79,13 +94,3 @@
   padding: 10px;
 }
 
-
-/*.avatar{
-  background-color: rgb(233, 165, 64);
-  border: solid 8px lightgrey;
-}
-
-.avatar1{
-  background-color: rgb(233, 165, 64);
-  border: solid 8px lightgrey;
-}*/
