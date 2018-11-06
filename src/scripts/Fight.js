@@ -19,13 +19,18 @@ import SlytherinShield from '../image/slytherin2.png'
 import RavenclawShield from '../image/ravenclaw2.png'
 import HufflepuffShield from '../image/hufflepuff2.png'
 
-
+import spellSound from '../sound/attackSound.wav'
+import shieldSound from '../sound/defenseSound.mp3'
 
 
 class Fight extends Component {
 
     constructor() {
         super();
+
+        this.spellSound = new Audio(spellSound);
+        this.shieldSound = new Audio(shieldSound);
+
         this.houseStyles = {
             Gryffindor: {
                 shield: GryffindorShield,
@@ -209,14 +214,6 @@ class Fight extends Component {
                 spellCasted: true,
             }
         })
-        /*window.setTimeout = () => {
-            this.setState({
-                [fighterID]: {
-                    ...this.state[fighterID],
-                    spellCasted: false,
-                }
-            }, 2000)
-        }*/
         this.setState({
             [spellID]: {
                 ...this.state[spellID],
@@ -248,6 +245,8 @@ class Fight extends Component {
                 .bind(this),
             3000
         );
+        this.spellSound.play();
+        this.spellSound.volume = this.props.soundEffect.effectsVolume;
     }
 
     move = (fighterID, x, y) => {
@@ -298,6 +297,8 @@ class Fight extends Component {
                 .bind(this),
             this.state[fighterID].defense.shieldTime
         );
+        this.shieldSound.play();
+        this.shieldSound.volume = this.props.soundEffect.effectsVolume;
     }
 
     hasCollision(object1, object2) {
@@ -428,6 +429,8 @@ class Fight extends Component {
 
 
     componentDidMount = () => {
+
+        console.log(this.props)
 
         this.getCurrentFighters(1);
         setInterval(() => {

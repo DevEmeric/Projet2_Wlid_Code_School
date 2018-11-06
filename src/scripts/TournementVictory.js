@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./TournementVictory.css";
-import Fight from './Fight'
 import { Link } from "react-router-dom";
 
 
