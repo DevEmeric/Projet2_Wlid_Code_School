@@ -79,12 +79,59 @@
 }
 
 
-/*.avatar{
-  background-color: rgb(233, 165, 64);
-  border: solid 8px lightgrey;
+
+.beginFight {
+   /* animation: hide-animation ease-in 8.0s; */  
+ /*  visibility: hidden; */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100000;
+  background: black;
 }
 
-.avatar1{
-  background-color: rgb(233, 165, 64);
-  border: solid 8px lightgrey;
-}*/
+  .titleBegin {
+    /*  animation: hide-animation ease-in 8.0s;  */
+    font-size: 190px;
+    cursor: default;
+     opacity: 1; 
+   /*  position: absolute;
+    top: 48%;
+    left: 48%; */
+    color: gold;
+    margin: 0 auto;
+    margin-top: 20%;
+    text-shadow: 0 0 15px white, 0 0 10px white;
+  }
+
+  .decount {
+    
+    font-size: 290px;
+    cursor: default;
+    opacity: 1; 
+   /*  position: absolute;
+    top: 48%;
+    left: 48%; */
+    color: gold;
+    margin: 0 auto;
+    margin-bottom: 10vh;
+    text-shadow: 0 0 15px white, 0 0 10px white;
+
+  }
+
+  @keyframes hide-animation {
+    100% {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    100% {
+      opacity: 1;
+      visibility: hidden;
+    }
+  }
