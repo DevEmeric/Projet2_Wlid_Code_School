@@ -7,12 +7,12 @@ import { Link } from "react-router-dom"
 class HouseSelection extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       playerSelection: [],   //tableau envoyé à "App" via this.props.finalSelection()
       playerAmount: this.props.gameType === "1v1" ? 2 : 3,  // quantité de joueurs (valeur initiale à 3 en tournoi, et par défaut à 2 en 1v1)
       selection: "", //  maison qui apparaît sur le bouton de confirmation
-      confirmButton: false,   // permet de faire disparaitre le bouton après avoir confirmé son choix de maison
+      clearButton: false,   // permet de faire disparaitre le bouton après avoir confirmé son choix de maison
       Gryffindor: {
         isSelected: false,   // empêche 2+ joueurs de sélectionner la même maison
         top: 250,  //px
@@ -48,38 +48,40 @@ class HouseSelection extends Component {
     }
   }
 
-
-  playerAmount = (amount) => {   //permet aussi de reset la page
+  clearChoice = () => {
     this.setState({
       playerSelection: [],
-      playerAmount: amount,
-      confirmButton: false,
+      clearButton: false,
       Gryffindor: { opacity: 1, isSelected: false },
       Slytherin: { opacity: 1, isSelected: false },
       Ravenclaw: { opacity: 1, isSelected: false },
       Hufflepuff: { opacity: 1, isSelected: false },
-    })
+    });
   }
 
-  // pré-selection maison:
-  selectHouse = (house) => {
-    if (!this.state[house].isSelected)
-      this.setState({ selection: house, confirmButton: true })
+  playerAmount = (amount) => {
+    this.clearChoice();
+    this.setState({
+      playerAmount: amount,
+    });
   }
-
-  // affichage du bouton de confirmation de choix maison suite clic pré-selection sur maison:
-  displayConfirmButton() {
-    if (this.state.selection !== "" && this.state.confirmButton === true)
+  
+  // ajout maison par joueur
+  addToPlayerSelection = (housePicked) => {
+    this.setState({ clearButton: true });
+    if (this.state.playerAmount !== this.state.playerSelection.length && this.state[housePicked].isSelected === false ) {
+      const playerAdd = this.state.playerSelection
+      playerAdd.push(housePicked)
+      this.setState({ playerSelection: playerAdd })
+      this.grayOut(housePicked)
+    }
+  }
+  
+  // bouton reset choix maison
+  clearButton() {
+    if (this.state.playerSelection.length >= 0 && this.state.clearButton === true)
       return <button
-        onClick={this.addToPlayerSelection} className="confirm-button">Confirm choice: {this.state.selection} ?</button>;
-  }
-
-  // fonction du onclick du bouton de confirmation de choix maison:
-  addToPlayerSelection = () => {
-    const playerAdd = this.state.playerSelection
-    playerAdd.push(this.state.selection)
-    this.setState({ playerSelection: playerAdd, confirmButton: false })
-    this.grayOut(this.state.selection)
+        onClick={this.clearChoice} className="clear-button">Clear selection</button>;
   }
 
   // fonction pour empêcher de sélectionner maison deux fois:
@@ -122,7 +124,7 @@ class HouseSelection extends Component {
   }
 
   render() {
-
+    console.log("player array: ", this.state.playerSelection)
     // 4 fonctions suivantes = styles des blasons pour anim. Pour l'instant anim sur opacity quand maison choisie
     let slytherinStyle = {
       backgroundSize: "contain",
@@ -166,7 +168,7 @@ class HouseSelection extends Component {
 
 
     return (
-      
+
       <body className="body">
         <div>{this.props.gameType === "tournament" ? <h1>Tournament Mode</h1> : <h1>1 vs 1</h1>}
           {/* blason poudlard */}
@@ -176,7 +178,7 @@ class HouseSelection extends Component {
           {/* choix du nombre de joueurs */}
           {this.props.gameType === "tournament" ?
             <select className="player-amount" onChange={(e) => { this.playerAmount(parseInt(e.target.value, 10)) }} >
-             {/*} <option value="2">2 players</option> */}
+              {/*} <option value="2">2 players</option> */}
               <option value="3">3 players</option>
               <option value="4">4 players</option>
             </select>
@@ -194,17 +196,17 @@ class HouseSelection extends Component {
         <div>
           {() => this.grayOut()}
           {/* blasons des maisons */}
-          <button className="Slytherin shield-button" onClick={() => this.selectHouse("Slytherin")} style={slytherinStyle}>
+          <button className="Slytherin shield-button" onClick={() => this.addToPlayerSelection("Slytherin")} style={slytherinStyle}>
           </button>
-          <button className="Gryffindor shield-button" onClick={() => this.selectHouse("Gryffindor")} style={gryffindorStyle}>
+          <button className="Gryffindor shield-button" onClick={() => this.addToPlayerSelection("Gryffindor")} style={gryffindorStyle}>
           </button>
-          <button className="Ravenclaw shield-button" onClick={() => this.selectHouse("Ravenclaw")} style={ravenclawStyle}>
+          <button className="Ravenclaw shield-button" onClick={() => this.addToPlayerSelection("Ravenclaw")} style={ravenclawStyle}>
           </button>
-          <button className="Hufflepuff shield-button" onClick={() => this.selectHouse("Hufflepuff")} style={hufflepuffStyle}>
+          <button className="Hufflepuff shield-button" onClick={() => this.addToPlayerSelection("Hufflepuff")} style={hufflepuffStyle}>
           </button>
         </div>
         {/* boutons de confirmation */}
-        {this.displayConfirmButton()}
+        {this.clearButton()}
         {this.playerConfirmation()}
       </body>
 
