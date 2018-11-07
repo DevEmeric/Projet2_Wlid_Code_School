@@ -385,6 +385,7 @@ class Fight extends Component {
                 left: 100,
                 top: 250,
                 house: this.props.fightersHouse[i],
+                deathFighter: false,
                 style: {
                     opacity: 1,
                 },
@@ -400,6 +401,7 @@ class Fight extends Component {
                 left: 1100,
                 top: 250,
                 house: this.props.fightersHouse[j],
+                deathFighter: false,
                 style: {
                     opacity: 1,
                 },
@@ -688,17 +690,6 @@ class Fight extends Component {
 
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
-        this.setState({
-            //Reinitializatiion de l'affichage mort
-            fighter1: {
-                ...this.state.fighter1,
-                deathFighter: false
-            },
-            fighter2: {
-                ...this.state.fighter2,
-                deathFighter: false
-            }
-        })
     }
 
     redirect = () => {
