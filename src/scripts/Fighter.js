@@ -103,7 +103,7 @@ class Fighter extends Component {
       width: this.state.width + "px",
       height: this.state.height + "px",
       backgroundImage: this.props.fighter.deathFighter === true ? `url(${this.Head2})`: `url(${this[this.props.fighter.house]})`,
-    };
+    };// ternaire pour afficher la mort de fightherID
 
     let fighterId = "fighter" + this.props.fighter.house
     return (

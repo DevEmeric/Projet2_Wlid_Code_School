@@ -92,7 +92,7 @@ class Fight extends Component {
                 fighter1: {
                     id: "fighter1",
                     spellCasted: false,
-                    deathFighter: false,
+                    deathFighter: false, //Affichage de la mort
                     rotation: 0,
                     facesRight: true,
                     top: 250,
@@ -123,7 +123,7 @@ class Fight extends Component {
                 fighter2: {
                     id: "fighter2",
                     spellCasted: false,
-                    deathFighter: false,
+                    deathFighter: false, // Affichage de la Mort
                     rotation: 180,
                     facesRight: false,
                     top: 250,
@@ -305,31 +305,6 @@ class Fight extends Component {
         this.shieldSound.volume = this.props.soundEffect.effectsVolume;
     }
     
-    //Affichage mort fighters
-
-    /*showDeathFighters = () => {
-        setInterval(() => {
-            if (this.state.progress===0){
-            this.setState({
-                fighter1: {
-                    ...this.state.fighter1,
-                    top: this.state.fighter1.top - 200,
-                }
-            })
-        }
-            if (this.state.progress1===0){
-                this.setState({
-                    fighter2: {
-                        ...this.state.fighter2,
-                        top: this.state.fighter2.top - 100,
-                    }
-                })
-            }
-    },70)
-    console.log(this.showDeathFighters)
-}*/
-
-
     hasCollision(object1, object2) {
         if (this.state.modalVictory === false)
             if (object1.top < object2.top + object2.width &&
@@ -520,6 +495,7 @@ class Fight extends Component {
                         scoreFighter1: this.state.scoreFighter1 + currentState1,
                         progress1: - 1,
                         modalVictory: true,
+                        // Affichage de la mort
                         fighter2: {
                             ...this.state.fighter2,
                             deathFighter: true
@@ -560,6 +536,7 @@ class Fight extends Component {
                         scoreFighter2: this.state.scoreFighter2 + currentState2,
                         progress: - 1,
                         modalVictory: true,
+                        //Affichage de la mort
                         fighter1: {
                             ...this.state.fighter1,
                             deathFighter: true
@@ -579,7 +556,7 @@ class Fight extends Component {
                         scoreFighter1: this.state.scoreFighter1 + currentState1,
                         progress1: - 1,
                         modalVictory: true,
-                        deathFighter: true,
+                        deathFighter: true, // Affichage de la mort
                     });
                     switch (this.state.fighter1.house) {
                         case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter1; break;
@@ -667,7 +644,7 @@ class Fight extends Component {
                 ...this.state[fighterID],
                 life: 100,
                 spellCasted: false,
-                deathFighter: notDead,
+                deathFighter: notDead,// Affichage de la mort
                 top: 250,
                 left: leftPosition,
                 facesRight: newFacePosition,
@@ -683,6 +660,7 @@ class Fight extends Component {
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
         this.setState({
+            //Reinitializatiion de l'affichage mort
             fighter1: {
                 ...this.state.fighter1,
                 deathFighter: false
