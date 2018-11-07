@@ -124,7 +124,6 @@ class HouseSelection extends Component {
   }
 
   render() {
-    console.log("player array: ", this.state.playerSelection)
     // 4 fonctions suivantes = styles des blasons pour anim. Pour l'instant anim sur opacity quand maison choisie
     let slytherinStyle = {
       backgroundSize: "contain",
