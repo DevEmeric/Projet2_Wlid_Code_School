@@ -45,7 +45,7 @@
 }
 .boutonPodium{
     position: absolute;
-    background-image: url("../image/podium3new.png");
+    background-image: url("../image/podium.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -132,7 +132,11 @@
 
 .firstAward {
     position: absolute;
+<<<<<<< HEAD
+    background-image: url("../image/slytherin.png");
+=======
     /*background-image: url("../image/Slytherin.png");*/
+>>>>>>> 65e030c205e36906bb8b32219760409e2cb0f5cc
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -145,7 +149,7 @@
 
 .thirdAward {
     position: absolute;
-    /*background-image: url("../image/Gryffindor.png");*/
+    /*background-image: url("../image/gryffindor.png");*/
     background-position: center;
     background-repeat: no-repeat;
     height: 300px;
@@ -160,7 +164,11 @@
 .secondAward {
 
     position: absolute;
+<<<<<<< HEAD
+    background-image: url("../image/ravenclaw.png");
+=======
     /*background-image: url("../image/Ravenclaw.png");*/
+>>>>>>> 65e030c205e36906bb8b32219760409e2cb0f5cc
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -175,7 +183,7 @@
 .logoHufflepuffHouse {
 
     position: absolute;
-    background-image: url("../image/Hufflepuff.png");
+    background-image: url("../image/hufflepuff.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -4,45 +4,49 @@ export default class Timer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            minutes : this.props.fightTime.minutes,
+            minutes: this.props.fightTime.minutes,
             seconds: this.props.fightTime.seconds,
-            timer : "0"+this.props.fightTime.minutes+":0"+this.props.fightTime.seconds
+            timer: "0" + this.props.fightTime.minutes + ":0" + this.props.fightTime.seconds
         };
 
         console.log("passage dans le constructeur")
     }
 
-    componentDidMount=()=>{
-        let timerInterval = setInterval(()=>{
-            if(this.state.seconds === 0){
-                this.setState({
-                    minutes : this.state.minutes - 1,
-                    seconds : 59
-                })
-            }
-            else{
-                this.setState({
-                    seconds : this.state.seconds - 1,
-                })
-            }
+    componentDidMount = () => {
 
-            this.setState({
-                timer : this.state.seconds > 9 ? "0"+this.state.minutes+":"+this.state.seconds : "0"+this.state.minutes+":0"+this.state.seconds
-            })
+        let timerInterval = setInterval(() => {
+            if (!this.props.displayInstr && !this.props.modalVictory) {
+                if (this.state.seconds === 0) {
+                    this.setState({
+                        minutes: this.state.minutes - 1,
+                        seconds: 59
+                    })
+                }
+                else {
+                    this.setState({
+                        seconds: this.state.seconds - 1,
+                    })
+                }
 
-            if(this.state.minutes === 0 && this.state.seconds === 0){
-                clearInterval(timerInterval);
-                this.props.endOfFight();
+                this.setState({
+                    timer: this.state.seconds > 9 ? "0" + this.state.minutes + ":" + this.state.seconds : "0" + this.state.minutes + ":0" + this.state.seconds
+                })
+
+                if (this.state.minutes === 0 && this.state.seconds === 0) {
+                    clearInterval(timerInterval);
+                    this.props.endOfFight();
+                }
             }
-        },1000)        
+        }, 1000);
     }
 
-    componentDidUpdate=(prevProps, prevState)=>{
-        if(prevProps.fightTime !== this.props.fightTime){
+
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevProps.fightTime !== this.props.fightTime) {
             this.setState({
-                minutes : this.props.fightTime.minutes,
+                minutes: this.props.fightTime.minutes,
                 seconds: this.props.fightTime.seconds,
-                timer : "0"+this.props.fightTime.minutes+":0"+this.props.fightTime.seconds
+                timer: "0" + this.props.fightTime.minutes + ":0" + this.props.fightTime.seconds
             });
         }
     }
