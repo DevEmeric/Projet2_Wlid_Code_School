@@ -118,7 +118,8 @@ class Fight extends Component {
                         shieldOn: false,
                         shieldNumber: 3,
                         shieldTime: 3000,
-                    }
+                    },
+                    touched: false
                 },
                 fighter2: {
                     id: "fighter2",
@@ -148,7 +149,8 @@ class Fight extends Component {
                         shieldOn: false,
                         shieldNumber: 3,
                         shieldTime: 3000,
-                    }
+                    },
+                    touched: false
                 },
                 spellfighter1: {
                     left: 0,
@@ -457,6 +459,10 @@ class Fight extends Component {
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 //this.loseLife(fighter2.id)
                 this.setState({
+                    fighter2: {
+                        ...this.state.fighter2,
+                        touched: true
+                    },
                     progress1: currentState2 - 20,
                     fighter1: {
                         ...this.state.fighter1,
@@ -468,6 +474,16 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
+                setTimeout(
+                    function() {
+                        this.setState({
+                            fighter2: {
+                                ...this.state.fighter2,
+                                touched: false
+                            }
+                        })
+                    }.bind(this), 250
+                )
 
                 ////JE PENSE QUON  PEUT LE VIRER
                 //this.deathOfAPlayer(fighter2.id)
@@ -517,8 +533,11 @@ class Fight extends Component {
                 //this.loseLife(fighter1.id)
                 //window.alert("COLLISIOOOOOOOOOOOOOOOOOOOOOON")
                 this.setState({
+                    fighter1: {
+                        ...this.state.fighter1,
+                        touched: true
+                    },
                     progress: currentState1 - 20,
-
                     fighter2: {
                         ...this.state.fighter2,
                         spellCasted: false,
@@ -529,6 +548,16 @@ class Fight extends Component {
                         left: 0,
                     }
                 })
+                setTimeout(
+                    function() {
+                        this.setState({
+                            fighter1: {
+                                ...this.state.fighter1,
+                                touched: false
+                            }
+                        })
+                    }.bind(this), 250
+                )
 
                 //this.deathOfAPlayer(fighter1.id)
                 if (this.state.progress === 0) {
