@@ -3,10 +3,10 @@ import "./TournementVictory.css";
 import { Link } from "react-router-dom";
 
 
-import gryffindorTeam from '../image/Gryffindor.png'
-import slytherinTeam from '../image/Slytherin.png'
-import ravenclawTeam from '../image/Ravenclaw.png'
-import hufflepuffTeam from '../image/Hufflepuff.png'
+import gryffindorTeam from '../image/gryffindor.png'
+import slytherinTeam from '../image/slytherin.png'
+import ravenclawTeam from '../image/ravenclaw.png'
+import hufflepuffTeam from '../image/hufflepuff.png'
 
 
 class TournementVictory extends Component {

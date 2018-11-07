@@ -14,10 +14,10 @@ import { Link } from "react-router-dom"
 
 
 
-import GryffindorShield from '../image/gryffindor2.png'
-import SlytherinShield from '../image/slytherin2.png'
-import RavenclawShield from '../image/ravenclaw2.png'
-import HufflepuffShield from '../image/hufflepuff2.png'
+import GryffindorShield from '../image/gryffindor.png'
+import SlytherinShield from '../image/slytherin.png'
+import RavenclawShield from '../image/ravenclaw.png'
+import HufflepuffShield from '../image/hufflepuff.png'
 
 import spellSound from '../sound/attackSound.wav'
 import shieldSound from '../sound/defenseSound.mp3'
@@ -66,8 +66,8 @@ class Fight extends Component {
                 keyInstr: 66,
                 turn: 1,
 
-
                 //Avatar 1
+                progressAttack1: 100,
                 progress: 100,
                 leftavatar: 5,
                 topavatar: 5,
@@ -77,10 +77,9 @@ class Fight extends Component {
                 scoreFighter1: 0,
 
 
-
                 //Avatar 2
+                progressAttack2: 100,
                 progress1: 100,
-
                 righttavatar1: 5,
                 topavatar1: 5,
                 heightavatar1: 130,
@@ -202,7 +201,6 @@ class Fight extends Component {
             </div>
         </div>
     }
-
 
     castSpell = (fighterID, facesRight) => {
         let spellID = "spell" + fighterID
