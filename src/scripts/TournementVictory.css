@@ -1,10 +1,16 @@
-.bodyTournementVictory{
+@font-face{
+    font-family: "PotterFont";
+    src: url('../font/HARRYP__.TTF')format("truetype");
+}
 
+
+.bodyTournementVictory{
     /*background-image: url("../image/background1tournement.jpg");*/
+    background-image: url('https://www.dhresource.com/0x0s/f2-albu-g5-M01-74-79-rBVaJFkftaiAMKQPAAJ7wiL9fGo632.jpg/7x5ft-daylight-harry-potter-hogwarts-passage.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    height: 800px;
+    height: 51vw;
     background-color: white;
     color: black;
 }
@@ -25,7 +31,7 @@
     position: absolute;
     top: 700px;
     left: 1210px;
-    color: black;
+    color: white;
     width: 200px;
     height: 80px;
     font-size: 30px;
@@ -52,20 +58,85 @@
 
 .titleWinners{
     position: absolute;
-    font-size: 60px;
+    font-size: 100px;
     font-weight: bold;
     top: 5px;
     left: 500px;
-    color: rgb(27, 27, 26);
+    font-family: "PotterFont";
+    color: rgb(252, 222, 53);
     box-shadow: black;
 
 }
+.fullScore {
+    display: flex;
+  position: fixed;
+  top: 75vh;
+  }
+  
+  /*.score {
+    display: flex;
+    position: fixed;
+    top: 90vh;
+    z-index: -1;
+  }
+  
+  .scorePerso {
+    margin-right: 50px;
+    display: flex;
+    float: right;
+    z-index: 10;
+    color: black;
+    border-radius: 45px;
+    padding: 10px;
+  }*/
+  .skore {
+    margin-left: 15%;
+    display: flex;
+    color: white;
+    font-size: 50px;
+  }
+    .one{
+        position: relative;
+        font-size: 60px;
+        font-weight: bold;
+        color: #FBCC5D;
+        top: 5vw;  
+        width: 40vh;
+        margin-left: -2%;
+        text-shadow: 5px -3px black;
+        font-family: "PotterFont";
+    }
 
+    .two{
+        position: relative;
+        font-size: 60px;
+        font-weight: bold;
+        color: #D1D1D1;
+        top: 5vw;
+        width: 40vh;
+        text-shadow: 5px -3px black;
+        font-family: "PotterFont";
+    }
 
+    .three{
+        position: relative;
+        font-size: 60px;
+        font-weight: bold;
+        color: #FB8249;
+        top: 5vw;
+        width: 40vh;
+        margin-left: -2%;
+        text-shadow: 5px -3px black;
+        font-family: "PotterFont";
+    }
 
 .firstAward {
     position: absolute;
+<<<<<<< HEAD
     background-image: url("../image/slytherin.png");
+=======
+    /*background-image: url("../image/Slytherin.png");*/
+>>>>>>> 65e030c205e36906bb8b32219760409e2cb0f5cc
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -78,28 +149,32 @@
 
 .thirdAward {
     position: absolute;
-    background-image: url("../image/gryffindor.png");
+    /*background-image: url("../image/gryffindor.png");*/
     background-position: center;
     background-repeat: no-repeat;
     height: 300px;
     width: 200px;
-    top: 230px;
+    top: 330px;
     left: 750px;
     background-size: cover;
-    background-repeat: no-repeat;
+
 
 }
 
 .secondAward {
 
     position: absolute;
+<<<<<<< HEAD
     background-image: url("../image/ravenclaw.png");
+=======
+    /*background-image: url("../image/Ravenclaw.png");*/
+>>>>>>> 65e030c205e36906bb8b32219760409e2cb0f5cc
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 300px;
     width: 200px;
-    top: 230px;
+    top: 280px;
     left: 140px;
 
 

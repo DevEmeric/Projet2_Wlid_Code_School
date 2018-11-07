@@ -1,0 +1,27 @@
+#settings{
+    position: absolute;
+    width: 40vw;
+    height: 40vh;
+    margin: 10vh 10vw;
+    left: 20vw;
+    top: 20vh;
+    background-color: white;
+    z-index: 3;
+    opacity: 0.8;
+}
+
+#settings span{
+    display: inline;
+}
+
+#settings button{
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+}
+
+
+#settings button img{
+    width: 100px;
+    height: 70px;
+}

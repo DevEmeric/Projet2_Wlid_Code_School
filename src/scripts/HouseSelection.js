@@ -1,22 +1,22 @@
 import React, { Component } from "react";
 import Hogwarts from "../image/logochoice.png";
-import "./Houses.css";
-import { Link } from "react-router-dom";
+import "./Houses.css"
+import { Link } from "react-router-dom"
 
 
 class HouseSelection extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       playerSelection: [],   //tableau envoyé à "App" via this.props.finalSelection()
-      playerAmount: 2,  // quantité de joueurs (valeur initiale arbitraire mais doit être supérieure à zéro)
+      playerAmount: this.props.gameType === "1v1" ? 2 : 3,  // quantité de joueurs (valeur initiale à 3 en tournoi, et par défaut à 2 en 1v1)
       selection: "", //  maison qui apparaît sur le bouton de confirmation
       confirmButton: false,   // permet de faire disparaitre le bouton après avoir confirmé son choix de maison
       Gryffindor: {
         isSelected: false,   // empêche 2+ joueurs de sélectionner la même maison
         top: 250,  //px
-        left: 21,   //%
+        left: 10,   //%
         height: 200,  //px
         width: 12,  //%
         opacity: 1,   //opacité diminuée quand maison est choisie -> grayOut()
@@ -24,7 +24,7 @@ class HouseSelection extends Component {
       Slytherin: {
         isSelected: false,
         top: 250,
-        left: 68,
+        left: 79,
         height: 200,
         width: 12,
         opacity: 1,   //opacité diminuée quand maison est choisie -> grayOut()
@@ -32,7 +32,7 @@ class HouseSelection extends Component {
       Hufflepuff: {
         isSelected: false,
         top: 500,
-        left: 21,
+        left: 10,
         height: 200,
         width: 12,
         opacity: 1,   //opacité diminuée quand maison est choisie -> grayOut()
@@ -40,7 +40,7 @@ class HouseSelection extends Component {
       Ravenclaw: {
         isSelected: false,
         top: 500,
-        left: 68,
+        left: 79,
         height: 200,
         width: 12,
         opacity: 1,    //opacité diminuée quand maison est choisie -> grayOut()
@@ -102,13 +102,13 @@ class HouseSelection extends Component {
 
   // titre de la page -> change en fonction du joueur qui doit choisir sa maison:
   pageTitle = () => {
-    if (this.state.playerSelection.length < this.state.playerAmount) { return <h1 className="page-title"> Player {this.state.playerSelection.length + 1}: Choose your  House</h1> }
-    else { return <h1 className="page-title">Houses have been chosen!</h1> }
+    if (this.state.playerSelection.length < this.state.playerAmount) { return <h1 className="choose-house"> Player {this.state.playerSelection.length + 1}: Choose your  House</h1> }
+    else { return <h1 className="choose-house">Houses have been chosen!</h1> }
   }
 
   //les quatre fonctions suivantes affichent les choix de maison pour chaque joueur (faudrait en faire une seule fonction)
 
-  selectionChoice1 = () => {   
+  selectionChoice1 = () => {
     if (typeof this.state.playerSelection[0] !== "undefined") return <h2 className="player-selection">Player 1: {this.state.playerSelection[0]}</h2>
   }
   selectionChoice2 = () => {
@@ -165,20 +165,24 @@ class HouseSelection extends Component {
     };
 
 
-
     return (
+      
       <body className="body">
-        <div>
+        <div>{this.props.gameType === "tournament" ? <h1>Tournament Mode</h1> : <h1>1 vs 1</h1>}
           {/* blason poudlard */}
           <img src={Hogwarts} className="main-shield" alt="HOGWARTS" />
           {/* titre page */}
           {this.pageTitle()}
           {/* choix du nombre de joueurs */}
-          <select className="player-amount" onChange={(e) => { this.playerAmount(parseInt(e.target.value)) }} >
-            <option value="2">2 players</option>
-            <option value="3">3 players</option>
-            <option value="4">4 players</option>
-          </select>
+          {this.props.gameType === "tournament" ?
+            <select className="player-amount" onChange={(e) => { this.playerAmount(parseInt(e.target.value, 10)) }} >
+             {/*} <option value="2">2 players</option> */}
+              <option value="3">3 players</option>
+              <option value="4">4 players</option>
+            </select>
+            :
+            <div></div>
+          }
         </div>
         <div>
           {/* affichage du choix des joueurs */}

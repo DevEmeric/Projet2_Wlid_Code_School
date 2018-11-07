@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Shield from './HeaderShield'
+import Shield from './HeaderShield';
+import Timer from './Timer'
 
 class Header extends Component {
 
@@ -19,16 +20,21 @@ class Header extends Component {
     return shieldsItem;
   }
 
+  endOfFight=()=>{
+    //this.props.fighter2.life > this.props.fighter1.life ? this.props.endOfFight(this.props.fighter1.id, this.props.fighter2.id) : this.props.endOfFight(this.props.fighter2.id, this.props.fighter1.id)
+    this.props.endOfFight()
+  }
+
   render() {
 
-    let fighter1Shields={
+    let shieldsFighter1={
       position : "absolute",
       top : "45px",
       left : "530px",
       zIndex : 3,
     }
 
-    let fighter2Shields={
+    let shieldsFighter2={
       position : "absolute",
       top : "45px",
       left : "900px",
@@ -37,12 +43,16 @@ class Header extends Component {
       
     return (
       <div>
-        <div id="shieldsFighter1" style={fighter1Shields}>
+        <Timer
+          fightTime = {this.props.fightTime}
+          endOfFight={this.endOfFight}
+        />
+        <div id="shieldsFighter1" style={shieldsFighter1}>
             {
               this.renderShields(this.props.fighter1.defense.shieldNumber)
             } 
         </div>
-        <div id="shieldsFighter2" style={fighter2Shields}>
+        <div id="shieldsFighter2" style={shieldsFighter2}>
             {
               this.renderShields(this.props.fighter2.defense.shieldNumber)
             } 

@@ -5,14 +5,17 @@
 
 
 h1 {
+    color: rgb(252, 222, 53);
     white-space: nowrap;
+    font-family: "PotterFont";
+    font-size: 3em;
 }    
 
-.page-title {
+.choose-house {
     text-shadow: 4px 4px 4px black;
     color: orange;
-    font-size: 50px;
-    font-family: "PotterFont";
+    font-size: 40px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .player-selection {
@@ -32,8 +35,8 @@ h1 {
 }
 
 .main-shield {
-    height: 200px;
-    padding-top: 40px;
+    height: 150px;
+    padding-top: px;
   }
   
 .shield-button {
@@ -75,7 +78,9 @@ h1 {
     background-size: cover;
     background-attachment: fixed; 
     text-align: center;
-    height: 800px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
     background-color: black;
     color: white;
 }
@@ -99,16 +104,15 @@ h1 {
 .start-button {
     width: 200px;
     height: 70px;
-    background-color: rgb(51, 202, 51);
+    background-color: yellow;
     font-size: 1.2em;
     border-radius: 20px;
     border: none;
-    color: yellow;
+    color: rgb(77, 66, 66);
     position: absolute;
     top: 600px;
     left: 43%;
     line-height: 1.5em;
-    animation: button-blink2 infinite 1s linear;
     z-index: 2;
 }
 
