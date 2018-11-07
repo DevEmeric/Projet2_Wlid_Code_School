@@ -12,20 +12,8 @@
   border-radius: 4px;
   transition: width 400ms ease-in-out;
   height: 100%;
-  
-
- /* .avatar{
-    background-color: rgb(233, 165, 64);
-    border: solid 8px lightgrey;
-  }
-  
-  .avatar1{
-    background-color: rgb(233, 165, 64);;
-    border: solid 8px lightgrey; 
-  }
-  */
-
 }
+
 
 .progressbar {
   left: 170px;
@@ -53,8 +41,6 @@
   padding: 7px;
 }
 
-
-
 .full {
   display: flex;
   
@@ -78,13 +64,3 @@
   padding: 10px;
 }
 
-
-/*.avatar{
-  background-color: rgb(233, 165, 64);
-  border: solid 8px lightgrey;
-}
-
-.avatar1{
-  background-color: rgb(233, 165, 64);
-  border: solid 8px lightgrey;
-}*/

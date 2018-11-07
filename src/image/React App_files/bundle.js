@@ -1327,7 +1327,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "@font-face { \n    font-family: 'HARRYP';\n    src: url('/home/mathieudearmey/Projet2/lyon-0918-js-potter-fighter/font/HARRYP__.TTF');\n    }\n\nh1 {\n    white-space: nowrap;\n}    \n\n.page-title {\n    font-family: \"HARRYP\";\n    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.3)));\n    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));\n    background: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));\n    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)); \n}\n\n.player-selection {\n    text-align: center;\n    left: 42%;\n}\n\n.player-amount {\n    background-color: rgb(255, 251, 251);\n    font-size: 1.6 em;\n    border: none;\n    width: 160px;\n    height: 30px;\n    text-align: center;\n}\n\n.main-shield {\n    height: 120px;\n    padding-top: 40px;\n  }\n  \n.shield-button {\n    background: rgba(0, 0, 0, 0);\n    border: none;\n}\n\n.Slytherin {\n    background-image: url(" + __webpack_require__(/*! ../image/Slytherin.png */ "./src/image/Slytherin.png") + ");\n    background-position: center; \n    background-repeat: no-repeat; \n    \n}\n\n.Gryffindor {\n    background-image: url(" + __webpack_require__(/*! ../image/Gryffindor.png */ "./src/image/Gryffindor.png") + ");\n    background-position: center; \n    background-repeat: no-repeat; \n    \n}\n\n.Ravenclaw {\n    background-image: url(" + __webpack_require__(/*! ../image/Ravenclaw.png */ "./src/image/Ravenclaw.png") + ");\n    background-position: center; \n    background-repeat: no-repeat; \n    \n}\n\n.Hufflepuff {\n    background-image: url(" + __webpack_require__(/*! ../image/Hufflepuff.png */ "./src/image/Hufflepuff.png") + ");\n    background-position: center; \n    background-repeat: no-repeat; \n    \n}\n\n.body {\n    background-image: url(" + __webpack_require__(/*! ../image/slytherinRoom.jpg */ "./src/image/slytherinRoom.jpg") + ");\n    background-repeat: no-repeat;\n    background-size: cover;\n    background-attachment: fixed; \n    height: 800px;\n    background-color: black;\n    color: white;\n}\n\n.confirm-button {\n    width: 200px;\n    height: 80px;\n    font-size: 1.2em;\n    border-radius: 20px;\n    border: none;\n    color: black;\n    position: absolute;\n    top: 600px;\n    left: 42.5%;\n    line-height: 1.5em;\n    -webkit-animation: button-blink1 infinite 1.5s linear;\n            animation: button-blink1 infinite 1.5s linear;\n    z-index: 1;\n}\n\n.start-button {\n    width: 200px;\n    height: 80px;\n    background-color: rgb(51, 202, 51);\n    font-size: 1.2em;\n    border-radius: 20px;\n    border: none;\n    color: white;\n    position: absolute;\n    top: 600px;\n    left: 42.5%;\n    line-height: 1.5em;\n    -webkit-animation: button-blink2 infinite 1s linear;\n            animation: button-blink2 infinite 1s linear;\n    z-index: 2;\n}\n\n@-webkit-keyframes button-blink1 {\n    0% {background-color: orange}\n    30% {background-color: rgb(255, 51, 0)}\n    100% {background-color: orange} \n  }\n\n@keyframes button-blink1 {\n    0% {background-color: orange}\n    30% {background-color: rgb(255, 51, 0)}\n    100% {background-color: orange} \n  }\n\n  @-webkit-keyframes button-blink2 {\n    0% {background-color: green}\n    30% {background-color: rgb(123, 212, 123)}\n    100% {background-color: green} \n  }\n\n  @keyframes button-blink2 {\n    0% {background-color: green}\n    30% {background-color: rgb(123, 212, 123)}\n    100% {background-color: green} \n  }", ""]);
+exports.push([module.i, "@font-face { \n    font-family: 'HARRYP';\n    src: url('/home/mathieudearmey/Projet2/lyon-0918-js-potter-fighter/font/HARRYP__.TTF');\n    }\n\nh1 {\n    white-space: nowrap;\n}    \n\n.page-title {\n    font-family: \"HARRYP\";\n    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.3)));\n    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));\n    background: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));\n    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)); \n}\n\n.player-selection {\n    text-align: center;\n    left: 42%;\n}\n\n.player-amount {\n    background-color: rgb(255, 251, 251);\n    font-size: 1.6 em;\n    border: none;\n    width: 160px;\n    height: 30px;\n    text-align: center;\n}\n\n.main-shield {\n    height: 120px;\n    padding-top: 40px;\n  }\n  \n.shield-button {\n    background: rgba(0, 0, 0, 0);\n    border: none;\n}\n\n.Slytherin {\n    background-image: url(" + __webpack_require__(/*! ../image/slytherin.png */ "./src/image/slytherin.png") + ");\n    background-position: center; \n    background-repeat: no-repeat; \n    \n}\n\n.Gryffindor {\n    background-image: url(" + __webpack_require__(/*! ../image/gryffindor.png */ "./src/image/gryffindor.png") + ");\n    background-position: center; \n    background-repeat: no-repeat; \n    \n}\n\n.Ravenclaw {\n    background-image: url(" + __webpack_require__(/*! ../image/ravenclaw.png */ "./src/image/ravenclaw.png") + ");\n    background-position: center; \n    background-repeat: no-repeat; \n    \n}\n\n.Hufflepuff {\n    background-image: url(" + __webpack_require__(/*! ../image/Hufflepuff.png */ "./src/image/Hufflepuff.png") + ");\n    background-position: center; \n    background-repeat: no-repeat; \n    \n}\n\n.body {\n    background-image: url(" + __webpack_require__(/*! ../image/slytherinRoom.jpg */ "./src/image/slytherinRoom.jpg") + ");\n    background-repeat: no-repeat;\n    background-size: cover;\n    background-attachment: fixed; \n    height: 800px;\n    background-color: black;\n    color: white;\n}\n\n.confirm-button {\n    width: 200px;\n    height: 80px;\n    font-size: 1.2em;\n    border-radius: 20px;\n    border: none;\n    color: black;\n    position: absolute;\n    top: 600px;\n    left: 42.5%;\n    line-height: 1.5em;\n    -webkit-animation: button-blink1 infinite 1.5s linear;\n            animation: button-blink1 infinite 1.5s linear;\n    z-index: 1;\n}\n\n.start-button {\n    width: 200px;\n    height: 80px;\n    background-color: rgb(51, 202, 51);\n    font-size: 1.2em;\n    border-radius: 20px;\n    border: none;\n    color: white;\n    position: absolute;\n    top: 600px;\n    left: 42.5%;\n    line-height: 1.5em;\n    -webkit-animation: button-blink2 infinite 1s linear;\n            animation: button-blink2 infinite 1s linear;\n    z-index: 2;\n}\n\n@-webkit-keyframes button-blink1 {\n    0% {background-color: orange}\n    30% {background-color: rgb(255, 51, 0)}\n    100% {background-color: orange} \n  }\n\n@keyframes button-blink1 {\n    0% {background-color: orange}\n    30% {background-color: rgb(255, 51, 0)}\n    100% {background-color: orange} \n  }\n\n  @-webkit-keyframes button-blink2 {\n    0% {background-color: green}\n    30% {background-color: rgb(123, 212, 123)}\n    100% {background-color: green} \n  }\n\n  @keyframes button-blink2 {\n    0% {background-color: green}\n    30% {background-color: rgb(123, 212, 123)}\n    100% {background-color: green} \n  }", ""]);
 
 // exports
 
@@ -43085,9 +43085,9 @@ var App = function (_Component) {
 
 /***/ }),
 
-/***/ "./src/image/Gryffindor.png":
+/***/ "./src/image/gryffindor.png":
 /*!**********************************!*\
-  !*** ./src/image/Gryffindor.png ***!
+  !*** ./src/image/gryffindor.png ***!
   \**********************************/
 /*! dynamic exports provided */
 /*! all exports used */
@@ -43121,9 +43121,9 @@ module.exports = __webpack_require__.p + "static/media/Hufflepuff.6fd32f08.png";
 
 /***/ }),
 
-/***/ "./src/image/Ravenclaw.png":
+/***/ "./src/image/ravenclaw.png":
 /*!*********************************!*\
-  !*** ./src/image/Ravenclaw.png ***!
+  !*** ./src/image/ravenclaw.png ***!
   \*********************************/
 /*! dynamic exports provided */
 /*! all exports used */
@@ -43133,9 +43133,9 @@ module.exports = __webpack_require__.p + "static/media/Ravenclaw.188d9fd2.png";
 
 /***/ }),
 
-/***/ "./src/image/Slytherin.png":
+/***/ "./src/image/slytherin.png":
 /*!*********************************!*\
-  !*** ./src/image/Slytherin.png ***!
+  !*** ./src/image/slytherin.png ***!
   \*********************************/
 /*! dynamic exports provided */
 /*! all exports used */
