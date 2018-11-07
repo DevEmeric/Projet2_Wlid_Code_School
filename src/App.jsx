@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, HashRouter } from 'react-router-dom';
 import './App.css';
 import Fight from './scripts/Fight';
 import HouseSelection from './scripts/HouseSelection';
@@ -7,7 +7,7 @@ import TournementVictory from './scripts/TournementVictory';
 import HomePage from './scripts/HomePage';
 import music from './sound/backgroundMusic.mp3';
 
-class App extends Component { 
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -33,14 +33,14 @@ class App extends Component {
   }
 
   getFinalSelection = (players) => {
-    this.setState({ fightersHouse: players})
-  }
-  
-  endTournament = (scoreFighters) => {
-    this.setState({isEndTournament: scoreFighters})
+    this.setState({ fightersHouse: players })
   }
 
-  setVolume=(target, bool)=>{
+  endTournament = (scoreFighters) => {
+    this.setState({ isEndTournament: scoreFighters })
+  }
+
+  setVolume = (target, bool) => {
     console.log("in app.js", target, bool, target.includes('Sound'))
     if (target.includes('Music')) {
       if (!bool) this.setState({ musicVolume: 0 });
@@ -53,7 +53,7 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate=()=>{
+  componentDidUpdate = () => {
     this.backgroundMusic.volume = this.state.musicVolume;
     this.soundsVolume = this.state.soundVolume;
   }
@@ -64,14 +64,22 @@ class App extends Component {
         <audio autoPlay>
           <source src='./sound/backgroundMusic.mp3'></source>
         </audio>
-        <BrowserRouter>
+        <HashRouter>
           <Switch>
+            <Route
+              exact path="/"
+              render={() => (
+                <HomePage
+                  gameType={this.getGameType}
+                  setVolume={this.setVolume}
+                />)}
+            />
             <Route
               path="/HouseSelection"
               render={() => (
                 <HouseSelection
-                finalSelection={this.getFinalSelection}
-                gameType={this.state.gameType}
+                  finalSelection={this.getFinalSelection}
+                  gameType={this.state.gameType}
                 />)}
             />
             <Route
@@ -79,9 +87,9 @@ class App extends Component {
               render={() => (
                 <Fight
                   fightersHouse={this.state.fightersHouse}
-                  endTournament= {this.endTournament}
-                  gameType = {this.state.gameType}
-                  soundEffect = {{
+                  endTournament={this.endTournament}
+                  gameType={this.state.gameType}
+                  soundEffect={{
                     musicVolume: this.state.musicVolume,
                     effectsVolume: this.state.soundVolume,
                   }}
@@ -92,20 +100,12 @@ class App extends Component {
               render={() => (
                 <TournementVictory
                   isEndTournament={this.state.isEndTournament}
-                  
-                />)}
-            />
-            <Route
-              exact path="/"
-              render={() => (
-                <HomePage 
-                  gameType={this.getGameType} 
-                  setVolume={this.setVolume}
+
                 />)}
             />
           </Switch>
-        </BrowserRouter>
-        
+        </HashRouter>
+
       </div>
     );
   }
