@@ -46,6 +46,8 @@ class Header extends Component {
         <Timer
           fightTime = {this.props.fightTime}
           endOfFight={this.endOfFight}
+          modalVictory={this.props.modalVictory}
+          displayInstr={this.props.displayInstr}
         />
         <div id="shieldsFighter1" style={shieldsFighter1}>
             {

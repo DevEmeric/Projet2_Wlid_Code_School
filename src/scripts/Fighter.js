@@ -54,7 +54,7 @@ class Fighter extends Component {
 
 
   handleKeyPress = (localTabKeys) => {
-    if (this.props.victory === false) {
+    if (this.props.victory === false && this.props.displayInstr === false) {
       if (localTabKeys.indexOf(this.props.fighter.moveUp) !== -1 && this.props.fighter.top > 110) {
         this.props.fighter.move(this.props.fighter.id, -this.state.speed, 0)
       }
