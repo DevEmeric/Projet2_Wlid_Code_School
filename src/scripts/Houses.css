@@ -85,21 +85,26 @@ h1 {
     color: white;
 }
 
-.confirm-button {
+.clear-button {
     width: 200px;
-    height: 70px;
+    height: 50px;
     font-size: 1.2em;
-    border-radius: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border: none;
     color: orange;
     position: absolute;
-    top: 600px;
+    bottom: 0;
     left: 43%;
     line-height: 1.5em;
-    animation: button-blink1 infinite 1.5s linear;
+    /* animation: button-blink1 infinite 1.5s linear; */
     z-index: 1;
     background-color: black;
 }
+
+button.clear-button:hover{
+    transform: none !important;
+  }
 
 .start-button {
     width: 200px;
