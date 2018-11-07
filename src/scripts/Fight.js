@@ -92,6 +92,7 @@ class Fight extends Component {
                 fighter1: {
                     id: "fighter1",
                     spellCasted: false,
+                    deathFighter: false, //Affichage de la mort
                     rotation: 0,
                     facesRight: true,
                     top: 250,
@@ -122,6 +123,7 @@ class Fight extends Component {
                 fighter2: {
                     id: "fighter2",
                     spellCasted: false,
+                    deathFighter: false, // Affichage de la Mort
                     rotation: 180,
                     facesRight: false,
                     top: 250,
@@ -302,8 +304,7 @@ class Fight extends Component {
         this.shieldSound.play();
         this.shieldSound.volume = this.props.soundEffect.effectsVolume;
     }
-
-
+    
     hasCollision(object1, object2) {
         if (this.state.modalVictory === false)
             if (object1.top < object2.top + object2.width &&
@@ -475,8 +476,10 @@ class Fight extends Component {
                         scoreFighter2: this.state.scoreFighter2 + currentState2,
                         progress: -1,
                         modalVictory: true,
+                        
+                        
                     });
-
+                    
 
                     switch (this.state.fighter2.house) {
                         case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter2; break;
@@ -492,6 +495,11 @@ class Fight extends Component {
                         scoreFighter1: this.state.scoreFighter1 + currentState1,
                         progress1: - 1,
                         modalVictory: true,
+                        // Affichage de la mort
+                        fighter2: {
+                            ...this.state.fighter2,
+                            deathFighter: true
+                        }
                     });
 
 
@@ -528,6 +536,11 @@ class Fight extends Component {
                         scoreFighter2: this.state.scoreFighter2 + currentState2,
                         progress: - 1,
                         modalVictory: true,
+                        //Affichage de la mort
+                        fighter1: {
+                            ...this.state.fighter1,
+                            deathFighter: true
+                        }
 
                     });
                     switch (this.state.fighter2.house) {
@@ -542,7 +555,8 @@ class Fight extends Component {
                     this.setState({
                         scoreFighter1: this.state.scoreFighter1 + currentState1,
                         progress1: - 1,
-                        modalVictory: true
+                        modalVictory: true,
+                        deathFighter: true, // Affichage de la mort
                     });
                     switch (this.state.fighter1.house) {
                         case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter1; break;
@@ -554,6 +568,7 @@ class Fight extends Component {
             }
         }, 10)
         document.addEventListener("keydown", this.handleKeyPress)
+        
 
     }
 
@@ -581,7 +596,10 @@ class Fight extends Component {
             scoreFighter1: this.state.scoreFighter1 + this.state.progress,
             scoreFighter2: this.state.scoreFighter2 + this.state.progress1,
             progress1: - 1,
-            modalVictory: true
+            modalVictory: true,
+            
+            
+            
         });
         this.addScores()
     }
@@ -607,8 +625,8 @@ class Fight extends Component {
 
     restartFight = () => {
         //console.log("restart fight before setState")
-        this.reIntitialize(this.state.fighter1.id, 100, true);
-        this.reIntitialize(this.state.fighter2.id, 1100, false);
+        this.reIntitialize(this.state.fighter1.id, 100, true, false);
+        this.reIntitialize(this.state.fighter2.id, 1100, false, false);
         this.setState({
             progress: 100,
             progress1: 100,
@@ -620,12 +638,13 @@ class Fight extends Component {
         })
     }
 
-    reIntitialize = (fighterID, leftPosition, newFacePosition) => {
+    reIntitialize = (fighterID, leftPosition, newFacePosition, notDead) => {
         this.setState({
             [fighterID]: {
                 ...this.state[fighterID],
                 life: 100,
                 spellCasted: false,
+                deathFighter: notDead,// Affichage de la mort
                 top: 250,
                 left: leftPosition,
                 facesRight: newFacePosition,
@@ -640,6 +659,17 @@ class Fight extends Component {
 
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
+        this.setState({
+            //Reinitializatiion de l'affichage mort
+            fighter1: {
+                ...this.state.fighter1,
+                deathFighter: false
+            },
+            fighter2: {
+                ...this.state.fighter2,
+                deathFighter: false
+            }
+        })
     }
 
     redirect = () => {
@@ -658,6 +688,7 @@ class Fight extends Component {
 
     //redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
     render() {
+        console.log(this.state.fighter1.deathFighter, this.state.fighter2.deathFighter)
         const { redirect } = this.state;
         if (redirect) {
             console.log('ça marche')
