@@ -45,35 +45,35 @@ h1 {
 }
 
 .Slytherin {
-    background-image: url("../image/slytherin2.png");
+    background-image: url("../image/slytherin.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .Gryffindor {
-    background-image: url("../image/gryffindor2.png");
+    background-image: url("../image/gryffindor.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .Ravenclaw {
-    background-image: url("../image/ravenclaw2.png");
+    background-image: url("../image/ravenclaw.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .Hufflepuff {
-    background-image: url("../image/hufflepuff2.png");
+    background-image: url("../image/hufflepuff.png");
     background-position: center; 
     background-repeat: no-repeat; 
     
 }
 
 .body {
-    background-image: url("../image/salle5.jpg");
+    background-image: url("../image/salle.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed; 
@@ -85,21 +85,26 @@ h1 {
     color: white;
 }
 
-.confirm-button {
+.clear-button {
     width: 200px;
-    height: 70px;
+    height: 50px;
     font-size: 1.2em;
-    border-radius: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border: none;
     color: orange;
     position: absolute;
-    top: 600px;
+    bottom: 0;
     left: 43%;
     line-height: 1.5em;
-    animation: button-blink1 infinite 1.5s linear;
+    /* animation: button-blink1 infinite 1.5s linear; */
     z-index: 1;
     background-color: black;
 }
+
+button.clear-button:hover{
+    transform: none !important;
+  }
 
 .start-button {
     width: 200px;

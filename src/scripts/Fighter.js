@@ -4,6 +4,9 @@ import GryffindorColor from "../image/silouhetteGryffindor.png";
 import SlytherinColor from "../image/silouhetteSlytherin.png";
 import RavenclawColor from "../image/silouhetteRavenclaw.png";
 import HufflepuffColorColor from "../image/silouhetteHufflepuff.png";
+//import HeadDeath from "../image/tetedemort.png"; Image tête de mort si besoin
+import HeadDeath2 from "../image/lightning-death.png";
+import Impact from "../image/Impact.gif"
 
 class Fighter extends Component {
 
@@ -13,6 +16,8 @@ class Fighter extends Component {
     this.Slytherin = SlytherinColor;
     this.Ravenclaw = RavenclawColor;
     this.Hufflepuff = HufflepuffColorColor;
+    //this.Head = HeadDeath; image tête de mort si besoin
+    this.Head2 = HeadDeath2;
 
     this.state = {
       spellCasted: false,
@@ -50,7 +55,7 @@ class Fighter extends Component {
 
 
   handleKeyPress = (localTabKeys) => {
-    if (this.props.victory === false) {
+    if (this.props.victory === false && this.props.displayInstr === false) {
       if (localTabKeys.indexOf(this.props.fighter.moveUp) !== -1 && this.props.fighter.top > 110) {
         this.props.fighter.move(this.props.fighter.id, -this.state.speed, 0)
       }
@@ -98,15 +103,25 @@ class Fighter extends Component {
       left: this.props.fighter.left + "px",
       width: this.state.width + "px",
       height: this.state.height + "px",
-      backgroundImage: `url(${this[this.props.fighter.house]})`,
+      backgroundImage: this.props.fighter.deathFighter === true ? `url(${Impact})`: `url(${this[this.props.fighter.house]})`,
+    };// ternaire pour afficher la mort de fightherID
+
+    let fighterStyleTouched = {
+      transform: `rotateY(${this.props.fighter.rotation}deg)`,
+      position: "absolute",
+      top: this.props.fighter.top + "px",
+      left: this.props.fighter.left + "px",
+      width: this.state.width + "px",
+      height: this.state.height + "px",
+      backgroundImage: `url(${this.Head2})`,
     };
 
     let fighterId = "fighter" + this.props.fighter.house
     return (
 
       <div>
-        <div className="fighter" style={fighterStyle} id={fighterId}>
-        </div>
+         <div className="fighter" style={(this.props.fighter.touched) ? fighterStyleTouched : fighterStyle} id={fighterId}>  
+         </div>
       </div>
     );
   }

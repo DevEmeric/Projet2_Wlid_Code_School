@@ -8,9 +8,7 @@ class Instructions extends Component {
 
 
         return (
-            <div>
                 <div className="keyboardLayout" >
-
                     <div className="container">
                         <div className="image1"></div>
                         <div className="image2"></div>
@@ -45,13 +43,17 @@ class Instructions extends Component {
                         <span>ROTATE</span>
                         <p>P</p>
                     </div>
+                    <div className="container5">
+                        <p>Q</p>
+                        <span>DEFEND</span>
+                        <p>M</p>
+                    </div>
                     <div className="container4">
                         <p>W</p>
                         <span>SPELL</span>
                         <p>!</p>
                     </div>
                 </div>
-            </div>
         )
     }
 }
