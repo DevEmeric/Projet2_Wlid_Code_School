@@ -6,6 +6,7 @@ import RavenclawColor from "../image/silouhetteRavenclaw.png";
 import HufflepuffColorColor from "../image/silouhetteHufflepuff.png";
 //import HeadDeath from "../image/tetedemort.png"; Image tête de mort si besoin
 import HeadDeath2 from "../image/lightning-death.png";
+import Impact from "../image/Impact.gif"
 
 class Fighter extends Component {
 
@@ -102,14 +103,24 @@ class Fighter extends Component {
       left: this.props.fighter.left + "px",
       width: this.state.width + "px",
       height: this.state.height + "px",
-      backgroundImage: this.props.fighter.deathFighter === true ? `url(${this.Head2})`: `url(${this[this.props.fighter.house]})`,
+      backgroundImage: this.props.fighter.deathFighter === true ? `url(${Impact})`: `url(${this[this.props.fighter.house]})`,
     };// ternaire pour afficher la mort de fightherID
+
+    let fighterStyleTouched = {
+      transform: `rotateY(${this.props.fighter.rotation}deg)`,
+      position: "absolute",
+      top: this.props.fighter.top + "px",
+      left: this.props.fighter.left + "px",
+      width: this.state.width + "px",
+      height: this.state.height + "px",
+      backgroundImage: `url(${this.Head2})`,
+    };
 
     let fighterId = "fighter" + this.props.fighter.house
     return (
 
       <div>
-         <div className="fighter" style={fighterStyle} id={fighterId}>  
+         <div className="fighter" style={(this.props.fighter.touched) ? fighterStyleTouched : fighterStyle} id={fighterId}>  
          </div>
       </div>
     );
