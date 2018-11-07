@@ -50,13 +50,13 @@ class Fight extends Component {
             },
         },
 
-        
+
 
             this.state = {
 
                 redirect: false,
-                
-                fightTime : {
+
+                fightTime: {
                     minutes: 2,
                     seconds: 0,
                 },
@@ -224,26 +224,30 @@ class Fight extends Component {
         })
         // Spell movement
         let spellIntervall = setInterval(() => {
-            this.setState({
-                [spellID]: {
-                    ...this.state[spellID],
-                    left: this.state[spellID].left + 10 * this.state[spellID].direction,
-                }
-            })
+            if (!this.state.displayInstr) {
+                this.setState({
+                    [spellID]: {
+                        ...this.state[spellID],
+                        left: this.state[spellID].left + 10 * this.state[spellID].direction,
+                    }
+                })
+            }
         }, 10)
+        
+
         // Destruction of spell
         setTimeout(
             function () {
-                clearInterval(spellIntervall);
-                this.setState({
-                    [fighterID]: {
-                        ...this.state[fighterID],
-                        spellCasted: false,
-                    }
-                });
-            }
+                    clearInterval(spellIntervall);
+                    this.setState({
+                        [fighterID]: {
+                            ...this.state[fighterID],
+                            spellCasted: false,
+                        },
+                    });
+                }
                 .bind(this),
-            3000
+            2000
         );
         this.spellSound.play();
         this.spellSound.volume = this.props.soundEffect.effectsVolume;
@@ -300,6 +304,7 @@ class Fight extends Component {
         this.shieldSound.play();
         this.shieldSound.volume = this.props.soundEffect.effectsVolume;
     }
+
 
     hasCollision(object1, object2) {
         if (this.state.modalVictory === false)
@@ -376,14 +381,14 @@ class Fight extends Component {
             fighter1: {
                 ...this.state.fighter1,
                 life: 100,
-                left : 100,
+                left: 100,
                 top: 250,
                 house: this.props.fightersHouse[i],
                 style: {
                     opacity: 1,
                 },
                 defense: {
-                    shieldTime:3000,
+                    shieldTime: 3000,
                     shieldOn: false,
                     shieldNumber: 3,
                 }
@@ -391,14 +396,14 @@ class Fight extends Component {
             fighter2: {
                 ...this.state.fighter2,
                 life: 100,
-                left : 1100,
+                left: 1100,
                 top: 250,
                 house: this.props.fightersHouse[j],
                 style: {
                     opacity: 1,
                 },
                 defense: {
-                    shieldTime:3000,
+                    shieldTime: 3000,
                     shieldOn: false,
                     shieldNumber: 3,
                 }
@@ -418,7 +423,7 @@ class Fight extends Component {
             //Initialisation des scoreFighter à 0
             scoreFighter1: 0,
             scoreFighter2: 0,
-            fightTime : {
+            fightTime: {
                 minutes: 2,
                 seconds: 0,
             },
@@ -610,7 +615,7 @@ class Fight extends Component {
             progress: 100,
             progress1: 100,
             modalVictory: false,
-            fightTime : {
+            fightTime: {
                 minutes: 2,
                 seconds: 0,
             },
@@ -639,18 +644,18 @@ class Fight extends Component {
         this.getCurrentFighters(turn);
     }
 
-    redirect =()=> {
-    if (this.state.modalVictory === true && this.state.turn === 3 && this.props.fightersHouse.length === 3) {
-        this.props.endTournament(this.state.scoreFighters)
-        this.addScores()
-        return <Redirect to='/TournementVictory' />
+    redirect = () => {
+        if (this.state.modalVictory === true && this.state.turn === 3 && this.props.fightersHouse.length === 3) {
+            this.props.endTournament(this.state.scoreFighters)
+            this.addScores()
+            return <Redirect to='/TournementVictory' />
+        }
+        if (this.state.modalVictory === true && this.state.turn === 6 && this.props.fightersHouse.length === 4) {
+            this.props.endTournament(this.state.scoreFighters)
+            this.addScores()
+            return <Redirect to='/TournementVictory' />
+        }
     }
-    if (this.state.modalVictory === true && this.state.turn === 6 && this.props.fightersHouse.length === 4) {
-        this.props.endTournament(this.state.scoreFighters)
-        this.addScores()
-        return <Redirect to='/TournementVictory' />
-    }
-}
 
 
     //redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
@@ -691,12 +696,13 @@ class Fight extends Component {
         let instrStyle = {
             position: "absolute",
             bottom: "20px",
+            color: "white",
             right: "20px",
             width: 150 + "px",
             margin: "auto",
-            border: 5 + "px" + " " + "solid" + " " + "black",
+            border: 5 + "px" + " " + "solid" + " " + "white",
             lineHeight: 2 + "px",
-            opacity: 0.5
+            opacity: 0.8
         }
 
         let gri = 'Gryffindor: ' + this.state.scoreFighters.Gryffindor
@@ -730,12 +736,14 @@ class Fight extends Component {
                 </div>
                 <div id="bodyFight">
                     <div className="full">
-                       {this.redirect()}
+                        {this.redirect()}
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
                             fightTime={this.state.fightTime}
                             endOfFight={this.endOfFight}
+                            modalVictory={this.state.modalVictory}
+                            displayInstr={this.state.displayInstr}
                         />
                         <div className="avatar" id={avatarId} style={avatarStyle}></div>
                         {this.progressBar(this.state.progress)}
@@ -747,12 +755,14 @@ class Fight extends Component {
                         <Fighter                // Player#1
                             fighter={this.state.fighter1}
                             victory={this.state.modalVictory}
+                            displayInstr={this.state.displayInstr}
                         />
                     </div>
                     <div>
                         <Fighter                // Player#2
                             fighter={this.state.fighter2}
                             victory={this.state.modalVictory}
+                            displayInstr={this.state.displayInstr}
                         />
                     </div>
                     <div>{
@@ -791,6 +801,7 @@ class Fight extends Component {
                     <div>
                         <div className="spaceInstr" style={instrStyle}>
                             <p>INSTRUCTIONS</p>
+                            <p>(& pause)</p>
                             <p>Press SPACEBAR</p>
                         </div>{
                             this.state.displayInstr ?
@@ -818,7 +829,7 @@ class Fight extends Component {
                                     turn={this.state.turn}
                                     nextFight={this.nextFight}
                                     restartFight={this.restartFight}
-                                    gameType = {this.props.gameType}
+                                    gameType={this.props.gameType}
                                 />
                                 :
                                 <div></div>
