@@ -4,6 +4,8 @@ import GryffindorColor from "../image/silouhetteGryffindor.png";
 import SlytherinColor from "../image/silouhetteSlytherin.png";
 import RavenclawColor from "../image/silouhetteRavenclaw.png";
 import HufflepuffColorColor from "../image/silouhetteHufflepuff.png";
+//import HeadDeath from "../image/tetedemort.png"; Image tête de mort si besoin
+import HeadDeath2 from "../image/lightning-death.png";
 
 class Fighter extends Component {
 
@@ -13,6 +15,8 @@ class Fighter extends Component {
     this.Slytherin = SlytherinColor;
     this.Ravenclaw = RavenclawColor;
     this.Hufflepuff = HufflepuffColorColor;
+    //this.Head = HeadDeath; image tête de mort si besoin
+    this.Head2 = HeadDeath2;
 
     this.state = {
       spellCasted: false,
@@ -98,15 +102,15 @@ class Fighter extends Component {
       left: this.props.fighter.left + "px",
       width: this.state.width + "px",
       height: this.state.height + "px",
-      backgroundImage: `url(${this[this.props.fighter.house]})`,
+      backgroundImage: this.props.fighter.deathFighter === true ? `url(${this.Head2})`: `url(${this[this.props.fighter.house]})`,
     };
 
     let fighterId = "fighter" + this.props.fighter.house
     return (
 
       <div>
-        <div className="fighter" style={fighterStyle} id={fighterId}>
-        </div>
+         <div className="fighter" style={fighterStyle} id={fighterId}>  
+         </div>
       </div>
     );
   }

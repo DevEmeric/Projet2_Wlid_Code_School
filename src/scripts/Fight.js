@@ -93,6 +93,7 @@ class Fight extends Component {
                 fighter1: {
                     id: "fighter1",
                     spellCasted: false,
+                    deathFighter: false,
                     rotation: 0,
                     facesRight: true,
                     top: 250,
@@ -123,6 +124,7 @@ class Fight extends Component {
                 fighter2: {
                     id: "fighter2",
                     spellCasted: false,
+                    deathFighter: false,
                     rotation: 180,
                     facesRight: false,
                     top: 250,
@@ -202,7 +204,6 @@ class Fight extends Component {
             </div>
         </div>
     }
-
 
     castSpell = (fighterID, facesRight) => {
         let spellID = "spell" + fighterID
@@ -300,6 +301,30 @@ class Fight extends Component {
         this.shieldSound.play();
         this.shieldSound.volume = this.props.soundEffect.effectsVolume;
     }
+    
+    //Affichage mort fighters
+
+    /*showDeathFighters = () => {
+        setInterval(() => {
+            if (this.state.progress===0){
+            this.setState({
+                fighter1: {
+                    ...this.state.fighter1,
+                    top: this.state.fighter1.top - 200,
+                }
+            })
+        }
+            if (this.state.progress1===0){
+                this.setState({
+                    fighter2: {
+                        ...this.state.fighter2,
+                        top: this.state.fighter2.top - 100,
+                    }
+                })
+            }
+    },70)
+    console.log(this.showDeathFighters)
+}*/
 
     hasCollision(object1, object2) {
         if (this.state.modalVictory === false)
@@ -472,8 +497,10 @@ class Fight extends Component {
                         scoreFighter2: this.state.scoreFighter2 + currentState2,
                         progress: -1,
                         modalVictory: true,
+                        
+                        
                     });
-
+                    
 
                     switch (this.state.fighter2.house) {
                         case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter2; break;
@@ -489,6 +516,10 @@ class Fight extends Component {
                         scoreFighter1: this.state.scoreFighter1 + currentState1,
                         progress1: - 1,
                         modalVictory: true,
+                        fighter2: {
+                            ...this.state.fighter2,
+                            deathFighter: true
+                        }
                     });
 
 
@@ -525,6 +556,10 @@ class Fight extends Component {
                         scoreFighter2: this.state.scoreFighter2 + currentState2,
                         progress: - 1,
                         modalVictory: true,
+                        fighter1: {
+                            ...this.state.fighter1,
+                            deathFighter: true
+                        }
 
                     });
                     switch (this.state.fighter2.house) {
@@ -539,7 +574,8 @@ class Fight extends Component {
                     this.setState({
                         scoreFighter1: this.state.scoreFighter1 + currentState1,
                         progress1: - 1,
-                        modalVictory: true
+                        modalVictory: true,
+                        deathFighter: true,
                     });
                     switch (this.state.fighter1.house) {
                         case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter1; break;
@@ -551,6 +587,7 @@ class Fight extends Component {
             }
         }, 10)
         document.addEventListener("keydown", this.handleKeyPress)
+        
 
     }
 
@@ -578,7 +615,10 @@ class Fight extends Component {
             scoreFighter1: this.state.scoreFighter1 + this.state.progress,
             scoreFighter2: this.state.scoreFighter2 + this.state.progress1,
             progress1: - 1,
-            modalVictory: true
+            modalVictory: true,
+            
+            
+            
         });
         this.addScores()
     }
@@ -604,8 +644,8 @@ class Fight extends Component {
 
     restartFight = () => {
         //console.log("restart fight before setState")
-        this.reIntitialize(this.state.fighter1.id, 100, true);
-        this.reIntitialize(this.state.fighter2.id, 1100, false);
+        this.reIntitialize(this.state.fighter1.id, 100, true, false);
+        this.reIntitialize(this.state.fighter2.id, 1100, false, false);
         this.setState({
             progress: 100,
             progress1: 100,
@@ -617,12 +657,13 @@ class Fight extends Component {
         })
     }
 
-    reIntitialize = (fighterID, leftPosition, newFacePosition) => {
+    reIntitialize = (fighterID, leftPosition, newFacePosition, notDead) => {
         this.setState({
             [fighterID]: {
                 ...this.state[fighterID],
                 life: 100,
                 spellCasted: false,
+                deathFighter: notDead,
                 top: 250,
                 left: leftPosition,
                 facesRight: newFacePosition,
@@ -637,6 +678,16 @@ class Fight extends Component {
 
     nextFight = (turn) => {
         this.getCurrentFighters(turn);
+        this.setState({
+            fighter1: {
+                ...this.state.fighter1,
+                deathFighter: false
+            },
+            fighter2: {
+                ...this.state.fighter2,
+                deathFighter: false
+            }
+        })
     }
 
     redirect =()=> {
@@ -655,6 +706,7 @@ class Fight extends Component {
 
     //redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
     render() {
+        console.log(this.state.fighter1.deathFighter, this.state.fighter2.deathFighter)
         const { redirect } = this.state;
         if (redirect) {
             console.log('ça marche')
@@ -731,6 +783,7 @@ class Fight extends Component {
                 <div id="bodyFight">
                     <div className="full">
                        {this.redirect()}
+                       
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
