@@ -50,26 +50,27 @@ export default class Settings extends React.Component {
     }
 
     return (
-      <table id="settings">
-        <tr>
-          <td />
-          <td style={{textAlign:'right'}}><button onClick={ this.toggleWindow }>X</button></td>
-        </tr>
-        <tr>
-          <td>Music :</td>
-          <td>
-            <button type="button" onClick={() => { this.toggle('isMusicOn'); }} style={volumeOnStyle}><img src={volumeOn} alt="volume on" /></button>
-            <button type="button" onClick={() => { this.toggle('isMusicOn'); }} style={volumeOffStyle}><img src={volumeOff} alt="volume off" /></button>
-          </td>
-        </tr>
-        <tr>
-          <td>Sounds :</td>
-          <td>
-            <button type="button" onClick={() => { this.toggle('isSoundOn'); }} style={soundOnStyle}><img src={volumeOn} alt="sound on" /></button>
-            <button type="button" onClick={() => { this.toggle('isSoundOn'); }} style={soundOffStyle}><img src={volumeOff} alt="sound off" /></button>
-          </td>
-        </tr>
-      </table>
+      <div  id="settings">
+        <table>
+          <tr>
+            <td>Music :</td>
+            <td>
+              <button type="button" onClick={() => { this.toggle('isMusicOn'); }} style={volumeOnStyle}><img src={volumeOn} alt="volume on" /></button>
+              <button type="button" onClick={() => { this.toggle('isMusicOn'); }} style={volumeOffStyle}><img src={volumeOff} alt="volume off" /></button>
+            </td>
+          </tr>
+          <tr>
+            <td>Sounds :</td>
+            <td>
+              <button type="button" onClick={() => { this.toggle('isSoundOn'); }} style={soundOnStyle}><img src={volumeOn} alt="sound on" /></button>
+              <button type="button" onClick={() => { this.toggle('isSoundOn'); }} style={soundOffStyle}><img src={volumeOff} alt="sound off" /></button>
+            </td>
+          </tr>
+          <tr id="close">
+            <td colSpan="2"><button onClick={ this.toggleWindow } >Close</button></td>
+          </tr>
+        </table>
+      </div>
     );
   }
 }

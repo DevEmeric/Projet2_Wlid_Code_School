@@ -1,25 +1,35 @@
 #settings{
     position: absolute;
-    width: 40vw;
-    height: 40vh;
-    margin: 10vh 10vw;
-    left: 20vw;
+    left: 30vw;
     top: 20vh;
-    background-color: white;
+    width: 40vw;
+    height: 60vh;
     z-index: 3;
-    opacity: 0.8;
+    opacity: 0.7;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20%;
 }
 
-#settings span{
-    display: inline;
+#settings table tr, #settings table td{
+    /* border: 1px solid black;
+    border-collapse: collapse; */
+    font-size: 40px;
 }
 
 #settings button{
     display: inline-block;
     width: 200px;
     height: 100px;
+    margin-bottom: 7vh;
 }
 
+#close, #close td, #close button{
+    margin: 0;
+    padding: 0;
+}
 
 #settings button img{
     width: 100px;

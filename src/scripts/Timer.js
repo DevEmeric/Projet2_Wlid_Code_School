@@ -53,10 +53,13 @@ export default class Timer extends React.Component {
             top : "10px",
             left : window.innerWidth/2*0.92,
             padding : "10px",
-            border : "1px solid black",
+            border : "1px solid #717171",
+            backgroundColor:"#717171",
+            color:"rgb(252, 222, 53)",
             width: "100px",
             textAlign : "center",
             fontSize : "20px",
+            borderRadius: "15px",
         }
 
         return (
