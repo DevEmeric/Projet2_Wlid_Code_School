@@ -370,7 +370,7 @@ class Fight extends Component {
             fighter1: {
                 ...this.state.fighter1,
                 life: 100,
-                left: 100,
+                left: 250,
                 top: 250,
                 house: this.props.fightersHouse[i],
                 deathFighter: false,
@@ -386,7 +386,7 @@ class Fight extends Component {
             fighter2: {
                 ...this.state.fighter2,
                 life: 100,
-                left: 1180,
+                left: 1400,
                 top: 250,
                 house: this.props.fightersHouse[j],
                 deathFighter: false,
@@ -635,7 +635,7 @@ class Fight extends Component {
     letsFight = () => {
         setTimeout(
             function () {
-                clearInterval(this.timer);
+            //    clearInterval(this.timer);
                 this.setState({
                     startGame: false,
                     seconds: 4,
@@ -831,6 +831,7 @@ class Fight extends Component {
                         <Header
                             fighter1={this.state.fighter1}
                             fighter2={this.state.fighter2}
+                            startGame={this.state.startGame}
                             fightTime={this.state.fightTime}
                             endOfFight={this.endOfFight}
                             modalVictory={this.state.modalVictory}
@@ -912,7 +913,7 @@ class Fight extends Component {
                             <p>for Instructions</p>                            
                         </div>
                         {
-                            this.state.displayInstr ?
+                            this.state.displayInstr && !this.state.modalVictory ?
                                 <Instructions />
                                 :
                                 <div></div>

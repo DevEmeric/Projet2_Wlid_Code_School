@@ -13,7 +13,7 @@ export default class Timer extends React.Component {
     componentDidMount = () => {
 
         let timerInterval = setInterval(() => {
-            if (!this.props.displayInstr && !this.props.modalVictory) {
+            if (!this.props.displayInstr && !this.props.modalVictory && !this.props.startGame) {
                 if (this.state.seconds === 0) {
                     this.setState({
                         minutes: this.state.minutes - 1,
