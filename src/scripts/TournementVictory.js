@@ -45,11 +45,9 @@ class TournementVictory extends Component {
                 <div className="skore three">{third[1]} pts</div>
             </div>
 
-            <div className="firstAward" style={style1}></div>
-
-            <div className="secondAward" style={style2}></div>
-
-            <div className="thirdAward" style={style3}></div>
+            <div className="award" id="firstAward" style={style1}></div>
+            <div className="award" id="secondAward" style={style2}></div>
+            <div className="award" id="thirdAward" style={style3}></div>
         </div >
 
     }
