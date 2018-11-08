@@ -3,30 +3,52 @@
     src: url('../font/HARRYP__.TTF')format("truetype");
 }
 
+#body, h2{
+    font-family: "PotterFont";
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-size: 30px;
+}
 
 h1 {
-    color: rgb(252, 222, 53);
+    color: orange;
     white-space: nowrap;
     font-family: "PotterFont";
     font-size: 3em;
-}    
+    letter-spacing: 2px;
+    font-weight: normal;
+    font-size: 90px;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+}
+
+#playerChoice{
+    position: absolute;
+    width: 20vw;
+    margin-left: 40vw;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    margin-top: 2vh; 
+}
 
 .choose-house {
     text-shadow: 4px 4px 4px black;
-    color: orange;
-    font-size: 40px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(252, 222, 53);
+    font-size: 45px;
+    /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 }
 
 .player-selection {
     text-align: center;
     left: 42%;
-    color: orange;
+    font-size: 2em;
+    color: rgb(252, 222, 53);
+    text-shadow: 1px 1px black, -1px -1px black, -1px 1px black, 1px -1px black;
 }
 
 .player-amount {
     background-color:black;
-    color: orange;
+    color: rgb(252, 222, 53);
     font-size: 1.6 em;
     border: none;
     width: 160px;
@@ -36,12 +58,16 @@ h1 {
 
 .main-shield {
     height: 150px;
-    padding-top: px;
+    margin-bottom: 8vh;
   }
   
 .shield-button {
     background: rgba(0, 0, 0, 0);
     border: none;
+}
+
+.shield-button:hover {
+    transform: scale(1.15);
 }
 
 .Slytherin {
@@ -86,20 +112,24 @@ h1 {
 }
 
 .clear-button {
-    width: 200px;
-    height: 50px;
+    font-family: "PotterFont";
+    width: 5vw;
+    height: 6vh;
     font-size: 1.2em;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
     border: none;
-    color: orange;
     position: absolute;
-    bottom: 0;
-    left: 43%;
+    bottom: 2vh;
+    left: 92vw;
     line-height: 1.5em;
     /* animation: button-blink1 infinite 1.5s linear; */
     z-index: 1;
-    background-color: black;
+    background-color: orange;
+}
+
+.clear-button img {
+    width: 3vw;
+    height: 4vh;
 }
 
 button.clear-button:hover{
@@ -107,17 +137,24 @@ button.clear-button:hover{
   }
 
 .start-button {
-    width: 200px;
-    height: 70px;
-    background-color: yellow;
-    font-size: 1.2em;
+    font-family: "PotterFont";
+    width: 20vw;
+    height: 8vh;
+    background-color: orange;
+    font-size: 1.8em;
     border-radius: 20px;
     border: none;
-    color: rgb(77, 66, 66);
+    color: black;
     position: absolute;
-    top: 600px;
-    left: 43%;
+    top: 84vh;
+    left: 40vw;
     line-height: 1.5em;
     z-index: 2;
 }
 
+.start-button:hover{
+    /* transform: none !important; */
+    color: black;
+    font-weight: bold;
+    font-size: 2em;
+}

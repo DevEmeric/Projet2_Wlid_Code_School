@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Hogwarts from "../image/logochoice.png";
 import "./Houses.css"
 import { Link } from "react-router-dom"
+import trash from "../image/trash.svg"
 
 
 class HouseSelection extends Component {
@@ -81,7 +82,7 @@ class HouseSelection extends Component {
   clearButton() {
     if (this.state.playerSelection.length >= 0 && this.state.clearButton === true)
       return <button
-        onClick={this.clearChoice} className="clear-button">Clear selection</button>;
+        onClick={this.clearChoice} className="clear-button"><img src={trash} /></button>;
   }
 
   // fonction pour empêcher de sélectionner maison deux fois:
@@ -185,7 +186,7 @@ class HouseSelection extends Component {
             <div></div>
           }
         </div>
-        <div>
+        <div id="playerChoice">
           {/* affichage du choix des joueurs */}
           {this.selectionChoice1()}
           {this.selectionChoice2()}
@@ -195,14 +196,14 @@ class HouseSelection extends Component {
         <div>
           {() => this.grayOut()}
           {/* blasons des maisons */}
-          <button className="Slytherin shield-button" onClick={() => this.addToPlayerSelection("Slytherin")} style={slytherinStyle}>
-          </button>
-          <button className="Gryffindor shield-button" onClick={() => this.addToPlayerSelection("Gryffindor")} style={gryffindorStyle}>
-          </button>
-          <button className="Ravenclaw shield-button" onClick={() => this.addToPlayerSelection("Ravenclaw")} style={ravenclawStyle}>
-          </button>
-          <button className="Hufflepuff shield-button" onClick={() => this.addToPlayerSelection("Hufflepuff")} style={hufflepuffStyle}>
-          </button>
+          <div className="Slytherin shield-button" onClick={() => this.addToPlayerSelection("Slytherin")} style={slytherinStyle}>
+          </div>
+          <div className="Gryffindor shield-button" onClick={() => this.addToPlayerSelection("Gryffindor")} style={gryffindorStyle}>
+          </div>
+          <div className="Ravenclaw shield-button" onClick={() => this.addToPlayerSelection("Ravenclaw")} style={ravenclawStyle}>
+          </div>
+          <div className="Hufflepuff shield-button" onClick={() => this.addToPlayerSelection("Hufflepuff")} style={hufflepuffStyle}>
+          </div>
         </div>
         {/* boutons de confirmation */}
         {this.clearButton()}
