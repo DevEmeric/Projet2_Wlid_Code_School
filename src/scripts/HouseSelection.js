@@ -95,6 +95,15 @@ class HouseSelection extends Component {
     })
   }
 
+  hideUnselectedHouse = () => {
+    if (this.state.playerAmount === this.state.playerSelection.length) {
+      switch (this.state.Gryffindor.isSelected) {case false: this.setState({Gryffindor: {opacity: 0}})};
+      switch (this.state.Slytherin.isSelected) {case false: this.setState({Slytherin: {opacity: 0}})};
+      switch (this.state.Ravenclaw.isSelected) {case false: this.setState({Ravenclaw: {opacity: 0}})};
+      switch (this.state.Hufflepuff.isSelected) {case false: this.setState({Hufflepuff: {opacity: 0}})};
+    }
+  }
+
   // fonction du onclick pour confirmer le choix final et passer à la page de combat. Link pour envoyer sur ./fight.js
   playerConfirmation() {
     if (this.state.playerAmount !== 0 && this.state.playerSelection.length === this.state.playerAmount) //1ère condition du "if" nécessaire pour que bouton apparaisse pas au début
@@ -208,6 +217,7 @@ class HouseSelection extends Component {
         {/* boutons de confirmation */}
         {this.clearButton()}
         {this.playerConfirmation()}
+        {this.hideUnselectedHouse()}
       </body>
 
     );

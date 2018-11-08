@@ -48,6 +48,7 @@ class Header extends Component {
           endOfFight={this.endOfFight}
           modalVictory={this.props.modalVictory}
           displayInstr={this.props.displayInstr}
+          startGame={this.props.startGame}
         />
         <div id="shieldsFighter1" style={shieldsFighter1}>
             {

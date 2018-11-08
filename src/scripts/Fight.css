@@ -18,7 +18,7 @@
 .progressbar {
   left: 170px;
   top: 80px;
-  position: relative;
+  position: absolute;
   float: left;
   width: 30%;
   height: 30px;
