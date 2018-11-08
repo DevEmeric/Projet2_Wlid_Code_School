@@ -36,14 +36,14 @@ class HomePage extends Component {
     render() {
       return (
         <div className="container1">
-          <h1 className="title1">Potter Fight</h1>
+          <p className="title1">Potter Fight</p>
           <button type="button" onClick={() => this.displayPopups()} className="newGame">NEW GAME</button>
           {
             this.state.popupButtons 
               ? (
                 <div className="hidden">
-                  <Link to="/HouseSelection"><button type="button" onClick={() => this.gameTypeChoice('1v1')}>1 VS 1</button></Link>
-                  <Link to="/HouseSelection"><button type="button" onClick={() => this.gameTypeChoice('tournament')}>TOURNAMENT</button></Link>
+                  <Link to="/HouseSelection"><button style={{color: 'rgb(252, 222, 53)'}} type="button" onClick={() => this.gameTypeChoice('1v1')}>1 VS 1</button></Link>
+                  <Link to="/HouseSelection"><button style={{color: 'rgb(252, 222, 53)'}} type="button" onClick={() => this.gameTypeChoice('tournament')}>TOURNAMENT</button></Link>
                 </div>
               )
               : (

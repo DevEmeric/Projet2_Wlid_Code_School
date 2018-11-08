@@ -53,7 +53,7 @@ export default class Timer extends React.Component {
         let timerStyle = {
             position : "absolute",
             top : "10px",
-            left : window.innerWidth/2*0.92,
+            left : window.innerWidth/2*0.92+"px",
             padding : "10px",
             border : "1px solid #717171",
             backgroundColor:"#717171",

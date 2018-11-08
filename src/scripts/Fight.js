@@ -10,7 +10,7 @@ import Wall from "./wallFight.js"
 //import ReactDOM from 'react-dom';
 import Shield from "./Shield.js"
 import { Redirect } from 'react-router'
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
 
 
@@ -21,6 +21,7 @@ import HufflepuffShield from '../image/hufflepuff.png'
 
 import spellSound from '../sound/attackSound.wav'
 import shieldSound from '../sound/defenseSound.mp3'
+import deathSound from '../sound/ScreamAndDie.wav'
 
 
 class Fight extends Component {
@@ -30,28 +31,26 @@ class Fight extends Component {
 
         this.spellSound = new Audio(spellSound);
         this.shieldSound = new Audio(shieldSound);
+        this.deathSound = new Audio(deathSound);
 
         this.houseStyles = {
             Gryffindor: {
                 shield: GryffindorShield,
-                barColor: "red",
+                barColor: "#BA2732",
             },
             Slytherin: {
                 shield: SlytherinShield,
-                barColor: "green",
+                barColor: "#2A612B",
             },
             Ravenclaw: {
                 shield: RavenclawShield,
-                barColor: "blue",
+                barColor: "#3A519A",
             },
             Hufflepuff: {
                 shield: HufflepuffShield,
-                barColor: "yellow",
+                barColor: "#F9E569",
             },
         },
-
-
-
             this.state = {
 
                 redirect: false,
@@ -98,8 +97,8 @@ class Fight extends Component {
                     top: 250,
                     left: 100,
                     life: 100,
-                    width: 250,
-                    height: 200,
+                    width: 160,
+                    height: 120,
                     attack: "w",      // Attaque: w
                     defend: "q",    // Défense: q
                     rotate: "a",     // Rotate: a
@@ -128,10 +127,10 @@ class Fight extends Component {
                     rotation: 180,
                     facesRight: false,
                     top: 250,
-                    left: 1100,
+                    left: 1300,
                     life: 100,
-                    width: 250,
-                    height: 200,
+                    width: 160,
+                    height: 120,
                     attack: "!",                 // Attaque: ! 
                     defend: "m",               // Défense: m
                     rotate: "p",                // Rotate: p
@@ -155,21 +154,21 @@ class Fight extends Component {
                 spellfighter1: {
                     left: 0,
                     top: 0,
-                    height: 20,
-                    width: 20,
+                    height: 15,
+                    width: 15,
                     direction: 10,
                     id: "",
                 },
                 spellfighter2: {
                     left: 0,
                     top: 0,
-                    height: 20,
-                    width: 20,
+                    height: 15,
+                    width: 15,
                     direction: -1,
                     id: "",
                 },
                 modalVictory: false,
-
+                
                 ///////////PLAYERS
                 scoreFighters: {
                     Gryffindor: 0,
@@ -181,6 +180,7 @@ class Fight extends Component {
 
             }
         this.handleKeyPress = this.handleKeyPress.bind(this)
+        this.victoryHouse = '';
     }
 
 
@@ -208,7 +208,7 @@ class Fight extends Component {
 
     castSpell = (fighterID, facesRight) => {
         let spellID = "spell" + fighterID
-        let x = facesRight ? 260 : -30;
+        let x = facesRight ? 190 : -30;
         // Apparition du spell
         this.setState({
             [fighterID]: {
@@ -220,7 +220,7 @@ class Fight extends Component {
             [spellID]: {
                 ...this.state[spellID],
                 left: this.state[fighterID].left + x,
-                top: this.state[fighterID].top + 80,
+                top: this.state[fighterID].top + 35,
                 direction: x / Math.abs(x)
             }
         })
@@ -323,7 +323,7 @@ class Fight extends Component {
 
     //Instructions Screen>>>>>>>>>>>>>>>>>>
     handleKeyPress(event) {
-        if (event.key === " ") {
+        if (event.key === "Escape") {
             this.Instr()
         }
     }
@@ -398,7 +398,7 @@ class Fight extends Component {
             fighter2: {
                 ...this.state.fighter2,
                 life: 100,
-                left: 1100,
+                left: 1180,
                 top: 250,
                 house: this.props.fightersHouse[j],
                 deathFighter: false,
@@ -518,8 +518,13 @@ class Fight extends Component {
                             ...this.state.fighter2,
                             deathFighter: true
                         }
+                        
                     });
+                    this.deathSound.play();
+                    this.deathSound.volume = this.props.soundEffect.effectsVolume;
+                    
 
+                    this.victoryHouse = this.state.fighter1.house;
 
 
                     switch (this.state.fighter1.house) {
@@ -574,6 +579,10 @@ class Fight extends Component {
                         }
 
                     });
+                    this.deathSound.play();
+                    this.deathSound.volume = this.props.soundEffect.effectsVolume
+
+                    this.victoryHouse = this.state.fighter2.house;
                     switch (this.state.fighter2.house) {
 
                         case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter2; break;
@@ -589,6 +598,9 @@ class Fight extends Component {
                         modalVictory: true,
                         deathFighter: true, // Affichage de la mort
                     });
+                    this.deathSound.play();
+                    this.deathSound.volume = this.props.soundEffect.effectsVolume
+
                     switch (this.state.fighter1.house) {
                         case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter1; break;
                         case "Slytherin": this.state.scoreFighters.Slytherin += this.state.scoreFighter1; break;
@@ -749,9 +761,10 @@ class Fight extends Component {
             right: "20px",
             width: 150 + "px",
             margin: "auto",
-            border: 5 + "px" + " " + "solid" + " " + "white",
+            border: 3 + "px" + " " + "solid" + " " + "white",
             lineHeight: 2 + "px",
-            opacity: 0.8
+            opacity: 0.8,
+            fontSize: "25px",
         }
 
         let gri = 'Gryffindor: ' + this.state.scoreFighters.Gryffindor
@@ -762,19 +775,19 @@ class Fight extends Component {
 
 
         let grifStyle = {
-            backgroundColor: "red"
+            backgroundColor: "#BA2732"
         }
 
         let sylStyle = {
-            backgroundColor: "green"
+            backgroundColor: "#2A612B"
         }
 
         let ravStyle = {
-            backgroundColor: "blue"
+            backgroundColor: "#3A519A"
         }
 
         let hufStyle = {
-            backgroundColor: "yellow"
+            backgroundColor: "#F9E569"
         }
 
         return (
@@ -800,14 +813,14 @@ class Fight extends Component {
                         <div className="avatar1" id={avatarId1} style={avatarStyle1}></div>
                         {this.progressBar1(this.state.progress1)}
                     </div>
-                    <div>
+                    <div style={{zIndex:-1,}}>
                         <Fighter                // Player#1
                             fighter={this.state.fighter1}
                             victory={this.state.modalVictory}
                             displayInstr={this.state.displayInstr}
                         />
                     </div>
-                    <div>
+                    <div style={{zIndex:-1,}}>
                         <Fighter                // Player#2
                             fighter={this.state.fighter2}
                             victory={this.state.modalVictory}
@@ -847,12 +860,36 @@ class Fight extends Component {
                             <div></div>
                     }</div>
 
+<<<<<<< HEAD
                     <div>
                         <div className="spaceInstr" style={instrStyle}>
                             <p>INSTRUCTIONS</p>
                             <p>(& pause)</p>
                             <p>Press SPACEBAR</p>
                         </div>{
+=======
+                    <div>{
+                        this.state.startGame ?
+                            <div className="beginFight">
+                                {!this.state.messageStart ? <h1 className="titleBegin">{this.state.fighter1.house} vs {this.state.fighter2.house}</h1>:<div></div>}
+                                <h1 className="decount">{this.state.seconds}</h1>{
+                                    this.state.messageStart ?
+                                        <h1 className="decount">Fight !</h1>
+                                        :
+                                        <h1></h1>
+                                }
+                            </div>
+                            :
+                            <div></div>
+                    }</div>
+
+                    <div>
+                        <div className="spaceInstr" style={instrStyle}>
+                            <p>Press ESCAPE</p>
+                            <p>for Instructions</p>                            
+                        </div>
+                        {
+>>>>>>> 88c3740f61622cd8af3956d851c4ef674f7caf63
                             this.state.displayInstr ?
                                 <Instructions />
                                 :
@@ -860,30 +897,29 @@ class Fight extends Component {
                         }
                     </div>
 
-                    <div>
-                        <div className="score">
-                            {/* <h2 className="scorePerso" style={grifStyle}>{ordered}</h2> */}
-                            <h3 className="scorePerso" style={grifStyle}>{gri}</h3>
-                            <h3 className="scorePerso" style={sylStyle}>{sly}</h3>
-                            <h3 className="scorePerso" style={hufStyle}>{huf}</h3>
-                            <h3 className="scorePerso" style={ravStyle}>{rav}</h3>
+                    <div className="score">
+                        {/* <h2 className="scorePerso" style={grifStyle}>{ordered}</h2> */}
+                        <p className="scorePerso" style={grifStyle}>{gri}</p>
+                        <p className="scorePerso" style={sylStyle}>{sly}</p>
+                        <p className="scorePerso" style={hufStyle}>{huf}</p>
+                        <p className="scorePerso" style={ravStyle}>{rav}</p>
+                    </div>
 
-
-                        </div>{
-                            this.state.modalVictory ?
-                                <VictoryMessage
-                                    getCurrentFighters={this.getCurrentFighters}
-                                    turn={this.state.turn}
-                                    getCurrentFighter={this.getCurrentFighters}
-                                    turn={this.state.turn}
-                                    nextFight={this.nextFight}
-                                    restartFight={this.restartFight}
-                                    gameType={this.props.gameType}
-                                />
-                                :
-                                <div></div>
-                        }</div>
-
+                    <div style={{zIndex:10,}}>{
+                        this.state.modalVictory ?
+                            <VictoryMessage
+                                getCurrentFighters={this.getCurrentFighters}
+                                turn={this.state.turn}
+                                getCurrentFighter={this.getCurrentFighters}
+                                turn={this.state.turn}
+                                nextFight={this.nextFight}
+                                restartFight={this.restartFight}
+                                gameType={this.props.gameType}
+                                winningHouse={this.victoryHouse}
+                            />
+                            :
+                            <div></div>
+                    }</div>
 
                 </div>
 

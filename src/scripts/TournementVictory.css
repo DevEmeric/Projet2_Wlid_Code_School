@@ -6,6 +6,8 @@
 
 .bodyTournementVictory{
     /*background-image: url("../image/background1tournement.jpg");*/
+    width: 100vw;
+    height: 100vh;
     background-image: url('https://www.dhresource.com/0x0s/f2-albu-g5-M01-74-79-rBVaJFkftaiAMKQPAAJ7wiL9fGo632.jpg/7x5ft-daylight-harry-potter-hogwarts-passage.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -20,28 +22,24 @@
     background-image: url("../image/fireGoblet.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 600px;
-    width: 400px;
-    top: 80px;
-    left: 1100px;
+    background-size: 100% 100%;
+    height: 80vh;
+    width: 40vw;
+    top: 12vh;
+    left: 55vw;
 
 }
 .boutonTournementHomePage{
     position: absolute;
-    top: 700px;
-    left: 1210px;
-    color: white;
-    width: 200px;
-    height: 80px;
+    top: 91vh;
+    left: 65vw;
+    width: 20vw;
+    height: 5vh;
     font-size: 30px;
-    font-weight: bold;
-    opacity: 1;
-    background-color: inherit;
-    border-bottom-color: 20px, rgb(240, 240, 39);
-    box-shadow:20px, rgb(236, 214, 9);
+    background-color: rgba(255, 165, 0, 0.6);
+    border-color: rgba(255, 165, 0, 0.6); 
     text-align: center;
-
+    font-family: "PotterFont";
 }
 .boutonPodium{
     position: absolute;
@@ -58,15 +56,17 @@
 
 .titleWinners{
     position: absolute;
-    font-size: 100px;
-    font-weight: bold;
-    top: 5px;
-    left: 500px;
+    width: 50vw;
+    height: 30vh;
+    justify-content: top;
+    font-size: 130px;
+    top: -11vh;
+    left: 6vw;
     font-family: "PotterFont";
-    color: rgb(252, 222, 53);
-    box-shadow: black;
-
+    color: orange;
+    text-shadow: 3px 3px 3px white, -1px -1px 1px white;
 }
+
 .fullScore {
     display: flex;
   position: fixed;
@@ -99,7 +99,7 @@
         position: relative;
         font-size: 60px;
         font-weight: bold;
-        color: #FBCC5D;
+        color: orange;
         top: 5vw;  
         width: 40vh;
         margin-left: -2%;
@@ -125,63 +125,36 @@
         color: #FB8249;
         top: 5vw;
         width: 40vh;
-        margin-left: -2%;
+        margin-left: -5%;
         text-shadow: 5px -3px black;
         font-family: "PotterFont";
     }
 
-.firstAward {
+.award{
     position: absolute;
-<<<<<<< HEAD
-    background-image: url("../image/slytherin.png");
-=======
-    /*background-image: url("../image/Slytherin.png");*/
->>>>>>> 65e030c205e36906bb8b32219760409e2cb0f5cc
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     height: 300px;
-    width: 200px;
-    top: 230px;
-    left: 460px;
-
+    width: 250px;
 }
 
-.thirdAward {
-    position: absolute;
-    /*background-image: url("../image/gryffindor.png");*/
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 300px;
-    width: 200px;
-    top: 330px;
-    left: 750px;
-    background-size: cover;
-
-
+#firstAward {  
+    top: 22vh;
+    left: 23vw;
 }
 
-.secondAward {
+#secondAward {
+    top: 27vh;
+    left: 7vw;
+}
 
-    position: absolute;
-<<<<<<< HEAD
-    background-image: url("../image/ravenclaw.png");
-=======
-    /*background-image: url("../image/Ravenclaw.png");*/
->>>>>>> 65e030c205e36906bb8b32219760409e2cb0f5cc
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 300px;
-    width: 200px;
-    top: 280px;
-    left: 140px;
-
-
+#thirdAward {
+    top: 32vh;
+    left: 39vw;
 }
 
 .logoHufflepuffHouse {
-
     position: absolute;
     background-image: url("../image/hufflepuff.png");
     background-position: center;
