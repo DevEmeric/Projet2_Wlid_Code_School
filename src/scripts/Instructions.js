@@ -50,7 +50,7 @@ class Instructions extends Component {
                     </div>
                     <div className="container4">
                         <p>W</p>
-                        <span>SPELL</span>
+                        <span>ATTACK</span>
                         <p>!</p>
                     </div>
                 </div>

@@ -56,7 +56,7 @@ class Fight extends Component {
             this.state = {
 
                 startGame: false,
-                seconds: 5,
+                seconds: 3,
                 messageStart: false,
 
                 redirect: false,
@@ -282,7 +282,6 @@ class Fight extends Component {
 
     // Wizard shield function
     takeOutShield = (fighterID) => {
-        //console.log([fighterID]+" take out shield")
         this.setState({
             [fighterID]: {
                 ...this.state[fighterID],
@@ -336,19 +335,10 @@ class Fight extends Component {
         this.setState({ displayInstr: !this.state.displayInstr })
     }
 
-    //Fonction fin du tournoi de putain qui sert à rien pour le moment
-    EndOfTurn = () => {
-        this.getCurrentFighters(1)
-        if (this.state.turn === 3) {
-            this.setState({ displayInstr: !this.state.displayInstr })
-            console.log("reveille toi connard !!")
-        }
-    }
 
 
     // Fighters selection depending on turn and number of players
     getCurrentFighters = (turn) => {
-        //   console.log("turn : " + turn);
         let i = 0;
         let j = 1;
 
@@ -375,13 +365,6 @@ class Fight extends Component {
                 break;
             //default: { i = 0; j = 1 }; break;
         }
-        if (this.state.turn === 3) {
-            //<Link to="/TournementVictory"></Link>
-            // this.setState({ displayInstr: !this.state.displayInstr })
-            console.log("reveille toi connard !!")
-        }
-        // console.log("Fighters selected : ")
-        // console.log([this.props.fightersHouse[i], this.props.fightersHouse[j]])
 
         this.setState({
             fighter1: {
@@ -438,15 +421,12 @@ class Fight extends Component {
             },
         })
 
-        //  console.log(this.state.fighter1)
     }
 
 
     componentDidMount = () => {
 
         this.timer = setInterval(this.welcomeFight, 1000);
-
-        console.log(this.props)
 
         this.getCurrentFighters(1);
         setInterval(() => {
@@ -612,13 +592,13 @@ class Fight extends Component {
     }
 
     welcomeFight = () => {
-        
+
         this.conditionDecount()
         this.letsFight()
     }
 
     conditionDecount = () => {
-        
+
         if (this.state.seconds <= 1) {
             clearInterval(this.timer);
             this.setState({
@@ -632,11 +612,11 @@ class Fight extends Component {
         }
 
         if (this.state.seconds > 1) {
-            this.setState({ 
+            this.setState({
                 seconds: this.state.seconds - 1
-             })
+            })
         }
-        
+
 
     }
 
@@ -646,12 +626,12 @@ class Fight extends Component {
                 clearInterval(this.timer);
                 this.setState({
                     startGame: false,
-                    seconds: 6,
-                    messageStart: false, 
+                    seconds: 4,
+                    messageStart: false,
                 })
             }
                 .bind(this),
-            6000);
+            3500);
     }
 
     //loseLife(fighterID){}
@@ -672,8 +652,6 @@ class Fight extends Component {
     }
 
     endOfFight = () => {
-        console.log(this.state.progress)
-        console.log(this.state.progress1)
         this.setState({
             scoreFighter1: this.state.scoreFighter1 + this.state.progress,
             scoreFighter2: this.state.scoreFighter2 + this.state.progress1,
@@ -685,7 +663,6 @@ class Fight extends Component {
 
     // Consequence of a shield being hitten
     hitsShield(spellID, fighterID) {
-        console.log("Passage dans hitsShield")
         this.setState({
             [spellID]: {
                 ...this.state[spellID],
@@ -698,13 +675,10 @@ class Fight extends Component {
             }
 
         })
-        console.log(this.state[spellID])
-        console.log(this.state[fighterID])
     }
 
     restartFight = () => {
-        
-        //console.log("restart fight before setState")
+
         this.reIntitialize(this.state.fighter1.id, 100, true, false);
         this.reIntitialize(this.state.fighter2.id, 1100, false, false);
         this.setState({
@@ -740,11 +714,11 @@ class Fight extends Component {
 
     nextFight = (turn, seconds) => {
         this.setState({
-            seconds: 6,
+            seconds: 4,
         })
         this.timer = setInterval(this.welcomeFight, 1000);
         this.getCurrentFighters(turn);
-        
+
         this.welcomeFight(seconds)
         //mettre le setstate en bas
     }
@@ -765,10 +739,8 @@ class Fight extends Component {
 
     //redirect = () => this.state.redirect ? <Redirect to='/TournementVictory' /> : ""
     render() {
-        console.log(this.state.fighter1.deathFighter, this.state.fighter2.deathFighter)
         const { redirect } = this.state;
         if (redirect) {
-            console.log('ça marche')
             return <Redirect to='/TournementVictory' />;
         }
 
@@ -862,6 +834,7 @@ class Fight extends Component {
                             fighter={this.state.fighter1}
                             victory={this.state.modalVictory}
                             displayInstr={this.state.displayInstr}
+                            startGame={this.state.startGame}
                         />
                     </div>
                     <div>
@@ -869,6 +842,7 @@ class Fight extends Component {
                             fighter={this.state.fighter2}
                             victory={this.state.modalVictory}
                             displayInstr={this.state.displayInstr}
+                            startGame={this.state.startGame}
                         />
                     </div>
                     <div>{
@@ -921,9 +895,8 @@ class Fight extends Component {
 
                     <div>
                         <div className="spaceInstr" style={instrStyle}>
-                            <p>INSTRUCTIONS</p>
-                            <p>(& pause)</p>
                             <p>Press SPACEBAR</p>
+                            <p>INSTRUCTIONS</p>
                         </div>{
                             this.state.displayInstr ?
                                 <Instructions />
