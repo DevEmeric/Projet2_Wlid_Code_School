@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Hogwarts from "../image/logochoice.png";
 import "./Houses.css"
 import { Link } from "react-router-dom"
+import trash from "../image/trash.svg"
 
 
 class HouseSelection extends Component {
@@ -81,7 +82,7 @@ class HouseSelection extends Component {
   clearButton() {
     if (this.state.playerSelection.length >= 0 && this.state.clearButton === true)
       return <button
-        onClick={this.clearChoice} className="clear-button">Clear selection</button>;
+        onClick={this.clearChoice} className="clear-button"><img src={trash} /></button>;
   }
 
   // fonction pour empêcher de sélectionner maison deux fois:
@@ -185,7 +186,7 @@ class HouseSelection extends Component {
             <div></div>
           }
         </div>
-        <div>
+        <div id="playerChoice">
           {/* affichage du choix des joueurs */}
           {this.selectionChoice1()}
           {this.selectionChoice2()}

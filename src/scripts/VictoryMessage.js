@@ -26,27 +26,18 @@ class VictoryMessage extends React.Component {
   }
 
   render() {
-    let buttonStyle={
-      color: 'white', 
-      backgroundColor: 'orange', 
-      width: 100, 
-      height: 70, 
-      fontSize: 20,
-    }
+    
 
     return (
-      <div>
-        <div className="VictoryText">
-          <p>CONGRATS YOU WON</p>
-          <div className="ButtonChoice">{
-            this.state.modeTournoi ?
-
-              <button style={buttonStyle} onClick={this.nextFight}>Next Fight</button>
-              :
-              <button style={buttonStyle} onClick={this.restartFight}>Start Again</button>
-          }
-              <Link to="/"><button style={buttonStyle}>Home Page</button></Link>
-          </div>
+      <div className="VictoryText">
+        <p>CONGRATS {this.props.winningHouse} !!</p>
+        <div className="ButtonChoice">{
+          this.state.modeTournoi ?
+            <button onClick={this.nextFight}>Next Fight</button>
+            :
+            <button onClick={this.restartFight}>Start Again</button>
+        }
+            <Link to="/"><button >Home Page</button></Link>
         </div>
       </div>
     );

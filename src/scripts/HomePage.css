@@ -20,21 +20,17 @@
     position: relative;
     left: 3%;
     font-family: "PotterFont";
-    color: rgb(252, 222, 53);
+    color: orange;
     font-size: 150px;
     letter-spacing: 10px;
     text-shadow: 4px 4px 4px black;
-    /* -6px -6px 0 #000,
-    6px -6px 0 #000,
-    -6px 6px 0 #000,
-    6px 6px 0 #000; */
 }
 
 
 .container1 button {
     align-self: center;
     width: 300px;
-    height: 100px;
+    height: 60px;
     font-family: "PotterFont";
     font-size: 50px;
     border: none;
