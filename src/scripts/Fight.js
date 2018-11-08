@@ -28,7 +28,7 @@ class Fight extends Component {
     constructor() {
         super();
 
-        this.tick = this.tick.bind(this)
+        this.welcomeFight = this.welcomeFight.bind(this)
         this.spellSound = new Audio(spellSound);
         this.shieldSound = new Audio(shieldSound);
 
@@ -427,6 +427,7 @@ class Fight extends Component {
             progress: 100,
             progress1: 100,
             modalVictory: false,
+            startGame: true,
             turn: turn,
             //Initialisation des scoreFighter à 0
             scoreFighter1: 0,
@@ -443,7 +444,7 @@ class Fight extends Component {
 
     componentDidMount = () => {
 
-        this.timer = setInterval(this.tick, 1000);
+        this.timer = setInterval(this.welcomeFight, 1000);
 
         console.log(this.props)
 
@@ -610,14 +611,15 @@ class Fight extends Component {
 
     }
 
-    tick = () => {
+    welcomeFight = () => {
+        
         this.conditionDecount()
         this.letsFight()
     }
 
     conditionDecount = () => {
+        
         if (this.state.seconds <= 1) {
-
             clearInterval(this.timer);
             this.setState({
                 messageStart: true,
@@ -627,9 +629,15 @@ class Fight extends Component {
                     seconds: 0,
                 },
             });
-
         }
-        if (this.state.seconds > 1) this.setState({ seconds: this.state.seconds - 1 })
+
+        if (this.state.seconds > 1) {
+            this.setState({ 
+                seconds: this.state.seconds - 1
+             })
+        }
+        
+
     }
 
     letsFight = () => {
@@ -638,12 +646,12 @@ class Fight extends Component {
                 clearInterval(this.timer);
                 this.setState({
                     startGame: false,
-                    seconds: 5,
+                    seconds: 6,
                     messageStart: false, 
                 })
             }
                 .bind(this),
-            5000);
+            6000);
     }
 
     //loseLife(fighterID){}
@@ -671,9 +679,6 @@ class Fight extends Component {
             scoreFighter2: this.state.scoreFighter2 + this.state.progress1,
             progress1: - 1,
             modalVictory: true,
-
-
-
         });
         this.addScores()
     }
@@ -698,6 +703,7 @@ class Fight extends Component {
     }
 
     restartFight = () => {
+        
         //console.log("restart fight before setState")
         this.reIntitialize(this.state.fighter1.id, 100, true, false);
         this.reIntitialize(this.state.fighter2.id, 1100, false, false);
@@ -705,11 +711,12 @@ class Fight extends Component {
             progress: 100,
             progress1: 100,
             modalVictory: false,
-            fightTime: {
+            /* fightTime: {
                 minutes: 2,
                 seconds: 0,
-            },
+            }, */
         })
+
     }
 
     reIntitialize = (fighterID, leftPosition, newFacePosition, notDead) => {
@@ -731,9 +738,15 @@ class Fight extends Component {
         })
     }
 
-    nextFight = (turn) => {
+    nextFight = (turn, seconds) => {
+        this.setState({
+            seconds: 6,
+        })
+        this.timer = setInterval(this.welcomeFight, 1000);
         this.getCurrentFighters(turn);
-        this.tick() 
+        
+        this.welcomeFight(seconds)
+        //mettre le setstate en bas
     }
 
     redirect = () => {

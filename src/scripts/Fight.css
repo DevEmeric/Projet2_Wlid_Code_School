@@ -88,7 +88,7 @@
    color: gold;
    margin: 0 auto;
    margin-top: 20%;
-   text-shadow: 0 0 15px white, 0 0 10px white;
+   text-shadow: 0 0 15px black, 0 0 10px black;
  }
 
  .decount {
@@ -100,9 +100,9 @@
    top: 48%;
    left: 48%; */
    color: gold;
-   margin: 0 auto;
-   margin-bottom: 10vh;
-   text-shadow: 0 0 15px white, 0 0 10px white;
+   margin: 0 auto; 
+   /* margin-bottom: 50%; */
+   text-shadow: 0 0 15px black, 0 0 10px black;
 
  }
 
