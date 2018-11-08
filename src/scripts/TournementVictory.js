@@ -38,7 +38,6 @@ class TournementVictory extends Component {
         let style1 = { backgroundImage: `url(${this[first[0]]})` }
         let style2 = { backgroundImage: `url(${this[second[0]]})` }
         let style3 = { backgroundImage: `url(${this[third[0]]})` }
-        console.log("final ranking :", houseSort)
         return <div>
             <div className="fullScore">
                 <div className="skore two">{second[1]} pts</div>
@@ -46,11 +45,9 @@ class TournementVictory extends Component {
                 <div className="skore three">{third[1]} pts</div>
             </div>
 
-            <div className="firstAward" style={style1}></div>
-
-            <div className="secondAward" style={style2}></div>
-
-            <div className="thirdAward" style={style3}></div>
+            <div className="award" id="firstAward" style={style1}></div>
+            <div className="award" id="secondAward" style={style2}></div>
+            <div className="award" id="thirdAward" style={style3}></div>
         </div >
 
     }

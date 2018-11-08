@@ -196,14 +196,14 @@ class HouseSelection extends Component {
         <div>
           {() => this.grayOut()}
           {/* blasons des maisons */}
-          <button className="Slytherin shield-button" onClick={() => this.addToPlayerSelection("Slytherin")} style={slytherinStyle}>
-          </button>
-          <button className="Gryffindor shield-button" onClick={() => this.addToPlayerSelection("Gryffindor")} style={gryffindorStyle}>
-          </button>
-          <button className="Ravenclaw shield-button" onClick={() => this.addToPlayerSelection("Ravenclaw")} style={ravenclawStyle}>
-          </button>
-          <button className="Hufflepuff shield-button" onClick={() => this.addToPlayerSelection("Hufflepuff")} style={hufflepuffStyle}>
-          </button>
+          <div className="Slytherin shield-button" onClick={() => this.addToPlayerSelection("Slytherin")} style={slytherinStyle}>
+          </div>
+          <div className="Gryffindor shield-button" onClick={() => this.addToPlayerSelection("Gryffindor")} style={gryffindorStyle}>
+          </div>
+          <div className="Ravenclaw shield-button" onClick={() => this.addToPlayerSelection("Ravenclaw")} style={ravenclawStyle}>
+          </div>
+          <div className="Hufflepuff shield-button" onClick={() => this.addToPlayerSelection("Hufflepuff")} style={hufflepuffStyle}>
+          </div>
         </div>
         {/* boutons de confirmation */}
         {this.clearButton()}

@@ -14,7 +14,6 @@ class VictoryMessage extends React.Component {
   }
 
   nextFight=()=>{
-    console.log("Next fight in Victory message")
     this.setState({
       turn:this.state.turn++
     })

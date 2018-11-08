@@ -21,9 +21,9 @@
     left: 3%;
     font-family: "PotterFont";
     color: orange;
+    text-shadow: 3px 3px white;
     font-size: 150px;
     letter-spacing: 10px;
-    text-shadow: 4px 4px 4px black;
 }
 
 

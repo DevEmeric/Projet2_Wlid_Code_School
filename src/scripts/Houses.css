@@ -66,6 +66,10 @@ h1 {
     border: none;
 }
 
+.shield-button:hover {
+    transform: scale(1.15);
+}
+
 .Slytherin {
     background-image: url("../image/slytherin.png");
     background-position: center; 
