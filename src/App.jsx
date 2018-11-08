@@ -41,13 +41,11 @@ class App extends Component {
   }
 
   setVolume = (target, bool) => {
-    console.log("in app.js", target, bool, target.includes('Sound'))
     if (target.includes('Music')) {
       if (!bool) this.setState({ musicVolume: 0 });
       else this.setState({ musicVolume: 1 });
     }
     else if (target.includes('Sound')) {
-      console.log("réglages son", bool)
       if (!bool) this.setState({ soundVolume: 0 });
       else this.setState({ soundVolume: 1 });
     }

@@ -14,7 +14,6 @@ class VictoryMessage extends React.Component {
   }
 
   nextFight=()=>{
-    console.log("Next fight in Victory message")
     this.setState({
       turn:this.state.turn++
     })
@@ -26,13 +25,7 @@ class VictoryMessage extends React.Component {
   }
 
   render() {
-    let buttonStyle={
-      color: 'white', 
-      backgroundColor: 'orange', 
-      width: 100, 
-      height: 70, 
-      fontSize: 20,
-    }
+    
 
     return (
       <div>
@@ -41,11 +34,11 @@ class VictoryMessage extends React.Component {
           <div className="ButtonChoice">{
             this.state.modeTournoi ?
 
-              <button style={buttonStyle} onClick={this.nextFight}>Next Fight</button>
+              <button  onClick={this.nextFight}>Next Fight</button>
               :
-              <button style={buttonStyle} onClick={this.restartFight}>Start Again</button>
+              <button  onClick={this.restartFight}>Start Again</button>
           }
-              <Link to="/"><button style={buttonStyle}>Home Page</button></Link>
+              <Link to="/"><button >Home Page</button></Link>
           </div>
         </div>
       </div>
