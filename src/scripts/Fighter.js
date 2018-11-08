@@ -27,7 +27,7 @@ class Fighter extends Component {
       left: this.props.fighter.left,
       width: this.props.fighter.width,
       height: this.props.fighter.height,
-      speed: 20,
+      speed: 50,
       tabKeys: [],
     }
   }
@@ -55,7 +55,7 @@ class Fighter extends Component {
 
 
   handleKeyPress = (localTabKeys) => {
-    if (this.props.victory === false && this.props.displayInstr === false) {
+    if (this.props.victory === false && this.props.displayInstr === false && this.props.startGame === false) {
       if (localTabKeys.indexOf(this.props.fighter.moveUp) !== -1 && this.props.fighter.top > 110) {
         this.props.fighter.move(this.props.fighter.id, -this.state.speed, 0)
       }
@@ -103,7 +103,7 @@ class Fighter extends Component {
       left: this.props.fighter.left + "px",
       width: this.state.width + "px",
       height: this.state.height + "px",
-      backgroundImage: this.props.fighter.deathFighter === true ? `url(${Impact})`: `url(${this[this.props.fighter.house]})`,
+      backgroundImage: this.props.fighter.deathFighter === true ? `url(${Impact})` : `url(${this[this.props.fighter.house]})`,
     };// ternaire pour afficher la mort de fightherID
 
     let fighterStyleTouched = {
@@ -120,8 +120,8 @@ class Fighter extends Component {
     return (
 
       <div>
-         <div className="fighter" style={(this.props.fighter.touched) ? fighterStyleTouched : fighterStyle} id={fighterId}>  
-         </div>
+        <div className="fighter" style={(this.props.fighter.touched) ? fighterStyleTouched : fighterStyle} id={fighterId}>
+        </div>
       </div>
     );
   }

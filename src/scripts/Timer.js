@@ -8,8 +8,6 @@ export default class Timer extends React.Component {
             seconds: this.props.fightTime.seconds,
             timer: "0" + this.props.fightTime.minutes + ":0" + this.props.fightTime.seconds
         };
-
-        console.log("passage dans le constructeur")
     }
 
     componentDidMount = () => {
