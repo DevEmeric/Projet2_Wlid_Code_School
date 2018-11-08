@@ -1,4 +1,5 @@
 {
+  "homepage": "https://WildCodeSchool.github.io/lyon-0918-js-potter-fighter",
   "name": "tests-harry",
   "version": "0.1.0",
   "private": true,
@@ -16,7 +17,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.js",
@@ -25,7 +28,8 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "gh-pages": "^2.0.1"
   },
   "repository": {
     "type": "git",
@@ -36,6 +40,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/WildCodeSchool/lyon-0918-js-potter-fighter/issues"
-  },
-  "homepage": "https://github.com/WildCodeSchool/lyon-0918-js-potter-fighter#readme"
+  }  
 }
