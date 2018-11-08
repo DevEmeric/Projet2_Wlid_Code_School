@@ -21,6 +21,7 @@ import HufflepuffShield from '../image/hufflepuff.png'
 
 import spellSound from '../sound/attackSound.wav'
 import shieldSound from '../sound/defenseSound.mp3'
+import deathSound from '../sound/ScreamAndDie.wav'
 
 
 class Fight extends Component {
@@ -30,6 +31,7 @@ class Fight extends Component {
 
         this.spellSound = new Audio(spellSound);
         this.shieldSound = new Audio(shieldSound);
+        this.deathSound = new Audio(deathSound);
 
         this.houseStyles = {
             Gryffindor: {
@@ -518,7 +520,11 @@ class Fight extends Component {
                             ...this.state.fighter2,
                             deathFighter: true
                         }
+                        
                     });
+                    this.deathSound.play();
+                    this.deathSound.volume = this.props.soundEffect.effectsVolume;
+                    
 
 
 
@@ -574,6 +580,9 @@ class Fight extends Component {
                         }
 
                     });
+                    this.deathSound.play();
+                    this.deathSound.volume = this.props.soundEffect.effectsVolume
+
                     switch (this.state.fighter2.house) {
 
                         case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter2; break;
@@ -589,6 +598,9 @@ class Fight extends Component {
                         modalVictory: true,
                         deathFighter: true, // Affichage de la mort
                     });
+                    this.deathSound.play();
+                    this.deathSound.volume = this.props.soundEffect.effectsVolume
+
                     switch (this.state.fighter1.house) {
                         case "Gryffindor": this.state.scoreFighters.Gryffindor += this.state.scoreFighter1; break;
                         case "Slytherin": this.state.scoreFighters.Slytherin += this.state.scoreFighter1; break;
