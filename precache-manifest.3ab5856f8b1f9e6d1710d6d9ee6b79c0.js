@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/lyon-0918-js-potter-fighter/static/media/backgroundCastleNight.42c973d6.jpg"
   },
   {
-    "revision": "29862be73d687786743e",
+    "revision": "4f6c184d2d1c7f67f261",
     "url": "/lyon-0918-js-potter-fighter/static/css/main.3a61fd28.chunk.css"
   },
   {
@@ -84,8 +84,8 @@ self.__precacheManifest = [
     "url": "/lyon-0918-js-potter-fighter/static/media/backgroundCastleIndoor.6daf573c.jpg"
   },
   {
-    "revision": "29862be73d687786743e",
-    "url": "/lyon-0918-js-potter-fighter/static/js/main.29862be7.chunk.js"
+    "revision": "4f6c184d2d1c7f67f261",
+    "url": "/lyon-0918-js-potter-fighter/static/js/main.4f6c184d.chunk.js"
   },
   {
     "revision": "40cb1bbf1ea76e3ab029c8cdf4e93197",
@@ -168,7 +168,7 @@ self.__precacheManifest = [
     "url": "/lyon-0918-js-potter-fighter/static/media/salle.3a81cdf3.jpg"
   },
   {
-    "revision": "d4831c73e29eaf32dbb4e10d4ded7a08",
+    "revision": "40b9d52ace8129902144da7aab4f2b79",
     "url": "/lyon-0918-js-potter-fighter/index.html"
   }
 ];

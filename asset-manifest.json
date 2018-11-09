@@ -1,7 +1,7 @@
 {
   "main.css": "/lyon-0918-js-potter-fighter/static/css/main.3a61fd28.chunk.css",
-  "main.js": "/lyon-0918-js-potter-fighter/static/js/main.29862be7.chunk.js",
-  "main.js.map": "/lyon-0918-js-potter-fighter/static/js/main.29862be7.chunk.js.map",
+  "main.js": "/lyon-0918-js-potter-fighter/static/js/main.4f6c184d.chunk.js",
+  "main.js.map": "/lyon-0918-js-potter-fighter/static/js/main.4f6c184d.chunk.js.map",
   "static/js/1.aa0a61bb.chunk.js": "/lyon-0918-js-potter-fighter/static/js/1.aa0a61bb.chunk.js",
   "static/js/1.aa0a61bb.chunk.js.map": "/lyon-0918-js-potter-fighter/static/js/1.aa0a61bb.chunk.js.map",
   "runtime~main.js": "/lyon-0918-js-potter-fighter/static/js/runtime~main.598843bf.js",
@@ -41,6 +41,6 @@
   "static/media/Shield.css": "/lyon-0918-js-potter-fighter/static/media/energyShield.8d307945.png",
   "static/css/main.3a61fd28.chunk.css.map": "/lyon-0918-js-potter-fighter/static/css/main.3a61fd28.chunk.css.map",
   "index.html": "/lyon-0918-js-potter-fighter/index.html",
-  "precache-manifest.cf5daf5ba9c51404c5617b625d1dc357.js": "/lyon-0918-js-potter-fighter/precache-manifest.cf5daf5ba9c51404c5617b625d1dc357.js",
+  "precache-manifest.3ab5856f8b1f9e6d1710d6d9ee6b79c0.js": "/lyon-0918-js-potter-fighter/precache-manifest.3ab5856f8b1f9e6d1710d6d9ee6b79c0.js",
   "service-worker.js": "/lyon-0918-js-potter-fighter/service-worker.js"
 }
