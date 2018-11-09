@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/lyon-0918-js-potter-fighter/precache-manifest.5aa8bf0b1114d6e04f7e94ebfe2d0573.js"
+  "/lyon-0918-js-potter-fighter/precache-manifest.cf5daf5ba9c51404c5617b625d1dc357.js"
 );
 
 workbox.clientsClaim();
