@@ -824,7 +824,9 @@ class Fight extends Component {
 
             <div>
                 <div>
-                    <Wall />
+                    <Wall 
+                        turn={this.state.turn}
+                    />
                 </div>
                 <div id="bodyFight">
                     <div className="full">

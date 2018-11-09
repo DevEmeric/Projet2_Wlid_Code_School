@@ -40,6 +40,14 @@ class Wall extends Component {
         this.getRandomBackground();
     }
 
+    shouldComponentUpdate = (nextProps, nextState) => {
+        return(!(nextProps.turn === this.props.turn))
+    }
+
+    componentWillUpdate=()=>{
+        this.getRandomBackground();
+    }
+
     getRandomBackground() {
         const randomImage = this.state.bgImage[Math.floor(Math.random() * this.state.bgImage.length)];
         this.setState({
