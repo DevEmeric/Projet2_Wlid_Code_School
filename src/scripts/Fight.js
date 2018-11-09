@@ -34,6 +34,7 @@ class Fight extends Component {
         this.shieldSound = new Audio(shieldSound);
         this.deathSound = new Audio(deathSound);
 
+        // eslint-disable-next-line no-unused-expressions
         this.houseStyles = {
             Gryffindor: {
                 shield: GryffindorShield,
