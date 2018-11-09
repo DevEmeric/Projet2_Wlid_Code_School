@@ -168,7 +168,7 @@ self.__precacheManifest = [
     "url": "/lyon-0918-js-potter-fighter/static/media/salle.3a81cdf3.jpg"
   },
   {
-    "revision": "b94e2fe87e7e36a23e5bc50e2014321c",
+    "revision": "1ff90d583475adfacd0cddfe6c7ca7ca",
     "url": "/lyon-0918-js-potter-fighter/index.html"
   }
 ];
